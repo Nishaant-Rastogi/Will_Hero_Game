@@ -12,7 +12,7 @@
             <Image url="@../assets/Cover.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="81.0" layoutX="351.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="81.0" layoutX="351.0" layoutY="128.0" onMouseClicked="#game" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
