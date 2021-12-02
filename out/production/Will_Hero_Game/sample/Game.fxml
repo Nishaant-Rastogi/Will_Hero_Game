@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="380.0" prefWidth="780.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -16,7 +16,7 @@
       <Blend />
    </effect>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="BLACK" strokeType="INSIDE" width="600.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="780.0">
          <fill>
             <LinearGradient endX="0.053627758748147764" endY="1.0">
                <stops>
