@@ -1,13 +1,44 @@
 package sample;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+import java.io.Serializable;
+
+
 public abstract class Game_objects {
     double position[];
     double speedx;
     double speedy;
-    Game_objects(){
+    protected String path;
+    transient protected ImageView img;
+    protected int width;
+    protected int height;
+
+    public Game_objects() {
         position = new double[2];
         speedx=0;
         speedy=0;
+    }
+
+    Game_objects(double x, double y, double sx, double sy, String path, int width, int height){
+        position = new double[2];
+        position[0]=x;
+        position[1]=y;
+        this.path=this.path=getClass().getResource(path).toString();
+        speedx=sx;
+        speedy=sy;
+        this.width=width;
+        this.height=height;
+    }
+    public void makeImage(Pane pane){
+        img = new ImageView();
+        Image im=new Image(path,(double) width,(double) height,false,false);
+        img.setImage(im);
+        img.setX(position[0]);
+        img.setY(position[1]);
+        pane.getChildren().add(img);
     }
     public abstract void collide(Game_objects game_objects);
     public double[] getposition(){
