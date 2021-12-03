@@ -43,6 +43,8 @@ public class MainMenuController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         String path = "src/assets/island_1.png";
         ImageView img = new ImageView(new File(path).toURI().toString());
+        img.setX(100);
+        img.setY(200);
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(img);
         scene = new Scene(root,800,600);

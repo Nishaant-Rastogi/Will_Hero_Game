@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -34,5 +36,20 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+      <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="370.0" layoutY="14.0" onMouseClicked="#pauseMenu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/PauseButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/LanceDisplay.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/SwordDisplay.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

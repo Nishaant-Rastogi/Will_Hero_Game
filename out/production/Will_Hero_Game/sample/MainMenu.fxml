@@ -6,22 +6,27 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
    <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Cover.gif" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="109.0" fitWidth="107.0" layoutX="344.0" layoutY="265.0" onMouseClicked="#gamePlay" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="81.0" fitWidth="82.0" layoutX="451.0" layoutY="391.0" onMouseClicked="#pauseMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="83.0" fitWidth="83.0" layoutX="444.0" layoutY="389.0" onMouseClicked="#pauseMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PauseButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="81.0" fitWidth="82.0" layoutX="266.0" layoutY="391.0" onMouseClicked="#reviveMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="87.0" fitWidth="83.0" layoutX="270.0" layoutY="388.0" onMouseClicked="#reviveMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MusicButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="81.0" fitWidth="86.0" layoutX="357.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="83.0" fitWidth="83.0" layoutX="358.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/loadgame.png" />
          </image>

@@ -39,4 +39,12 @@ public class GamePlayController {
     @FXML
     private AnchorPane gameRoot;
 
+    public void pauseMenu(javafx.scene.input.MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

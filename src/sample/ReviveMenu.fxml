@@ -5,26 +5,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="424.0" prefWidth="849.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
    <children>
-      <ImageView fitHeight="424.0" fitWidth="849.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="569.0" fitWidth="849.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ReviveMenu.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="61.0" fitWidth="56.0" layoutX="396.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="62.0" fitWidth="63.0" layoutX="393.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="47.0" fitWidth="48.0" layoutX="327.0" layoutY="280.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="321.0" layoutY="276.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/HomeButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="473.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="56.0" fitWidth="57.0" layoutX="473.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/RestartButtom.png" />
+            <Image url="@../assets/RestartButton.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47046b" height="175.0" layoutX="337.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />

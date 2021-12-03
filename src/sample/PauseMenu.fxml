@@ -11,27 +11,27 @@
             <Image url="@../assets/PauseMenu.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="74.0" fitWidth="72.0" layoutX="266.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="76.0" fitWidth="75.0" layoutX="263.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="64.0" fitWidth="63.0" layoutX="192.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="192.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MusicButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="342.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="75.0" layoutX="339.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/sound.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="63.0" layoutX="345.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="339.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/RestartButtom.png" />
+            <Image url="@../assets/RestartButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="192.0" layoutY="275.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="81.0" layoutX="191.0" layoutY="266.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/HomeButton.png" />
          </image>
