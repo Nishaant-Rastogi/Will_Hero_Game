@@ -42,11 +42,11 @@ public class MainMenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         String path = "src/assets/island_1.png";
-        ImageView img = new ImageView(new File(path).toURI().toString());
-        img.setX(100);
-        img.setY(200);
+        ImageView island = new ImageView(new File(path).toURI().toString());
+        island.setX(100);
+        island.setY(200);
         root.getChildren().add(fxmlLoader.load());
-        root.getChildren().add(img);
+        root.getChildren().add(island);
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();

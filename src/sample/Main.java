@@ -17,7 +17,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setResizable(false);
-//        primaryStage.show();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainMenu.fxml"));
         String path = "src/assets/openingBackground2.mp4";
