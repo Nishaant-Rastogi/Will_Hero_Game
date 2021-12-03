@@ -2,8 +2,8 @@ package sample;
 
 public class Island extends Game_objects implements Jumpable{
     private int length;
-    public Island(int l){
-        super(50,25,0,0,"../assets/island_1.png",100,100);
+    public Island(double x, double y, double sx, double sy, String path, int width, int height, int l){
+        super(x,y,sx,sy,path,width,height);
         this.length=l;
     }
 

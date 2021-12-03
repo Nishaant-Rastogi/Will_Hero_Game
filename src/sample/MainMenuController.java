@@ -41,12 +41,13 @@ public class MainMenuController {
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        String path = "src/assets/island_1.png";
-        ImageView island = new ImageView(new File(path).toURI().toString());
-        island.setX(100);
-        island.setY(200);
+        String islandPath = "src/assets/island_1.png";
+        String heroPath = "src/assets/Gladiator.png";
+        Island island = new Island(100, 200, 0, 10, islandPath, 100, 100, -1);
+        Hero hero = new Hero(120,250,0,20,heroPath,100,100);
         root.getChildren().add(fxmlLoader.load());
-        root.getChildren().add(island);
+        island.makeImage(root);
+        hero.makeImage(root);
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();

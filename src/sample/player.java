@@ -6,7 +6,6 @@ public class player {
     public player(){
         score=0;
         hero= new Hero();
-
     }
     public void play(){
 

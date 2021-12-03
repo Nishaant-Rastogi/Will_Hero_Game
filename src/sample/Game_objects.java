@@ -1,9 +1,11 @@
 package sample;
 
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.io.File;
 import java.io.Serializable;
 
 
@@ -26,16 +28,14 @@ public abstract class Game_objects {
         position = new double[2];
         position[0]=x;
         position[1]=y;
-        this.path=this.path=getClass().getResource(path).toString();
+        this.path=path;
         speedx=sx;
         speedy=sy;
         this.width=width;
         this.height=height;
     }
-    public void makeImage(Pane pane){
-        img = new ImageView();
-        Image im=new Image(path,(double) width,(double) height,false,false);
-        img.setImage(im);
+    public void makeImage(Group pane){
+        img = new ImageView(new File(path).toURI().toString());
         img.setX(position[0]);
         img.setY(position[1]);
         pane.getChildren().add(img);
