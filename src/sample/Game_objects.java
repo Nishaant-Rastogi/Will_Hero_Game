@@ -38,6 +38,8 @@ public abstract class Game_objects {
         img = new ImageView(new File(path).toURI().toString());
         img.setX(position[0]);
         img.setY(position[1]);
+        img.setFitWidth(width);
+        img.setFitHeight(height);
         pane.getChildren().add(img);
     }
     public abstract void collide(Game_objects game_objects);

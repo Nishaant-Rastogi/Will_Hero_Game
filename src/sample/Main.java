@@ -31,6 +31,8 @@ public class Main extends Application {
         Scene scene = new Scene(root,800,600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Will Hero");
+        MainMenuController mainMenuController = fxmlLoader.getController();
+        mainMenuController.initData(root, mediaPlayer);
         primaryStage.show();
     }
 

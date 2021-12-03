@@ -21,7 +21,7 @@
             <Image url="@../assets/PauseButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="87.0" fitWidth="83.0" layoutX="270.0" layoutY="388.0" onMouseClicked="#reviveMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="87.0" fitWidth="83.0" layoutX="270.0" layoutY="388.0" onMouseClicked="#musicButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MusicButton.png" />
          </image>

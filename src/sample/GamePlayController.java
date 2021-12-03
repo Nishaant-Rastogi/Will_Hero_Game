@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,40 +38,38 @@ import java.util.*;
 public class GamePlayController {
     private Stage stage;
     private Scene scene;
-    private Parent root;
+    private Group root;
     private Timeline time;
     private Hero hero;
-    private Circle ball;
-    @FXML
-    private AnchorPane gameRoot;
 
-    public void initData(Group root, Hero hero, Island island){
+    public void initData(Group root, Hero hero, Island island, Obstacle tnt, Orc greenOrc){
+        this.root = root;
         this.hero = hero;
         hero.makeImage(root);
         island.makeImage(root);
+        tnt.makeImage(root);
+        greenOrc.makeImage(root);
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{ moveHero(); });
         this.time = new Timeline(frame);
         time.setCycleCount(Timeline.INDEFINITE);
-        moveHero();
         time.play();
     }
 
-    public void pauseMenu(javafx.scene.input.MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void pause(){
+    public void pause() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
+        AnchorPane pauseMenu = fxmlLoader.load();
+        pauseMenu.setLayoutX(270);
+        pauseMenu.setLayoutY(10);
+        root.getChildren().add(pauseMenu);
         time.pause();
+        PauseMenuController pauseMenuController = fxmlLoader.getController();
+        pauseMenuController.initData(root, time, pauseMenu);
     }
     public void moveHero(){
         hero.img.setY(hero.img.getY()-hero.getSpeedy());
-        if(hero.img.getY()>=250 || hero.img.getY()<=100){
+        if(hero.img.getY()>=250 || hero.img.getY()<=150){
             double speed = hero.getSpeedy();
             hero.setSpeedy(-speed);
         }
     }
-
 }

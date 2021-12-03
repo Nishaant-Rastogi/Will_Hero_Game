@@ -5,7 +5,8 @@ public class TNT extends Obstacle{
     private int radius;
     private int timeToBurst;
     private boolean isBurst;
-    public TNT(){
+    public TNT(double x, double y, double sx, double sy, String path, int width, int height){
+        super(x,y,sx,sy,path,width,height);
         this.isBurst= false;
         //others need to be added
     }
