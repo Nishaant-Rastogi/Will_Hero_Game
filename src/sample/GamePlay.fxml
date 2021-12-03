@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="380.0" prefWidth="780.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="380.0" prefWidth="780.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>

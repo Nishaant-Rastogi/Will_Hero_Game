@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="781.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="781.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
    <children>
       <ImageView fitHeight="516.0" fitWidth="784.0" layoutX="-1.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.3466796875">
          <image>
             <Image url="@../assets/Cover.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="81.0" layoutX="351.0" layoutY="128.0" onMouseClicked="#game" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="81.0" layoutX="351.0" layoutY="128.0" onMouseClicked="#gamePlay" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
