@@ -44,15 +44,13 @@ public class MainMenuController {
         String islandPath = "src/assets/island_1.png";
         String heroPath = "src/assets/Gladiator.png";
         Island island = new Island(100, 200, 0, 10, islandPath, 100, 100, -1);
-        Hero hero = new Hero(120,250,0,20,heroPath,100,100);
+        Hero hero = new Hero(120,250,0,2,heroPath,100,100);
         root.getChildren().add(fxmlLoader.load());
-        island.makeImage(root);
-        hero.makeImage(root);
+        GamePlayController gamePlayController = fxmlLoader.getController();
+        gamePlayController.initData(root, hero, island);
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
 
     }
-
-
 }

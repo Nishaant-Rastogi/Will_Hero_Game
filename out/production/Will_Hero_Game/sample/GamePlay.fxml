@@ -36,7 +36,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="370.0" layoutY="14.0" onMouseClicked="#pauseMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="370.0" layoutY="14.0" onMouseClicked="#pause" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PauseButton.png" />
          </image>

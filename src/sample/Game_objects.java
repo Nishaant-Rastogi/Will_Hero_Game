@@ -54,6 +54,10 @@ public abstract class Game_objects {
         return speedx;
     }
 
+    public double[] getPosition() {
+        return position;
+    }
+
     public void setSpeedx(double speedx) {
         this.speedx = speedx;
     }
