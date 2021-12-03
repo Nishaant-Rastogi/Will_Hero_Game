@@ -3,12 +3,16 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javafx.scene.image.ImageView;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class MainMenuController {
@@ -16,8 +20,6 @@ public class MainMenuController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    @FXML
-    private AnchorPane gameRoot;
 
     public void pauseMenu(javafx.scene.input.MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
@@ -36,11 +38,17 @@ public class MainMenuController {
     }
 
     public void gamePlay(javafx.scene.input.MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
+        Group root = new Group();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        String path = "src/assets/island_1.png";
+        ImageView img = new ImageView(new File(path).toURI().toString());
+        root.getChildren().add(fxmlLoader.load());
+        root.getChildren().add(img);
+        scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
+
     }
 
 
