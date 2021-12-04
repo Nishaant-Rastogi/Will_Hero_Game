@@ -29,10 +29,10 @@ public class Main extends Application {
         root.getChildren().add(mediaView);
         root.getChildren().add(fxmlLoader.load());
         Scene scene = new Scene(root,800,600);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Will Hero");
         MainMenuController mainMenuController = fxmlLoader.getController();
         mainMenuController.initData(root, mediaPlayer);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Will Hero");
         primaryStage.show();
     }
 

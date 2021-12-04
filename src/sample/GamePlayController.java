@@ -39,11 +39,13 @@ public class GamePlayController {
     private Stage stage;
     private Scene scene;
     private Group root;
+    private MediaPlayer mediaPlayer;
     private Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs){
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, MediaPlayer mediaPlayer){
+        this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
         this.islands = islands;
@@ -79,7 +81,7 @@ public class GamePlayController {
         root.getChildren().add(pauseMenu);
         time.pause();
         PauseMenuController pauseMenuController = fxmlLoader.getController();
-        pauseMenuController.initData(root, time, pauseMenu);
+        pauseMenuController.initData(root, time, mediaPlayer, pauseMenu);
     }
     public void moveOrc(){
         orcs.get(0).img.setY(orcs.get(0).img.getY()-orcs.get(0).getSpeedy());

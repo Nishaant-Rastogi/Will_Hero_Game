@@ -5,7 +5,9 @@ import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class PauseMenuController {
@@ -25,17 +28,16 @@ public class PauseMenuController {
     private Timeline time;
     private AnchorPane pauseMenu;
     private MediaPlayer mediaPlayer;
-    public void initData(Group root, Timeline time, AnchorPane menu){
+    public void initData(Group root, Timeline time, MediaPlayer mediaPlayer, AnchorPane menu){
         this.root = root;
         this.time = time;
         this.pauseMenu = menu;
-        this.mediaPlayer = null;
+        this.mediaPlayer = mediaPlayer;
     }
     public void initData(Group root, MediaPlayer mediaPlayer, AnchorPane menu){
         this.root = root;
         this.mediaPlayer = mediaPlayer;
         this.pauseMenu = menu;
-        this.time = null;
     }
 
     public void start(MouseEvent mouseEvent) {
@@ -45,11 +47,23 @@ public class PauseMenuController {
     }
 
     public void home(MouseEvent mouseEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        this.mediaPlayer.setMute(true);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainMenu.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        String path = "src/assets/openingBackground2.mp4";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setAutoPlay(true);
+        MediaView mediaView = new MediaView(mediaPlayer);
+        Group root = new Group();
+        root.getChildren().add(mediaView);
+        root.getChildren().add(fxmlLoader.load());
+        Scene scene = new Scene(root,800,600);
+        MainMenuController mainMenuController = fxmlLoader.getController();
+        mainMenuController.initData(root, mediaPlayer);
         stage.setScene(scene);
-        this.root.getChildren().remove(pauseMenu);
+        stage.setTitle("Will Hero");
         stage.show();
     }
 }

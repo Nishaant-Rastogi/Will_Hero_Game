@@ -76,7 +76,7 @@ public class MainMenuController {
 
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, tnt,orcs);
+        gamePlayController.initData(root, hero, islands, tnt, orcs, mediaPlayer);
 
         scene = new Scene(root,800,600);
         stage.setScene(scene);
