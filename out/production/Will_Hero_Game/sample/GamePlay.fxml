@@ -9,6 +9,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="gameRoot" prefHeight="380.0" prefWidth="780.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GamePlayController">
    <opaqueInsets>
@@ -36,7 +37,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView fx:id="setting" fitHeight="59.0" fitWidth="71.0" layoutX="370.0" layoutY="14.0" onMouseClicked="#pause" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="setting" fitHeight="59.0" fitWidth="71.0" layoutX="370.0" layoutY="7.0" onMouseClicked="#pause" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PauseButton.png" />
          </image>
@@ -51,5 +52,6 @@
             <Image url="@../assets/SwordDisplay.png" />
          </image>
       </ImageView>
+      <Text fill="WHITE" layoutX="379.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="40.887168884277344" />
    </children>
 </AnchorPane>

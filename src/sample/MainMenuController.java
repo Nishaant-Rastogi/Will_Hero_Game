@@ -85,7 +85,7 @@ public class MainMenuController {
         ArrayList<Orc> orcs = new ArrayList<>();
         islands.add(island);islands.add(smallIsland);
         Hero hero = new Hero(120,250,0,2,heroPath,80,80);
-        Orc greenOrc = new Normal_G_Orc(520,250,0,1.5,greenOrcPath,80,80);
+        Orc greenOrc = new Normal_G_Orc(520,250,0,2.5,greenOrcPath,80,80);
         orcs.add(greenOrc);
         Obstacle tnt = new TNT(320,240,0,1,tntPath,80,80);
 
