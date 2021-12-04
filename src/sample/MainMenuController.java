@@ -80,12 +80,12 @@ public class MainMenuController {
         String tntPath = "src/assets/TNT.png";
         String smallIslandPath = "src/assets/island_2.png";
         Island island = new Island(90, 180, 0, 0.5, islandPath, 350, 350, -1);
-        Island smallIsland = new Island(500,100,0,0.5,smallIslandPath,180,400,-1);
+        Island smallIsland = new Island(500,100,0,1,smallIslandPath,180,400,-1);
         ArrayList<Island> islands = new ArrayList<>();
         ArrayList<Orc> orcs = new ArrayList<>();
         islands.add(island);islands.add(smallIsland);
         Hero hero = new Hero(120,250,0,2,heroPath,80,80);
-        Orc greenOrc = new Normal_G_Orc(520,250,0,2.25,greenOrcPath,80,80);
+        Orc greenOrc = new Normal_G_Orc(520,250,0,2,greenOrcPath,80,80);
         orcs.add(greenOrc);
         Obstacle tnt = new TNT(320,240,0,1,tntPath,80,80);
 
