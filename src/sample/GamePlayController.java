@@ -69,8 +69,14 @@ public class GamePlayController {
         pauseMenuController.initData(root, time, mediaPlayer, pauseMenu);
     }
     public void moveOrc(){
-        orcs.get(0).img.setY(orcs.get(0).img.getY()-orcs.get(0).getSpeedy());
-        if(orcs.get(0).img.getY()>=islands.get(1).img.getY()+210 || orcs.get(0).img.getY()<=islands.get(1).img.getY()+100){
+        if(orcs.get(0).img.getY()-orcs.get(0).getSpeedy() > islands.get(1).img.getY()+210){
+            orcs.get(0).img.setY(islands.get(1).img.getY()+210);
+            double speed = orcs.get(0).getSpeedy();
+            orcs.get(0).setSpeedy(-speed);
+        }else {
+            orcs.get(0).img.setY(orcs.get(0).img.getY() - orcs.get(0).getSpeedy());
+        }
+        if(orcs.get(0).img.getY()<=islands.get(1).img.getY()+100){
             double speed = orcs.get(0).getSpeedy();
             orcs.get(0).setSpeedy(-speed);
         }
