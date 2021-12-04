@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainMenuController {
 
@@ -62,13 +63,20 @@ public class MainMenuController {
         String heroPath = "src/assets/Gladiator.png";
         String greenOrcPath = "src/assets/Green_Orc.png";
         String tntPath = "src/assets/TNT.png";
-        Island island = new Island(90, 180, 0, 1, islandPath, 350, 350, -1);
+        String smallIslandPath = "src/assets/island_2.png";
+        Island island = new Island(90, 180, 0, 0.5, islandPath, 350, 350, -1);
+        Island smallIsland = new Island(500,100,0,0.5,smallIslandPath,180,400,-1);
+        ArrayList<Island> islands = new ArrayList<>();
+        ArrayList<Orc> orcs = new ArrayList<>();
+        islands.add(island);islands.add(smallIsland);
         Hero hero = new Hero(120,250,0,2,heroPath,80,80);
-        Orc greenOrc = new Normal_G_Orc(240,240,0,2.5,greenOrcPath,80,80);
-        Obstacle tnt = new TNT(320,230,0,1,tntPath,90,90);
+        Orc greenOrc = new Normal_G_Orc(520,250,0,2.25,greenOrcPath,80,80);
+        orcs.add(greenOrc);
+        Obstacle tnt = new TNT(320,240,0,1,tntPath,80,80);
+
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, island, tnt,greenOrc);
+        gamePlayController.initData(root, hero, islands, tnt,orcs);
 
         scene = new Scene(root,800,600);
         stage.setScene(scene);

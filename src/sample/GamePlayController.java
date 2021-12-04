@@ -41,16 +41,32 @@ public class GamePlayController {
     private Group root;
     private Timeline time;
     private Hero hero;
-
-    public void initData(Group root, Hero hero, Island island, Obstacle tnt, Orc greenOrc){
+    private ArrayList<Island> islands;
+    private ArrayList<Orc> orcs;
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs){
         this.root = root;
         this.hero = hero;
+        this.islands = islands;
+        this.orcs = orcs;
+        for(Island island : islands){
+            island.makeImage(root);
+        }
         hero.makeImage(root);
-        island.makeImage(root);
         tnt.makeImage(root);
-        greenOrc.makeImage(root);
-        KeyFrame frame = new KeyFrame(Duration.millis(10), e->{ moveHero(); });
-        this.time = new Timeline(frame);
+        for(Orc orc : orcs){
+            orc.makeImage(root);
+        }
+        KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
+            hero.jump();
+        });
+        KeyFrame orcFrame = new KeyFrame(Duration.millis(10), e->{
+            moveOrc();
+        });
+        KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
+
+            islands.get(1).jump();
+        });
+        this.time = new Timeline(heroFrame,frame,orcFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
     }
@@ -65,11 +81,11 @@ public class GamePlayController {
         PauseMenuController pauseMenuController = fxmlLoader.getController();
         pauseMenuController.initData(root, time, pauseMenu);
     }
-    public void moveHero(){
-        hero.img.setY(hero.img.getY()-hero.getSpeedy());
-        if(hero.img.getY()>=250 || hero.img.getY()<=150){
-            double speed = hero.getSpeedy();
-            hero.setSpeedy(-speed);
+    public void moveOrc(){
+        orcs.get(0).img.setY(orcs.get(0).img.getY()-orcs.get(0).getSpeedy());
+        if(orcs.get(0).img.getY()>=islands.get(1).img.getY()+210|| orcs.get(0).img.getY()<=islands.get(1).img.getY()+70){
+            double speed = orcs.get(0).getSpeedy();
+            orcs.get(0).setSpeedy(-speed);
         }
     }
 }
