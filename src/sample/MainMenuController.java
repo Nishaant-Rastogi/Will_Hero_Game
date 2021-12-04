@@ -1,7 +1,6 @@
 
 package sample;
 
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -17,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
