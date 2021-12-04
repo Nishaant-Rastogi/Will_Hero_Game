@@ -4,6 +4,8 @@ import javafx.animation.Timeline;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -22,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class PauseMenuController {
+    @FXML
+    private ImageView music;
     private Stage stage;
     private Scene scene;
     private Group root;
@@ -45,7 +49,17 @@ public class PauseMenuController {
         if(time != null)time.play();
         else mediaPlayer.play();
     }
-
+    public void musicButton(javafx.scene.input.MouseEvent event) throws IOException{
+        if(mediaPlayer.isMute()) {
+            Image music = new Image(new File("src/assets/MusicButton.png").toURI().toString());
+            this.music.setImage(music);
+            mediaPlayer.setMute(false);
+        }else {
+            Image musicOn = new Image(new File("src/assets/MusicButtonClose.png").toURI().toString());
+            this.music.setImage(musicOn);
+            mediaPlayer.setMute(true);
+        }
+    }
     public void home(MouseEvent mouseEvent) throws IOException {
         this.mediaPlayer.setMute(true);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainMenu.fxml"));

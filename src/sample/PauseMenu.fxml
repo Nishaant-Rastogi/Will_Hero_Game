@@ -16,7 +16,7 @@
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="25.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="music" fitHeight="74.0" fitWidth="74.0" layoutX="25.0" layoutY="84.0" onMouseClicked="#musicButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MusicButton.png" />
          </image>

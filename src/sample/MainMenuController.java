@@ -8,8 +8,12 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
@@ -23,6 +27,15 @@ public class MainMenuController {
     private Stage stage;
     private Scene scene;
     private Group root;
+
+    @FXML
+    private ImageView play;
+    @FXML
+    private ImageView music;
+    @FXML
+    private ImageView load;
+    @FXML
+    private ImageView settings;
     private MediaPlayer mediaPlayer;
     public void initData(Group root, MediaPlayer mediaPlayer){
         this.mediaPlayer = mediaPlayer;
@@ -40,8 +53,12 @@ public class MainMenuController {
     }
     public void musicButton(javafx.scene.input.MouseEvent event) throws IOException{
         if(mediaPlayer.isMute()) {
+            javafx.scene.image.Image music = new javafx.scene.image.Image(new File("src/assets/MusicButton.png").toURI().toString());
+            this.music.setImage(music);
             mediaPlayer.setMute(false);
         }else {
+            javafx.scene.image.Image musicOn = new Image(new File("src/assets/MusicButtonClose.png").toURI().toString());
+            this.music.setImage(musicOn);
             mediaPlayer.setMute(true);
         }
     }
@@ -81,6 +98,30 @@ public class MainMenuController {
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
+    }
 
+    public void shadowEffectPlay(MouseEvent mouseEvent) {
+        play.setEffect(new DropShadow(20, Color.BLACK));
+    }
+    public void shadowEffectMusic(MouseEvent mouseEvent) {
+        music.setEffect(new DropShadow(20, Color.BLACK));
+    }
+    public void shadowEffectLoad(MouseEvent mouseEvent) {
+        load.setEffect(new DropShadow(20, Color.BLACK));
+    }
+    public void shadowEffectSetting(MouseEvent mouseEvent) {
+        settings.setEffect(new DropShadow(20, Color.BLACK));
+    }
+    public void removeShadowEffectPlay(MouseEvent mouseEvent) {
+        play.setEffect(null);
+    }
+    public void removeShadowEffectMusic(MouseEvent mouseEvent) {
+        music.setEffect(null);
+    }
+    public void removeShadowEffectLoad(MouseEvent mouseEvent) {
+        load.setEffect(null);
+    }
+    public void removeShadowEffectSetting(MouseEvent mouseEvent) {
+        settings.setEffect(null);
     }
 }
