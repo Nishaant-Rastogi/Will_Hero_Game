@@ -21,11 +21,6 @@
             <Image url="@../assets/MusicButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="74.0" fitWidth="75.0" layoutX="172.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/sound.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="172.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/RestartButton.png" />
@@ -34,6 +29,11 @@
       <ImageView fitHeight="74.0" fitWidth="81.0" layoutX="24.0" layoutY="229.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/HomeButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="171.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/SaveButton.png" />
          </image>
       </ImageView>
    </children>
