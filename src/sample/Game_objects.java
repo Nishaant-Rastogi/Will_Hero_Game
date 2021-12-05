@@ -51,7 +51,9 @@ public abstract class Game_objects {
         this.position[1]=a[1];
 
     }
-
+    public ImageView getImg() {
+        return img;
+    }
     public double getSpeedx() {
         return speedx;
     }

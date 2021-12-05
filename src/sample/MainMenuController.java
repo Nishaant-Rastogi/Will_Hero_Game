@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenuController {
 
@@ -97,10 +98,17 @@ public class MainMenuController {
         Obstacle tnt = new TNT(280,250,0,1,tntPath,70,70);
         Weapon_chest chest = new Weapon_chest(580,100,0,0,weaponChestPath,100,70);
 
+        List<Image> chestAnimation = new ArrayList<>();
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_1.png").toURI().toString()));
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_2.png").toURI().toString()));
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_3.png").toURI().toString()));
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_4.png").toURI().toString()));
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_5.png").toURI().toString()));
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_6.png").toURI().toString()));
+        chestAnimation.add(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, tnt, orcs, chest,mediaPlayer);
-
+        gamePlayController.initData(root, hero, islands, tnt, orcs, chest, chestAnimation, mediaPlayer);
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();

@@ -2,6 +2,9 @@ package sample;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -25,26 +28,23 @@ public class GamePlayController {
     private ImageView setting;
     private Stage stage;
     private Scene scene;
-
-
-
     private Group root;
-
-
-
     private MediaPlayer mediaPlayer;
-
-
+    private Transition chestAnimation;
+    private Chests chest;
     private Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, Chests chest, MediaPlayer mediaPlayer){
+
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, Chests chest, List<Image> chestAnimations,MediaPlayer mediaPlayer){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
         this.islands = islands;
         this.orcs = orcs;
+        this.chest = chest;
+
         for(Island island : islands){
             island.makeImage(root);
         }
@@ -67,8 +67,21 @@ public class GamePlayController {
         this.time = new Timeline(heroFrame,frame,orcFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
+        chestPlay(chestAnimations);
     }
-
+    public void chestPlay(List<Image> chestAnimations){
+        Transition animation = new Transition() {
+            {setCycleDuration(Duration.millis(1000));}
+            @Override
+            protected void interpolate(double fraction) {
+                int index = (int) (fraction*(chestAnimations.size()-1));
+                chest.img.setImage(chestAnimations.get(index));
+            }
+        };
+        chest.img.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+            animation.play();
+        });
+    }
     public void pause() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
 
@@ -96,6 +109,8 @@ public class GamePlayController {
             orcs.get(0).setSpeedy(-speed);
         }
     }
+
+
     public Group getRoot() {
         return root;
     }
