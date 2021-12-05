@@ -98,6 +98,10 @@ public class MainMenuController {
         stage.show();
     }
 
+    public ImageView getMusic() {
+        return music;
+    }
+
     public void shadowEffectPlay(MouseEvent mouseEvent) {
         play.setEffect(new DropShadow(20, Color.BLACK));
     }

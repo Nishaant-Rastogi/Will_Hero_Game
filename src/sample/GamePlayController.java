@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -60,12 +61,16 @@ public class GamePlayController {
 
     public void pause() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
+
         AnchorPane pauseMenu = fxmlLoader.load();
         pauseMenu.setLayoutX(270);
         pauseMenu.setLayoutY(10);
         root.getChildren().add(pauseMenu);
         time.pause();
         PauseMenuController pauseMenuController = fxmlLoader.getController();
+        if(this.mediaPlayer.isMute()) {
+            pauseMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
+        }
         pauseMenuController.initData(root, time, mediaPlayer, pauseMenu);
     }
     public void moveOrc(){

@@ -61,7 +61,7 @@ public class PauseMenuController {
         }
     }
     public void home(MouseEvent mouseEvent) throws IOException {
-        this.mediaPlayer.setMute(true);
+        this.mediaPlayer.dispose();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainMenu.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         String path = "src/assets/openingBackground2.mp4";
@@ -76,8 +76,16 @@ public class PauseMenuController {
         Scene scene = new Scene(root,800,600);
         MainMenuController mainMenuController = fxmlLoader.getController();
         mainMenuController.initData(root, mediaPlayer);
+        if(this.mediaPlayer.isMute()){
+            mainMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
+            mediaPlayer.setMute(true);
+        }
         stage.setScene(scene);
         stage.setTitle("Will Hero");
         stage.show();
+    }
+
+    public ImageView getMusic() {
+        return music;
     }
 }
