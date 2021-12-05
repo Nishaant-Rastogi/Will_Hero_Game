@@ -85,19 +85,21 @@ public class MainMenuController {
         String greenOrcPath = "src/assets/Green_Orc.png";
         String tntPath = "src/assets/TNT.png";
         String smallIslandPath = "src/assets/island_4.png";
+        String weaponChestPath = "src/assets/WeaponChest_1.png";
         Island island = new Island(50, 180, 0, 0.5, islandPath, 320, 350, -1);
-        Island smallIsland = new Island(400,100,0,0.5,smallIslandPath,400,520,-1);
+        Island bigIsland = new Island(400,100,0,0.5,smallIslandPath,400,520,-1);
         ArrayList<Island> islands = new ArrayList<>();
         ArrayList<Orc> orcs = new ArrayList<>();
-        islands.add(island);islands.add(smallIsland);
-        Hero hero = new Hero(100,250,0,2,heroPath,80,80);
-        Orc greenOrc = new Normal_G_Orc(500,250,0,2.5,greenOrcPath,80,80);
+        islands.add(island);islands.add(bigIsland);
+        Hero hero = new Hero(100,250,0,2,heroPath,70,70);
+        Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,greenOrcPath,70,70);
         orcs.add(greenOrc);
-        Obstacle tnt = new TNT(280,240,0,1,tntPath,80,80);
+        Obstacle tnt = new TNT(280,250,0,1,tntPath,70,70);
+        Weapon_chest chest = new Weapon_chest(580,100,0,0,weaponChestPath,100,70);
 
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, tnt, orcs, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, tnt, orcs, chest,mediaPlayer);
 
         scene = new Scene(root,800,600);
         stage.setScene(scene);

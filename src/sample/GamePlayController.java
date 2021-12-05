@@ -39,7 +39,7 @@ public class GamePlayController {
     private Hero hero;
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, MediaPlayer mediaPlayer){
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, Chests chest, MediaPlayer mediaPlayer){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
@@ -50,6 +50,7 @@ public class GamePlayController {
         }
         hero.makeImage(root);
         tnt.makeImage(root);
+        chest.makeImage(root);
         for(Orc orc : orcs){
             orc.makeImage(root);
         }
@@ -60,6 +61,7 @@ public class GamePlayController {
             moveOrc();
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
+            chest.img.setY(islands.get(1).img.getY()+210);
             islands.get(1).jump();
         });
         this.time = new Timeline(heroFrame,frame,orcFrame);

@@ -24,7 +24,7 @@ public class Hero extends Game_objects implements Jumpable {
     @Override
     public void jump() {
         this.img.setY(this.img.getY()-this.getSpeedy());
-        if(this.img.getY()>=250 || this.img.getY()<=150){
+        if(this.img.getY()>=260 || this.img.getY()<=150){
             double speed = this.getSpeedy();
             this.setSpeedy(-speed);
         }
