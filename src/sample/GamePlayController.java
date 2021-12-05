@@ -25,8 +25,16 @@ public class GamePlayController {
     private ImageView setting;
     private Stage stage;
     private Scene scene;
+
+
+
     private Group root;
+
+
+
     private MediaPlayer mediaPlayer;
+
+
     private Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
@@ -71,7 +79,7 @@ public class GamePlayController {
         if(this.mediaPlayer.isMute()) {
             pauseMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
         }
-        pauseMenuController.initData(root, time, mediaPlayer, pauseMenu);
+        pauseMenuController.initData(this, pauseMenu);
     }
     public void moveOrc(){
         if(orcs.get(0).img.getY()-orcs.get(0).getSpeedy() > islands.get(1).img.getY()+210){
@@ -85,6 +93,15 @@ public class GamePlayController {
             double speed = orcs.get(0).getSpeedy();
             orcs.get(0).setSpeedy(-speed);
         }
+    }
+    public Group getRoot() {
+        return root;
+    }
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+    public Timeline getTime() {
+        return time;
     }
     public void shadowEffectSetting(MouseEvent mouseEvent) {
         setting.setEffect(new DropShadow(20, Color.BLACK));

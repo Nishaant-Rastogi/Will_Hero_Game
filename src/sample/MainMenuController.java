@@ -34,7 +34,9 @@ public class MainMenuController {
     private ImageView load;
     @FXML
     private ImageView settings;
+
     private MediaPlayer mediaPlayer;
+
     public void initData(Group root, MediaPlayer mediaPlayer){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
@@ -45,9 +47,13 @@ public class MainMenuController {
         pauseMenu.setLayoutX(270);
         pauseMenu.setLayoutY(50);
         root.getChildren().add(pauseMenu);
-        mediaPlayer.pause();
+
         PauseMenuController pauseMenuController = fxmlLoader.getController();
-        pauseMenuController.initData(root, mediaPlayer, pauseMenu);
+        if(this.mediaPlayer.isMute()){
+            pauseMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
+            mediaPlayer.setMute(true);
+        }
+        pauseMenuController.initData(this, pauseMenu);
     }
     public void musicButton(javafx.scene.input.MouseEvent event) throws IOException{
         if(mediaPlayer.isMute()) {
@@ -101,7 +107,12 @@ public class MainMenuController {
     public ImageView getMusic() {
         return music;
     }
-
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+    public Group getRoot() {
+        return root;
+    }
     public void shadowEffectPlay(MouseEvent mouseEvent) {
         play.setEffect(new DropShadow(20, Color.BLACK));
     }

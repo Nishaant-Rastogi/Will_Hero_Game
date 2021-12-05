@@ -32,22 +32,34 @@ public class PauseMenuController {
     private Timeline time;
     private AnchorPane pauseMenu;
     private MediaPlayer mediaPlayer;
-    public void initData(Group root, Timeline time, MediaPlayer mediaPlayer, AnchorPane menu){
-        this.root = root;
-        this.time = time;
+    private MainMenuController mainMenuController;
+    public void initData(GamePlayController gamePlayController, AnchorPane menu){
+        this.root = gamePlayController.getRoot();
+        this.time = gamePlayController.getTime();
         this.pauseMenu = menu;
-        this.mediaPlayer = mediaPlayer;
+        this.mediaPlayer = gamePlayController.getMediaPlayer();
     }
-    public void initData(Group root, MediaPlayer mediaPlayer, AnchorPane menu){
-        this.root = root;
-        this.mediaPlayer = mediaPlayer;
+    public void initData(MainMenuController mainMenuController, AnchorPane menu){
+        this.mainMenuController = mainMenuController;
+        this.root = mainMenuController.getRoot();
+        this.mediaPlayer = mainMenuController.getMediaPlayer();
         this.pauseMenu = menu;
     }
 
     public void start(MouseEvent mouseEvent) {
         root.getChildren().remove(pauseMenu);
-        if(time != null)time.play();
-        else mediaPlayer.play();
+        if(time != null) {
+            time.play();
+        }else {
+            mediaPlayer.play();
+            if(this.mediaPlayer.isMute()){
+                mainMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
+                mediaPlayer.setMute(true);
+            }else{
+                mainMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButton.png").toURI().toString()));
+                mediaPlayer.setMute(false);
+            }
+        }
     }
     public void musicButton(javafx.scene.input.MouseEvent event) throws IOException{
         if(mediaPlayer.isMute()) {
