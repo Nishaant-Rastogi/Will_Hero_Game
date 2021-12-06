@@ -12,8 +12,8 @@ public class Hero extends Game_objects implements Jumpable {
 
     private boolean isRevived;
     Hero(){}
-    Hero(double x, double y, double sx, double sy, String path, int width, int height){
-        super(x,y,sx,sy,path,width,height);
+    Hero(double x, double y, double sx, double sy, int width, int height){
+        super(x,y,sx,sy,"src/assets/Gladiator.png",width,height);
     }
 
     @Override

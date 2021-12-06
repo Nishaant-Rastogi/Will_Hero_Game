@@ -37,7 +37,7 @@ public class GamePlayController {
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
 
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, Chests chest, List<Image> chestAnimations,MediaPlayer mediaPlayer){
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, Chests chest,MediaPlayer mediaPlayer){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
@@ -67,20 +67,8 @@ public class GamePlayController {
         this.time = new Timeline(heroFrame,frame,orcFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
-        chestPlay(chestAnimations);
-    }
-    public void chestPlay(List<Image> chestAnimations){
-        Transition animation = new Transition() {
-            {setCycleDuration(Duration.millis(1000));}
-            @Override
-            protected void interpolate(double fraction) {
-                int index = (int) (fraction*(chestAnimations.size()-1));
-                chest.img.setImage(chestAnimations.get(index));
-            }
-        };
-        chest.img.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-            animation.play();
-        });
+        ((TNT)tnt).tntPlay();
+        chest.chestAnimation();
     }
     public void pause() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));

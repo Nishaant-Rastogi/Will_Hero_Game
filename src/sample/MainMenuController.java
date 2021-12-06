@@ -82,33 +82,21 @@ public class MainMenuController {
 
         //GameObjects Added
         String islandPath = "src/assets/island_1.png";
-        String heroPath = "src/assets/Gladiator.png";
-        String greenOrcPath = "src/assets/Green_Orc.png";
-        String tntPath = "src/assets/TNT.png";
         String smallIslandPath = "src/assets/island_4.png";
-        String weaponChestPath = "src/assets/WeaponChest_1.png";
         Island island = new Island(50, 180, 0, 0.5, islandPath, 320, 350, -1);
         Island bigIsland = new Island(400,100,0,0.5,smallIslandPath,400,520,-1);
         ArrayList<Island> islands = new ArrayList<>();
         ArrayList<Orc> orcs = new ArrayList<>();
         islands.add(island);islands.add(bigIsland);
-        Hero hero = new Hero(100,250,0,2,heroPath,70,70);
-        Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,greenOrcPath,70,70);
+        Hero hero = new Hero(100,250,0,2,70,70);
+        Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
-        Obstacle tnt = new TNT(280,250,0,1,tntPath,70,70);
-        Weapon_chest chest = new Weapon_chest(580,100,0,0,weaponChestPath,100,70);
+        Obstacle tnt = new TNT(280,250,0,1,70,70);
+        Weapon_chest chest = new Weapon_chest(580,100,0,0,100,70);
 
-        List<Image> chestAnimation = new ArrayList<>();
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_1.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_2.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_3.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_4.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_5.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_6.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, tnt, orcs, chest, chestAnimation, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, tnt, orcs, chest, mediaPlayer);
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
