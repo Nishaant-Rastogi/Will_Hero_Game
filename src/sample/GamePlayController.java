@@ -53,7 +53,7 @@ public class GamePlayController {
             moveOrc();
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
-            chest.img.setY(islands.get(1).img.getY()+210);
+            chest.getImg().setY(islands.get(1).getImg().getY()+210);
             islands.get(1).jump();
         });
         this.time = new Timeline(heroFrame,frame,orcFrame);
@@ -77,14 +77,14 @@ public class GamePlayController {
         pauseMenuController.initData(this, pauseMenu);
     }
     public void moveOrc(){
-        if(orcs.get(0).img.getY()-orcs.get(0).getSpeedy() > islands.get(1).img.getY()+210){
-            orcs.get(0).img.setY(islands.get(1).img.getY()+210);
+        if(orcs.get(0).getImg().getY()-orcs.get(0).getSpeedy() > islands.get(1).getImg().getY()+210){
+            orcs.get(0).getImg().setY(islands.get(1).getImg().getY()+210);
             double speed = orcs.get(0).getSpeedy();
             orcs.get(0).setSpeedy(-speed);
         }else {
-            orcs.get(0).img.setY(orcs.get(0).img.getY() - orcs.get(0).getSpeedy());
+            orcs.get(0).getImg().setY(orcs.get(0).getImg().getY() - orcs.get(0).getSpeedy());
         }
-        if(orcs.get(0).img.getY()<=islands.get(1).img.getY()+100){
+        if(orcs.get(0).getImg().getY()<=islands.get(1).getImg().getY()+100){
             double speed = orcs.get(0).getSpeedy();
             orcs.get(0).setSpeedy(-speed);
         }

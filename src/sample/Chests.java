@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class Chests extends Game_objects implements Jumpable{
     private boolean isOpen;
-    protected List<Image> chestAnimation;
+    private List<Image> chestAnimation;
     public Chests(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
         chestAnimation= new ArrayList<>();
@@ -30,14 +30,23 @@ public abstract class Chests extends Game_objects implements Jumpable{
             @Override
             protected void interpolate(double fraction) {
                 int index = (int) (fraction*(chestAnimation.size()-1));
-                chest.img.setImage(chestAnimation.get(index));
+                chest.getImg().setImage(chestAnimation.get(index));
             }
         };
-        chest.img.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+        chest.getImg().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
             animation.play();
         });
 
     }
+
+    public List<Image> getChestAnimation() {
+        return chestAnimation;
+    }
+
+    public void setChestAnimation(List<Image> chestAnimation) {
+        this.chestAnimation = chestAnimation;
+    }
+
     @Override
     public void jump(){
 

@@ -9,13 +9,13 @@ public class Weapon_chest extends Chests {
     private Weapon weapon;
     public Weapon_chest(double x, double y, double sx, double sy, int width, int height){
         super(x,y,sx,sy,"src/assets/WeaponChest_1.png",width,height);
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_1.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_2.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_3.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_4.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_5.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_6.png").toURI().toString()));
-        chestAnimation.add(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_1.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_2.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_3.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_4.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_5.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_6.png").toURI().toString()));
+        getChestAnimation().add(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
 
     }
 

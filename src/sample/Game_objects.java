@@ -13,8 +13,8 @@ public abstract class Game_objects {
     double position[];
     double speedx;
     double speedy;
-    protected String path;
-    transient protected ImageView img;
+    private String path;
+    transient private ImageView img;
     protected int width;
     protected int height;
 
@@ -23,6 +23,7 @@ public abstract class Game_objects {
         speedx=0;
         speedy=0;
     }
+
 
     Game_objects(double x, double y, double sx, double sy, String path, int width, int height){
         position = new double[2];
@@ -34,6 +35,10 @@ public abstract class Game_objects {
         this.width=width;
         this.height=height;
     }
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
     public void makeImage(Group pane){
         img = new ImageView(new File(path).toURI().toString());
         img.setX(position[0]);

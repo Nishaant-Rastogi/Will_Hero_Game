@@ -45,11 +45,11 @@ public class TNT extends Obstacle{
             @Override
             protected void interpolate(double fraction) {
                 int index = (int) (fraction*(a.animation.size()-1));
-                a.img.setImage(a.animation.get(index));
+                a.getImg().setImage(a.animation.get(index));
 
             }
         };
-        this.img.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+        this.getImg().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
             animation.play();
         });
     }
