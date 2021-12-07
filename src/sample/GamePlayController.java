@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,9 +44,18 @@ public class GamePlayController {
         hero.makeImage(root);
         tnt.makeImage(root);
         chest.makeImage(root);
+        ((TNT)tnt).tntPlay();
+        chest.chestAnimation();
         for(Orc orc : orcs){
             orc.makeImage(root);
         }
+//        root.getChildren().add(new Button());
+//        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
+//            for(int i = 1; i<root.getChildren().size()-1; i++) {
+//                hero.getImg().setLayoutX(hero.getImg().getLayoutX()+50);
+//                if(root.getChildren().get(i) != hero.getImg())root.getChildren().get(i).setLayoutX(root.getChildren().get(i).getLayoutX() - 200);
+//            }
+//        });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
         });
@@ -59,8 +69,6 @@ public class GamePlayController {
         this.time = new Timeline(heroFrame,frame,orcFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
-        ((TNT)tnt).tntPlay();
-        chest.chestAnimation();
     }
     public void pause() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
@@ -89,8 +97,6 @@ public class GamePlayController {
             orcs.get(0).setSpeedy(-speed);
         }
     }
-
-
     public Group getRoot() {
         return root;
     }

@@ -53,5 +53,7 @@
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="379.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="40.887168884277344" />
+      <Text fill="#ffcd00" layoutX="34.0" layoutY="594.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
+      <Text fill="#ffcd00" layoutX="119.0" layoutY="594.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
    </children>
 </AnchorPane>
