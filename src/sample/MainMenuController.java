@@ -42,7 +42,7 @@ public class MainMenuController {
         this.mediaPlayer = mediaPlayer;
         this.root = root;
     }
-    public void pauseMenu(javafx.scene.input.MouseEvent event) throws IOException {
+    public void pauseMenu(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
         AnchorPane pauseMenu = fxmlLoader.load();
         pauseMenu.setLayoutX(270);
@@ -56,7 +56,7 @@ public class MainMenuController {
         }
         pauseMenuController.initData(this, pauseMenu);
     }
-    public void musicButton(javafx.scene.input.MouseEvent event) throws IOException{
+    public void musicButton(MouseEvent event) throws IOException{
         if(mediaPlayer.isMute()) {
             javafx.scene.image.Image music = new javafx.scene.image.Image(new File("src/assets/MusicButton.png").toURI().toString());
             this.music.setImage(music);
@@ -67,15 +67,14 @@ public class MainMenuController {
             mediaPlayer.setMute(true);
         }
     }
-    public void reviveMenu(javafx.scene.input.MouseEvent event) throws IOException {
+    public void reviveMenu(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ReviveMenu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
-    public void gamePlay(javafx.scene.input.MouseEvent event) throws IOException {
+    public void gamePlay(MouseEvent event) throws IOException {
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

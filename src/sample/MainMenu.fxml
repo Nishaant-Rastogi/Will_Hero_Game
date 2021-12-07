@@ -16,17 +16,17 @@
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settings" fitHeight="83.0" fitWidth="83.0" layoutX="444.0" layoutY="389.0" onMouseClicked="#pauseMenu" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settings" fitHeight="83.0" fitWidth="83.0" layoutX="443.0" layoutY="390.0" onMouseClicked="#pauseMenu" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PauseButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="music" fitHeight="87.0" fitWidth="83.0" layoutX="270.0" layoutY="388.0" onMouseClicked="#musicButton" onMouseEntered="#shadowEffectMusic" onMouseExited="#removeShadowEffectMusic" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="music" fitHeight="87.0" fitWidth="83.0" layoutX="271.0" layoutY="389.0" onMouseClicked="#musicButton" onMouseEntered="#shadowEffectMusic" onMouseExited="#removeShadowEffectMusic" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MusicButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="load" fitHeight="83.0" fitWidth="83.0" layoutX="358.0" layoutY="389.0" onMouseEntered="#shadowEffectLoad" onMouseExited="#removeShadowEffectLoad" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="load" fitHeight="83.0" fitWidth="83.0" layoutX="358.0" layoutY="391.0" onMouseEntered="#shadowEffectLoad" onMouseExited="#removeShadowEffectLoad" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/loadgame.png" />
          </image>
