@@ -2,13 +2,9 @@ package sample;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.Transition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -26,11 +21,8 @@ import java.util.*;
 public class GamePlayController {
     @FXML
     private ImageView setting;
-    private Stage stage;
-    private Scene scene;
     private Group root;
     private MediaPlayer mediaPlayer;
-    private Transition chestAnimation;
     private Chests chest;
     private Timeline time;
     private Hero hero;
