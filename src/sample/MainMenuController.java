@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.exit;
+
 public class MainMenuController {
 
     private Stage stage;
@@ -42,19 +44,8 @@ public class MainMenuController {
         this.mediaPlayer = mediaPlayer;
         this.root = root;
     }
-    public void pauseMenu(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
-        AnchorPane pauseMenu = fxmlLoader.load();
-        pauseMenu.setLayoutX(270);
-        pauseMenu.setLayoutY(50);
-        root.getChildren().add(pauseMenu);
-
-        PauseMenuController pauseMenuController = fxmlLoader.getController();
-        if(this.mediaPlayer.isMute()){
-            pauseMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
-            mediaPlayer.setMute(true);
-        }
-        pauseMenuController.initData(this, pauseMenu);
+    public void exitGame(MouseEvent event) throws IOException {
+        exit(0);
     }
     public void musicButton(MouseEvent event) throws IOException{
         if(mediaPlayer.isMute()) {
