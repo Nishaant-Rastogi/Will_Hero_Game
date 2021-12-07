@@ -16,9 +16,9 @@
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settings" fitHeight="83.0" fitWidth="83.0" layoutX="443.0" layoutY="390.0" onMouseClicked="#pauseMenu" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settings" fitHeight="83.0" fitWidth="83.0" layoutX="443.0" layoutY="390.0" onMouseClicked="#exitGame" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/PauseButton.png" />
+            <Image url="@../assets/ExitButton.png" />
          </image>
       </ImageView>
       <ImageView fx:id="music" fitHeight="87.0" fitWidth="83.0" layoutX="271.0" layoutY="389.0" onMouseClicked="#musicButton" onMouseEntered="#shadowEffectMusic" onMouseExited="#removeShadowEffectMusic" pickOnBounds="true" preserveRatio="true">
