@@ -26,7 +26,7 @@ public abstract class Chests extends Game_objects implements Jumpable{
     public void chestAnimation(){
         Chests chest= this;
         Transition animation = new Transition() {
-            {setCycleDuration(Duration.millis(1000));}
+            {setCycleDuration(Duration.millis(500));}
             @Override
             protected void interpolate(double fraction) {
                 int index = (int) (fraction*(chestAnimation.size()-1));
