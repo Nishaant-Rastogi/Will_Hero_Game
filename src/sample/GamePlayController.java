@@ -41,7 +41,6 @@ public class GamePlayController {
         for(Island island : islands){
             island.makeImage(root);
         }
-        hero.makeImage(root);
         tnt.makeImage(root);
         chest.makeImage(root);
         ((TNT)tnt).tntPlay();
@@ -49,7 +48,12 @@ public class GamePlayController {
         for(Orc orc : orcs){
             orc.makeImage(root);
         }
-//        root.getChildren().add(new Button());
+        hero.makeImage(root);
+//        Button inputButton = new Button();
+//        inputButton.setStyle("-fx-background-color: transparent;");
+//        inputButton.setLayoutY(100);
+//        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
+//        root.getChildren().add(inputButton);
 //        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
 //            hero.getMove().play();
 //            for(int i = 1; i<root.getChildren().size()-1; i++) {
