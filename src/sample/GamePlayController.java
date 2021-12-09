@@ -51,16 +51,16 @@ public class GamePlayController {
         }
 //        root.getChildren().add(new Button());
 //        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
-//            hero.getImg().setLayoutX(hero.getImg().getLayoutX()+20);
+//            hero.getImg().setX(hero.getImg().getX()+20);
 //            for(int i = 1; i<root.getChildren().size()-1; i++) {
 //                if (root.getChildren().get(i) != hero.getImg())
-//                    root.getChildren().get(i).setLayoutX(root.getChildren().get(i).getLayoutX() - 200);
+//                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
 //            }
-//            if(hero.getImg().getLayoutX()>=160){
-//                hero.getImg().setLayoutX(100);
+//            if(hero.getImg().getX()>=200){
+//                hero.getImg().setX(100);
 //                for(int i = 1; i<root.getChildren().size()-1; i++) {
 //                    if (root.getChildren().get(i) != hero.getImg())
-//                        root.getChildren().get(i).setLayoutX(root.getChildren().get(i).getLayoutX() + 600);
+//                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
 //                }
 //            }
 //        });
