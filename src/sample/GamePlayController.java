@@ -51,7 +51,7 @@ public class GamePlayController {
         }
 //        root.getChildren().add(new Button());
 //        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
-//            hero.getImg().setX(hero.getImg().getX()+20);
+//            hero.getMove().play();
 //            for(int i = 1; i<root.getChildren().size()-1; i++) {
 //                if (root.getChildren().get(i) != hero.getImg())
 //                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
