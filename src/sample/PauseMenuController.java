@@ -83,28 +83,31 @@ public class PauseMenuController {
         //GameObjects Added
         int isLand1 = 1;
         int isLand2 =4;
-        int  isLand3 =4;
-        int  isLand4 =4;
-        int isLand5 =4;
-        int  isLand6 =4;
-        int  isLand7 =4;
-        int isLand8 =4;
-        int isLand9 =4;
-        int isLand10 =4;
-
-        Island island1 = new Island(50, 180, 0, 0.5, isLand1-1, 320, 350, -1);
-        Island island2 = new Island(400,100,0,0.5,isLand2-1,400,520,-1);
-        Island island3 = new Island(400,100,0,0.5,isLand3-1,400,520,-1);
-        Island island4 = new Island(400,100,0,0.5,isLand4-1,400,520,-1);
-        Island island5 = new Island(400,100,0,0.5,isLand5-1,400,520,-1);
-        Island island6 = new Island(400,100,0,0.5,isLand6-1,400,520,-1);
-        Island island7 = new Island(400,100,0,0.5,isLand7-1,400,520,-1);
-        Island island8 = new Island(400,100,0,0.5,isLand8-1,400,520,-1);
-        Island island9 = new Island(400,100,0,0.5,isLand9-1,400,520,-1);
-        Island island10 = new Island(400,100,0,0.5,isLand10-1,400,520,-1);
+        int  isLand3 =3;
+        int  isLand4 =2;
+        int isLand5 =5;
+        int  isLand6 =6;
+        int  isLand7 =1;
+        int isLand8 =2;
+        int isLand9 =6;
+        int isLand10 =5;
+        int x=0;
         ArrayList<Island> islands = new ArrayList<>();
+        //to change loop counter
+        for(int i=0;i<8;i++) {
+            islands.add(new Island(50+x, 180, 0, 0, isLand1 - 1, 320, 350, -1));
+            islands.add(new Island(400+x, 100, 0, 0.5, isLand2 - 1, 400, 520, -1));
+            islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, -1));
+            islands.add(new Island(1300+x, 100, 0, 0, isLand4 - 1, 150, 400, -1));
+            islands.add(new Island(1650+x, 100, 0, 0, isLand5 - 1, 440, 520, -1));
+            islands.add(new Island(2250+x, 150, 0, 0.5, isLand6 - 1, 380, 500, -1));
+            islands.add(new Island(2750+x, 180, 0, 0.3, isLand7 - 1, 320, 350, -1));
+            islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, -1));
+            islands.add(new Island(3420+x, 100, 0, 0.5, isLand9 - 1, 380, 480, -1));
+            islands.add(new Island(3900+x, 100, 0, 0, isLand10 - 1, 440, 520, -1));
+            x+=4400;
+        }
         ArrayList<Orc> orcs = new ArrayList<>();
-        islands.add(island1);islands.add(island2);
         Hero hero = new Hero(100,250,0,2,70,70);
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
