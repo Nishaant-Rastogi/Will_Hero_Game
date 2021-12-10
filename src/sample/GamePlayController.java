@@ -24,13 +24,14 @@ public class GamePlayController {
     private ImageView setting;
     private Group root;
     private MediaPlayer mediaPlayer;
-    private Chests chest;
+    private ArrayList<Chests> chest;
     private Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
+    private ArrayList<Obstacle> obs;
 
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,Obstacle tnt, ArrayList<Orc> orcs, Chests chest,MediaPlayer mediaPlayer){
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Obstacle> obstacles, ArrayList<Orc> orcs, ArrayList<Chests> chest,MediaPlayer mediaPlayer){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
@@ -41,10 +42,12 @@ public class GamePlayController {
         for(Island island : islands){
             island.makeImage(root);
         }
-        tnt.makeImage(root);
-        chest.makeImage(root);
-        ((TNT)tnt).tntPlay();
-        chest.chestAnimation();
+        for(int i=0;i<80;i++) {
+            obstacles.get(i).makeImage(root);
+            chest.get(i).makeImage(root);
+            ((TNT) obstacles.get(i)).tntPlay();
+            chest.get(i).chestAnimation();
+        }
         for(Orc orc : orcs){
             orc.makeImage(root);
         }
@@ -76,9 +79,10 @@ public class GamePlayController {
             moveOrc();
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
-            chest.getImg().setY(islands.get(1).getImg().getY()+210);
+
             for(int i=0;i< islands.size();i++){
                 islands.get(i).jump();
+                chest.get(i).getImg().setY(islands.get(1).getImg().getY()+210);
             }
 
         });

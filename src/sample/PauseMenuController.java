@@ -107,16 +107,27 @@ public class PauseMenuController {
             islands.add(new Island(3900+x, 100, 0, 0, isLand10 - 1, 440, 520, -1));
             x+=4400;
         }
+        x=0;
         ArrayList<Orc> orcs = new ArrayList<>();
         Hero hero = new Hero(100,250,0,2,70,70);
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
-        Obstacle tnt = new TNT(280,250,0,1,70,70);
-        Weapon_chest chest = new Weapon_chest(580,100,0,0,100,70);
+        ArrayList<Obstacle> obstacles= new ArrayList<>();
+        for(int i=0;i<80;i++) {
+            obstacles.add(new TNT(280 + x, 250, 0, 1, 70, 70));
+            //increment x
+        }
+        x=0;
+        ArrayList<Chests> chest= new ArrayList<>();
+        //pass weapon to chest
+        for (int i=0;i<80;i++) {
+            chest.add(new Weapon_chest(580+x, 100, 0, 0, 100, 70));
+            //inc x
+        }
 
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, tnt, orcs, chest, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, obstacles, orcs, chest, mediaPlayer);
         scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.show();
