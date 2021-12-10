@@ -104,20 +104,26 @@ public class MainMenuController {
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
         ArrayList<Obstacle> obstacles= new ArrayList<>();
-        for(int i=0;i<80;i++) {
+        for(int i=0;i<1;i++) {
             obstacles.add(new TNT(280 + x, 250, 0, 1, 70, 70));
             //increment x
         }
         x=0;
         ArrayList<Chests> chest= new ArrayList<>();
         //pass weapon to chest
-        for (int i=0;i<80;i++) {
+        for (int i=0;i<1;i++) {
            chest.add(new Weapon_chest(580+x, 100, 0, 0, 100, 70));
            //inc x
         }
+        ArrayList<Coin> coins=new ArrayList<>();
+        x=0;
+        for(int i=0;i<3;i++){
+            coins.add(new Coin(340+x,160,0,0,30,30));
+            x+=40;
+        }
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, obstacles, orcs, chest, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, obstacles, orcs, chest, mediaPlayer,coins);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();

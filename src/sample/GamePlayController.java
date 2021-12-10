@@ -30,19 +30,24 @@ public class GamePlayController {
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
     private ArrayList<Obstacle> obs;
+    private ArrayList<Coin> coins;
 
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Obstacle> obstacles, ArrayList<Orc> orcs, ArrayList<Chests> chest,MediaPlayer mediaPlayer){
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Obstacle> obstacles, ArrayList<Orc> orcs, ArrayList<Chests> chest,MediaPlayer mediaPlayer,ArrayList<Coin> c){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
         this.islands = islands;
         this.orcs = orcs;
         this.chest = chest;
+        this.coins=c;
 
         for(Island island : islands){
             island.makeImage(root);
         }
-        for(int i=0;i<80;i++) {
+        for(int i=0;i<coins.size();i++){
+            coins.get(i).makeImage(root);
+        }
+        for(int i=0;i<1;i++) {
             obstacles.get(i).makeImage(root);
             chest.get(i).makeImage(root);
             ((TNT) obstacles.get(i)).tntPlay();
@@ -52,26 +57,26 @@ public class GamePlayController {
             orc.makeImage(root);
         }
         hero.makeImage(root);
-        Button inputButton = new Button();
-        inputButton.setStyle("-fx-background-color: transparent;");
-        inputButton.setLayoutY(100);
-        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
-        root.getChildren().add(inputButton);
-        //see if hold can give a power up
-        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
-            hero.getMove().play();
-            for(int i = 1; i<root.getChildren().size()-1; i++) {
-                if (root.getChildren().get(i) != hero.getImg())
-                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
-            }
-            if(hero.getImg().getX()>=200){
-                hero.getImg().setX(100);
-                for(int i = 1; i<root.getChildren().size()-1; i++) {
-                    if (root.getChildren().get(i) != hero.getImg())
-                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
-                }
-            }
-        });
+//        Button inputButton = new Button();
+//        inputButton.setStyle("-fx-background-color: transparent;");
+//        inputButton.setLayoutY(100);
+//        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
+//        root.getChildren().add(inputButton);
+//        //see if hold can give a power up
+//        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
+//            hero.getMove().play();
+//            for(int i = 1; i<root.getChildren().size()-1; i++) {
+//                if (root.getChildren().get(i) != hero.getImg())
+//                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
+//            }
+//            if(hero.getImg().getX()>=200){
+//                hero.getImg().setX(100);
+//                for(int i = 1; i<root.getChildren().size()-1; i++) {
+//                    if (root.getChildren().get(i) != hero.getImg())
+//                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
+//                }
+//            }
+//        });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
         });
@@ -82,8 +87,9 @@ public class GamePlayController {
 
             for(int i=0;i< islands.size();i++){
                 islands.get(i).jump();
-                chest.get(i).getImg().setY(islands.get(1).getImg().getY()+210);
+
             }
+            chest.get(0).getImg().setY(islands.get(1).getImg().getY()+210);
 
         });
         this.time = new Timeline(heroFrame,frame,orcFrame);
