@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static java.lang.System.exit;
 
@@ -68,6 +69,7 @@ public class MainMenuController {
     public void gamePlay(MouseEvent event) throws IOException {
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
+        FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         //GameObjects Added
@@ -86,16 +88,16 @@ public class MainMenuController {
         ArrayList<Island> islands = new ArrayList<>();
         //to change loop counter
         for(int i=0;i<8;i++) {
-           islands.add(new Island(50+x, 180, 0, 0, isLand1 - 1, 320, 350, -1));
-           islands.add(new Island(400+x, 100, 0, 0.5, isLand2 - 1, 400, 520, -1));
-           islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, -1));
-           islands.add(new Island(1300+x, 100, 0, 0, isLand4 - 1, 150, 400, -1));
-           islands.add(new Island(1650+x, 100, 0, 0, isLand5 - 1, 440, 520, -1));
-           islands.add(new Island(2250+x, 150, 0, 0.5, isLand6 - 1, 380, 500, -1));
-           islands.add(new Island(2750+x, 180, 0, 0.3, isLand7 - 1, 320, 350, -1));
-           islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, -1));
-           islands.add(new Island(3420+x, 100, 0, 0.5, isLand9 - 1, 380, 480, -1));
-           islands.add(new Island(3900+x, 100, 0, 0, isLand10 - 1, 440, 520, -1));
+           islands.add(new Island(50+x, 180, 0, 0, isLand1 - 1, 320, 350, -1,gameObjectGenerator(50+x, 180,320)));
+           islands.add(new Island(400+x, 100, 0, 0.5, isLand2 - 1, 400, 520, -1,gameObjectGenerator(400+x, 100,400)));
+           islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, -1,gameObjectGenerator(900+x, 100,400)));
+           islands.add(new Island(1300+x, 100, 0, 0, isLand4 - 1, 150, 400, -1,gameObjectGenerator(1300+x, 100,150)));
+           islands.add(new Island(1650+x, 100, 0, 0, isLand5 - 1, 440, 520, -1,gameObjectGenerator(1650+x, 100,440)));
+           islands.add(new Island(2250+x, 150, 0, 0.5, isLand6 - 1, 380, 500, -1,gameObjectGenerator(2250+x, 150,380)));
+           islands.add(new Island(2750+x, 180, 0, 0.3, isLand7 - 1, 320, 350, -1,gameObjectGenerator(2750+x, 180,320)));
+           islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, -1,gameObjectGenerator(3200+x, 100,150)));
+           islands.add(new Island(3420+x, 100, 0, 0.5, isLand9 - 1, 380, 480, -1,gameObjectGenerator(3420+x, 100,380)));
+           islands.add(new Island(3900+x, 100, 0, 0, isLand10 - 1, 440, 520, -1,gameObjectGenerator(3900+x, 100,440)));
            x+=4400;
         }
         x=0;
@@ -103,19 +105,6 @@ public class MainMenuController {
         Hero hero = new Hero(100,250,0,2,70,70);
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
-        ArrayList<Obstacle> obstacles= new ArrayList<>();
-        for(int i=0;i<4;i++) {
-            obstacles.add(new TNT(280 + x, 250, 0, 1, 70, 70));
-            //increment x
-        }
-        x=0;
-        ArrayList<Chests> chest= new ArrayList<>();
-        //pass weapon to chest
-        for (int i=0;i<4;i++) {
-           chest.add(new Weapon_chest(580+x, 100, 0, 0, 100, 70));
-
-           //inc x
-        }
         ArrayList<Coin> coins=new ArrayList<>();
         x=0;
         for(int i=0;i<3;i++){
@@ -123,13 +112,25 @@ public class MainMenuController {
             x+=40;
         }
         root.getChildren().add(fxmlLoader.load());
+        root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, obstacles, orcs, chest, mediaPlayer,coins);
+        gamePlayController.initData(root, hero, islands, orcs, mediaPlayer,coins);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();
     }
-
+    public Game_objects gameObjectGenerator(int x, int y, int width){
+        Random rand = new Random();
+        int randInteger = 1 + rand.nextInt(3);
+        if(randInteger == 1){
+            Game_objects tnt = new TNT(x,y,0,0,70,70);
+            return tnt;
+        }else if(randInteger == 2){
+            Chests chest = new Weapon_chest(x,y,0,100,100,70);
+            return chest;
+        }
+        return null;
+    }
     public ImageView getMusic() {
         return music;
     }

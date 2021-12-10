@@ -32,33 +32,29 @@ public class GamePlayController {
     private ArrayList<Obstacle> obs;
     private ArrayList<Coin> coins;
 
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Obstacle> obstacles, ArrayList<Orc> orcs, ArrayList<Chests> chest,MediaPlayer mediaPlayer,ArrayList<Coin> c){
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Orc> orcs,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
         this.islands = islands;
         this.orcs = orcs;
-        this.chest = chest;
         this.coins=c;
 
         for(Island island : islands){
             island.makeImage(root);
+            try {
+                island.getObject().makeImage(root);
+            }catch (NullPointerException ignored){}
         }
-        for(int i=0;i<coins.size();i++){
-            coins.get(i).makeImage(root);
-        }
-        for(int i=0;i< obstacles.size();i++) {
-            obstacles.get(i).makeImage(root);
-            ((TNT) obstacles.get(i)).tntPlay();
-        }
-        for(int i=0;i< chest.size();i++){
-            chest.get(i).makeImage(root);
-            chest.get(i).chestAnimation();
+        for (Coin coin : coins) {
+            coin.makeImage(root);
         }
         for(Orc orc : orcs){
             orc.makeImage(root);
         }
         hero.makeImage(root);
+        root.getChildren().add(fxmlLoader.load());
         Button inputButton = new Button();
         inputButton.setStyle("-fx-background-color: transparent;");
         inputButton.setLayoutY(100);
@@ -67,7 +63,7 @@ public class GamePlayController {
         //see if hold can give a power up
         root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
             hero.getMove().play();
-            for(int i = 1; i<root.getChildren().size()-1; i++) {
+            for(int i = 2; i<root.getChildren().size()-2; i++) {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
             }
@@ -86,17 +82,19 @@ public class GamePlayController {
             moveOrc();
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
-
+            ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(70, 210, 165, 210, 265, 177, 70, 210, 177, 265));
             for(int i=0;i< islands.size();i++){
                 islands.get(i).jump();
-
+                try{
+                    islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+arr.get((i%10)));
+                }catch (NullPointerException ignored){}
             }
-            chest.get(0).getImg().setY(islands.get(1).getImg().getY()+210);
 
         });
         this.time = new Timeline(heroFrame,frame,orcFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
+
     }
     public void pause() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
