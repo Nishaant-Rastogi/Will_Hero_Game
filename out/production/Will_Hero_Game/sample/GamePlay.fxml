@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="gameRoot" prefHeight="380.0" prefWidth="780.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GamePlayController">
+<AnchorPane fx:id="gameRoot" prefHeight="546.0" prefWidth="1000.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GamePlayController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -19,7 +19,7 @@
       <Blend />
    </effect>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="600.0" stroke="TRANSPARENT" strokeType="INSIDE" width="800.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="602.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1000.0">
          <fill>
             <LinearGradient endX="0.053627758748147764" endY="1.0">
                <stops>
@@ -37,23 +37,23 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView fx:id="setting" fitHeight="59.0" fitWidth="71.0" layoutX="370.0" layoutY="7.0" onMouseClicked="#pause" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="setting" fitHeight="59.0" fitWidth="71.0" layoutX="491.0" layoutY="6.0" onMouseClicked="#pause" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PauseButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/LanceDisplay.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/SwordDisplay.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="379.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="40.887168884277344" />
-      <Text fill="#ffcd00" layoutX="34.0" layoutY="594.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
-      <Text fill="#ffcd00" layoutX="119.0" layoutY="594.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
+      <Text fill="WHITE" layoutX="500.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="40.887168884277344" />
+      <Text fill="#ffcd00" layoutX="34.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
+      <Text fill="#ffcd00" layoutX="119.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
    </children>
 </AnchorPane>

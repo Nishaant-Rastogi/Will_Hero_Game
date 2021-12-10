@@ -71,13 +71,36 @@ public class MainMenuController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         //GameObjects Added
-        String islandPath = "src/assets/island_1.png";
-        String smallIslandPath = "src/assets/island_4.png";
-        Island island = new Island(50, 180, 0, 0.5, islandPath, 320, 350, -1);
-        Island bigIsland = new Island(400,100,0,0.5,smallIslandPath,400,520,-1);
+
+        int isLand1 = 1;
+        int isLand2 =4;
+        int  isLand3 =3;
+        int  isLand4 =2;
+        int isLand5 =5;
+        int  isLand6 =6;
+        int  isLand7 =1;
+        int isLand8 =2;
+        int isLand9 =6;
+        int isLand10 =5;
+        int x=0;
         ArrayList<Island> islands = new ArrayList<>();
+        //to change loop counter
+        for(int i=0;i<8;i++) {
+           islands.add(new Island(50+x, 180, 0, 0, isLand1 - 1, 320, 350, -1));
+           islands.add(new Island(400+x, 100, 0, 0.5, isLand2 - 1, 400, 520, -1));
+           islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, -1));
+           islands.add(new Island(1300+x, 100, 0, 0, isLand4 - 1, 150, 400, -1));
+           islands.add(new Island(1650+x, 100, 0, 0, isLand5 - 1, 440, 520, -1));
+           islands.add(new Island(2250+x, 150, 0, 0.5, isLand6 - 1, 380, 500, -1));
+           islands.add(new Island(2750+x, 180, 0, 0.3, isLand7 - 1, 320, 350, -1));
+           islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, -1));
+           islands.add(new Island(3420+x, 100, 0, 0.5, isLand9 - 1, 380, 480, -1));
+           islands.add(new Island(3900+x, 100, 0, 0, isLand10 - 1, 440, 520, -1));
+           x+=4400;
+        }
+
+
         ArrayList<Orc> orcs = new ArrayList<>();
-        islands.add(island);islands.add(bigIsland);
         Hero hero = new Hero(100,250,0,2,70,70);
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
@@ -87,7 +110,7 @@ public class MainMenuController {
         root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
         gamePlayController.initData(root, hero, islands, tnt, orcs, chest, mediaPlayer);
-        scene = new Scene(root,800,600);
+        scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();
     }

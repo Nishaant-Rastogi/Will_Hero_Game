@@ -81,13 +81,30 @@ public class PauseMenuController {
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
 
         //GameObjects Added
-        String islandPath = "src/assets/island_1.png";
-        String smallIslandPath = "src/assets/island_4.png";
-        Island island = new Island(50, 180, 0, 0.5, islandPath, 320, 350, -1);
-        Island bigIsland = new Island(400,100,0,0.5,smallIslandPath,400,520,-1);
+        int isLand1 = 1;
+        int isLand2 =4;
+        int  isLand3 =4;
+        int  isLand4 =4;
+        int isLand5 =4;
+        int  isLand6 =4;
+        int  isLand7 =4;
+        int isLand8 =4;
+        int isLand9 =4;
+        int isLand10 =4;
+
+        Island island1 = new Island(50, 180, 0, 0.5, isLand1-1, 320, 350, -1);
+        Island island2 = new Island(400,100,0,0.5,isLand2-1,400,520,-1);
+        Island island3 = new Island(400,100,0,0.5,isLand3-1,400,520,-1);
+        Island island4 = new Island(400,100,0,0.5,isLand4-1,400,520,-1);
+        Island island5 = new Island(400,100,0,0.5,isLand5-1,400,520,-1);
+        Island island6 = new Island(400,100,0,0.5,isLand6-1,400,520,-1);
+        Island island7 = new Island(400,100,0,0.5,isLand7-1,400,520,-1);
+        Island island8 = new Island(400,100,0,0.5,isLand8-1,400,520,-1);
+        Island island9 = new Island(400,100,0,0.5,isLand9-1,400,520,-1);
+        Island island10 = new Island(400,100,0,0.5,isLand10-1,400,520,-1);
         ArrayList<Island> islands = new ArrayList<>();
         ArrayList<Orc> orcs = new ArrayList<>();
-        islands.add(island);islands.add(bigIsland);
+        islands.add(island1);islands.add(island2);
         Hero hero = new Hero(100,250,0,2,70,70);
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);

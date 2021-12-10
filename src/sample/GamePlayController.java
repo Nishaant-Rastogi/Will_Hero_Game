@@ -49,25 +49,26 @@ public class GamePlayController {
             orc.makeImage(root);
         }
         hero.makeImage(root);
-//        Button inputButton = new Button();
-//        inputButton.setStyle("-fx-background-color: transparent;");
-//        inputButton.setLayoutY(100);
-//        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
-//        root.getChildren().add(inputButton);
-//        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
-//            hero.getMove().play();
-//            for(int i = 1; i<root.getChildren().size()-1; i++) {
-//                if (root.getChildren().get(i) != hero.getImg())
-//                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
-//            }
-//            if(hero.getImg().getX()>=200){
-//                hero.getImg().setX(100);
-//                for(int i = 1; i<root.getChildren().size()-1; i++) {
-//                    if (root.getChildren().get(i) != hero.getImg())
-//                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
-//                }
-//            }
-//        });
+        Button inputButton = new Button();
+        inputButton.setStyle("-fx-background-color: transparent;");
+        inputButton.setLayoutY(100);
+        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
+        root.getChildren().add(inputButton);
+        //see if hold can give a power up
+        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
+            hero.getMove().play();
+            for(int i = 1; i<root.getChildren().size()-1; i++) {
+                if (root.getChildren().get(i) != hero.getImg())
+                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
+            }
+            if(hero.getImg().getX()>=200){
+                hero.getImg().setX(100);
+                for(int i = 1; i<root.getChildren().size()-1; i++) {
+                    if (root.getChildren().get(i) != hero.getImg())
+                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
+                }
+            }
+        });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
         });
@@ -76,7 +77,10 @@ public class GamePlayController {
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
             chest.getImg().setY(islands.get(1).getImg().getY()+210);
-            islands.get(1).jump();
+            for(int i=0;i< islands.size();i++){
+                islands.get(i).jump();
+            }
+
         });
         this.time = new Timeline(heroFrame,frame,orcFrame);
         time.setCycleCount(Timeline.INDEFINITE);
@@ -86,8 +90,8 @@ public class GamePlayController {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
 
         AnchorPane pauseMenu = fxmlLoader.load();
-        pauseMenu.setLayoutX(270);
-        pauseMenu.setLayoutY(10);
+        pauseMenu.setLayoutX(380);
+        pauseMenu.setLayoutY(6);
         root.getChildren().add(pauseMenu);
         time.pause();
         PauseMenuController pauseMenuController = fxmlLoader.getController();
