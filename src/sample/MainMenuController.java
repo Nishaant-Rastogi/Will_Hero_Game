@@ -111,8 +111,8 @@ public class MainMenuController {
             coins.add(new Coin(340+x,160,0,0,30,30));
             x+=40;
         }
-        root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
+        root.getChildren().add(fxmlLoader.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
         gamePlayController.initData(root, hero, islands, orcs, mediaPlayer,coins);
         scene = new Scene(root,1000,600);

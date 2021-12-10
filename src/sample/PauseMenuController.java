@@ -79,6 +79,7 @@ public class PauseMenuController {
     public void reloadButton(MouseEvent mouseEvent) throws IOException{
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
+        FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
 
         //GameObjects Added
@@ -99,7 +100,7 @@ public class PauseMenuController {
         for(int i=0;i<8;i++) {
             islands.add(new Island(50+x, 180, 0, 0, isLand1 - 1, 320, 350, -1,gameObjectGenerator(50+x, 180,320)));
             islands.add(new Island(400+x, 100, 0, 0.5, isLand2 - 1, 400, 520, -1,gameObjectGenerator(400+x, 100,400)));
-            islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 400, 420, -1,gameObjectGenerator(900+x, 100,400)));
+            islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, -1,gameObjectGenerator(900+x, 100,400)));
             islands.add(new Island(1300+x, 100, 0, 0, isLand4 - 1, 150, 400, -1,gameObjectGenerator(1300+x, 100,150)));
             islands.add(new Island(1650+x, 100, 0, 0, isLand5 - 1, 440, 520, -1,gameObjectGenerator(1650+x, 100,440)));
             islands.add(new Island(2250+x, 150, 0, 0.5, isLand6 - 1, 380, 500, -1,gameObjectGenerator(2250+x, 150,380)));
@@ -114,19 +115,6 @@ public class PauseMenuController {
         Hero hero = new Hero(100,250,0,2,70,70);
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
-//        ArrayList<Obstacle> obstacles= new ArrayList<>();
-//        for(int i=0;i<4;i++) {
-//            obstacles.add(new TNT(280 + x, 250, 0, 1, 70, 70));
-//            //increment x
-//        }
-//        x=0;
-//        ArrayList<Chests> chest= new ArrayList<>();
-//        //pass weapon to chest
-//        for (int i=0;i<4;i++) {
-//           chest.add(new Weapon_chest(580+x, 100, 0, 0, 100, 70));
-//
-//           //inc x
-//        }
         ArrayList<Coin> coins=new ArrayList<>();
         x=0;
         for(int i=0;i<3;i++){
@@ -134,6 +122,7 @@ public class PauseMenuController {
             x+=40;
         }
         root.getChildren().add(fxmlLoader.load());
+        root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
         gamePlayController.initData(root, hero, islands, orcs, mediaPlayer,coins);
         scene = new Scene(root,1000,600);
