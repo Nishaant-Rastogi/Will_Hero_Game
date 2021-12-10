@@ -104,15 +104,16 @@ public class MainMenuController {
         Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
         orcs.add(greenOrc);
         ArrayList<Obstacle> obstacles= new ArrayList<>();
-        for(int i=0;i<1;i++) {
+        for(int i=0;i<4;i++) {
             obstacles.add(new TNT(280 + x, 250, 0, 1, 70, 70));
             //increment x
         }
         x=0;
         ArrayList<Chests> chest= new ArrayList<>();
         //pass weapon to chest
-        for (int i=0;i<1;i++) {
+        for (int i=0;i<4;i++) {
            chest.add(new Weapon_chest(580+x, 100, 0, 0, 100, 70));
+
            //inc x
         }
         ArrayList<Coin> coins=new ArrayList<>();

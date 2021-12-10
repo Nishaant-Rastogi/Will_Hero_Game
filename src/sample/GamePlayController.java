@@ -47,36 +47,38 @@ public class GamePlayController {
         for(int i=0;i<coins.size();i++){
             coins.get(i).makeImage(root);
         }
-        for(int i=0;i<1;i++) {
+        for(int i=0;i< obstacles.size();i++) {
             obstacles.get(i).makeImage(root);
-            chest.get(i).makeImage(root);
             ((TNT) obstacles.get(i)).tntPlay();
+        }
+        for(int i=0;i< chest.size();i++){
+            chest.get(i).makeImage(root);
             chest.get(i).chestAnimation();
         }
         for(Orc orc : orcs){
             orc.makeImage(root);
         }
         hero.makeImage(root);
-//        Button inputButton = new Button();
-//        inputButton.setStyle("-fx-background-color: transparent;");
-//        inputButton.setLayoutY(100);
-//        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
-//        root.getChildren().add(inputButton);
-//        //see if hold can give a power up
-//        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
-//            hero.getMove().play();
-//            for(int i = 1; i<root.getChildren().size()-1; i++) {
-//                if (root.getChildren().get(i) != hero.getImg())
-//                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
-//            }
-//            if(hero.getImg().getX()>=200){
-//                hero.getImg().setX(100);
-//                for(int i = 1; i<root.getChildren().size()-1; i++) {
-//                    if (root.getChildren().get(i) != hero.getImg())
-//                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
-//                }
-//            }
-//        });
+        Button inputButton = new Button();
+        inputButton.setStyle("-fx-background-color: transparent;");
+        inputButton.setLayoutY(100);
+        inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
+        root.getChildren().add(inputButton);
+        //see if hold can give a power up
+        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
+            hero.getMove().play();
+            for(int i = 1; i<root.getChildren().size()-1; i++) {
+                if (root.getChildren().get(i) != hero.getImg())
+                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
+            }
+            if(hero.getImg().getX()>=200){
+                hero.getImg().setX(100);
+                for(int i = 1; i<root.getChildren().size()-1; i++) {
+                    if (root.getChildren().get(i) != hero.getImg())
+                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
+                }
+            }
+        });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
         });
