@@ -30,7 +30,7 @@
             <Image url="@../assets/SwordDisplay.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="500.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="40.887168884277344" />
+      <Text fx:id="score" fill="WHITE" layoutX="484.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="73.53535461425793" />
       <Text fill="#ffcd00" layoutX="34.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
       <Text fill="#ffcd00" layoutX="119.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
    </children>
