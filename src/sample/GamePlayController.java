@@ -34,6 +34,7 @@ public class GamePlayController {
     private ArrayList<Orc> orcs;
     private ArrayList<Obstacle> obs;
     private ArrayList<Coin> coins;
+    private Button inputButton;
 
     public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Orc> orcs,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
@@ -43,7 +44,8 @@ public class GamePlayController {
         this.islands = islands;
         this.orcs = orcs;
         this.coins=c;
-
+        final int[] cur = {0};
+        //current island index;
         for(Island island : islands){
             island.makeImage(root);
             try {
@@ -58,7 +60,7 @@ public class GamePlayController {
         }
         hero.makeImage(root);
         root.getChildren().add(root.getChildren().remove(0));
-        Button inputButton = new Button();
+        inputButton = new Button();
         inputButton.setStyle("-fx-background-color: transparent;");
         inputButton.setLayoutY(100);
         inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
@@ -71,12 +73,16 @@ public class GamePlayController {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
             }
-            for(Island island : islands){
-                if((island.getImg().getX()+island.getWidth()/2.0) <= 100 && (island.getImg().getX()-island.getWidth()/2.0) > 0) {
-                    hero.setCurrIsland(island);
-                    System.out.println();
+            for(int i = cur[0]; i<islands.size(); i++){
+
+                if((islands.get(i).getImg().getX()+islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
+                    hero.setCurrIsland(islands.get(i));
+                    cur[0] = i;
+                    System.out.println(islands.get(i).getPath());
+                    break;
+
                 }
-            }
+                }
 
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
@@ -100,6 +106,7 @@ public class GamePlayController {
 
     }
     public void pause() throws IOException {
+        inputButton.setDisable(true);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("PauseMenu.fxml"));
 
         AnchorPane pauseMenu = fxmlLoader.load();
@@ -111,7 +118,7 @@ public class GamePlayController {
         if(this.mediaPlayer.isMute()) {
             pauseMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
         }
-        pauseMenuController.initData(this, pauseMenu);
+        pauseMenuController.initData(this, pauseMenu,inputButton);
     }
     public void moveOrc(){
         if(orcs.get(0).getImg().getY()-orcs.get(0).getSpeedy() > islands.get(1).getImg().getY()+210){

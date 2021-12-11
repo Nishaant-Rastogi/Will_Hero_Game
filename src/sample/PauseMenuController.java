@@ -4,6 +4,7 @@ import javafx.animation.Timeline;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,12 +38,14 @@ public class PauseMenuController {
     private MediaPlayer mediaPlayer;
     private MainMenuController mainMenuController;
     private GamePlayController gamePlayController;
-    public void initData(GamePlayController gamePlayController, AnchorPane menu){
+    private Button inputButton;
+    public void initData(GamePlayController gamePlayController, AnchorPane menu, Button inputButton){
         this.gamePlayController = gamePlayController;
         this.root = gamePlayController.getRoot();
         this.time = gamePlayController.getTime();
         this.pauseMenu = menu;
         this.mediaPlayer = gamePlayController.getMediaPlayer();
+        this.inputButton=inputButton;
     }
     public void initData(MainMenuController mainMenuController, AnchorPane menu){
         this.mainMenuController = mainMenuController;
@@ -52,6 +56,7 @@ public class PauseMenuController {
 
     public void start(MouseEvent mouseEvent) {
         root.getChildren().remove(pauseMenu);
+        this.inputButton.setDisable(false);
         if(time != null) {
             time.play();
         }else {

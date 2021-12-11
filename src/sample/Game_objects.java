@@ -60,6 +60,10 @@ public abstract class Game_objects {
         return img;
     }
 
+    public String getPath(){
+        return path;
+    }
+
     public int getWidth() {
         return width;
     }
