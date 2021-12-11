@@ -80,10 +80,8 @@ public class GamePlayController {
                     cur[0] = i;
                     System.out.println(islands.get(i).getPath());
                     break;
-
                 }
-                }
-
+            }
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
