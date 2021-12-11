@@ -28,7 +28,7 @@ public class Island extends Game_objects implements Jumpable{
     @Override
     public void jump(){
         this.getImg().setY(this.getImg().getY()-this.getSpeedy());
-        if(this.getImg().getY()>=100 || this.getImg().getY()<=0){
+        if(this.getImg().getY()>=this.getPosition()[1]+50 || this.getImg().getY()<=this.getPosition()[1]-50){
             double speed = this.getSpeedy();
             this.setSpeedy(-speed);
         }
