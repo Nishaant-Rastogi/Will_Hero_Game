@@ -33,7 +33,7 @@ public class GamePlayController {
     private ArrayList<Coin> coins;
 
     public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Orc> orcs,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
@@ -54,7 +54,7 @@ public class GamePlayController {
             orc.makeImage(root);
         }
         hero.makeImage(root);
-        root.getChildren().add(fxmlLoader.load());
+        root.getChildren().add(root.getChildren().remove(0));
         Button inputButton = new Button();
         inputButton.setStyle("-fx-background-color: transparent;");
         inputButton.setLayoutY(100);
@@ -63,7 +63,7 @@ public class GamePlayController {
         //see if hold can give a power up
         root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
             hero.getMove().play();
-            for(int i = 2; i<root.getChildren().size()-2; i++) {
+            for(int i = 1; i<root.getChildren().size()-2; i++) {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
             }

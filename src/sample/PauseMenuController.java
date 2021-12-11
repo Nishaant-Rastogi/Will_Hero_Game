@@ -136,7 +136,7 @@ public class PauseMenuController {
             Game_objects tnt = new TNT(x,y,0,0,70,70);
             return tnt;
         }else if(randInteger == 2){
-            Chests chest = new Weapon_chest(x,y,0,100,70,70);
+            Chests chest = new Weapon_chest(x,y,0,0,100,70);
             return chest;
         }
         return null;
