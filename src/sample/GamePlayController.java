@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -22,6 +23,8 @@ import java.util.*;
 public class GamePlayController {
     @FXML
     private ImageView setting;
+    @FXML
+    private Text score;
     private Group root;
     private MediaPlayer mediaPlayer;
     private ArrayList<Chests> chest;
@@ -63,6 +66,7 @@ public class GamePlayController {
         //see if hold can give a power up
         root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
             hero.getMove().play();
+            score.setText(Integer.toString(Integer.parseInt(score.getText())+1));
             for(int i = 1; i<root.getChildren().size()-2; i++) {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);

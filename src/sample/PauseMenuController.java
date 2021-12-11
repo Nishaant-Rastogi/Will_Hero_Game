@@ -98,7 +98,7 @@ public class PauseMenuController {
         int x=0;
         ArrayList<Island> islands = new ArrayList<>();
         //to change loop counter
-        for(int i=0;i<8;i++) {
+        for(int i=0;i<6;i++) {
             islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, -1,gameObjectGenerator(50+x+100, 180,320)));
             islands.add(new Island(400+x, 80, 0, 0.5, isLand2 - 1, 400, 520, -1,gameObjectGenerator(400+x+180, 100,400)));
             islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, -1,gameObjectGenerator(900+x+50, 100,400)));
