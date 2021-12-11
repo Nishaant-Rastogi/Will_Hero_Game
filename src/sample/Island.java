@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.spi.AbstractResourceBundleProvider;
 
 public class Island extends Game_objects implements Jumpable{
-    private int length;
     private static ArrayList<String> paths= new ArrayList<String>(Arrays.asList("src/assets/island_1.png","src/assets/island_2.png", "src/assets/island_3.png","src/assets/island_4.png","src/assets/island_5.png","src/assets/island_6.png"));
     private Game_objects object;
-    public Island(double x, double y, double sx, double sy, int path, int width, int height, int l, Game_objects game_object){
+    private int base;
+    public Island(double x, double y, double sx, double sy, int path, int width, int height, int base, Game_objects game_object){
         super(x,y,sx,sy, paths.get(path), width,height);
-        this.length=l;
+        this.base=base;
         object = game_object;
     }
 
@@ -18,8 +18,8 @@ public class Island extends Game_objects implements Jumpable{
         return object;
     }
 
-    public int getLength() {
-        return length;
+    public int getBase() {
+        return base;
     }
     @Override
     public void collide(Game_objects game_objects){

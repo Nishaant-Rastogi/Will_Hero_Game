@@ -17,11 +17,13 @@ public class Hero extends Game_objects implements Jumpable {
     private boolean isAlive;
     private ArrayList<Image> movement;
     private Transition move;
+    private Island currIsland;
     private boolean isRevived;
     Hero(){}
-    Hero(double x, double y, double sx, double sy, int width, int height){
+    Hero(double x, double y, double sx, double sy, int width, int height, Island currIsland){
         super(x,y,sx,sy,"src/assets/Gladiator.png",width,height);
         this.movement = new ArrayList<>();
+        this.currIsland = currIsland;
         this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
         this.movement.add(new Image(new File("src/assets/Gladiator.png").toURI().toString()));
         this.move = new Transition() {
@@ -52,7 +54,7 @@ public class Hero extends Game_objects implements Jumpable {
     @Override
     public void jump() {
         this.getImg().setY(this.getImg().getY()-this.getSpeedy());
-        if(this.getImg().getY()>=280 || this.getImg().getY()<=180){
+        if(this.getImg().getY()>=currIsland.getImg().getY()+currIsland.getBase() || this.getImg().getY()<=currIsland.getImg().getY()+currIsland.getBase()-100){
             double speed = this.getSpeedy();
             this.setSpeedy(-speed);
         }

@@ -71,13 +71,6 @@ public class GamePlayController {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
             }
-            if(hero.getImg().getX()>=200){
-                hero.getImg().setX(100);
-                for(int i = 1; i<root.getChildren().size()-1; i++) {
-                    if (root.getChildren().get(i) != hero.getImg())
-                        ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() + 100);
-                }
-            }
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
@@ -86,11 +79,10 @@ public class GamePlayController {
             moveOrc();
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
-            ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(70, 210, 165, 210, 265, 177, 70, 210, 177, 265));
             for(int i=0;i< islands.size();i++){
                 islands.get(i).jump();
                 try{
-                    islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+arr.get((i%10)));
+                    islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+islands.get(i).getBase());
                 }catch (NullPointerException ignored){}
             }
 
