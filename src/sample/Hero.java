@@ -47,6 +47,14 @@ public class Hero extends Game_objects implements Jumpable {
 
     }
 
+    public Island getCurrIsland() {
+        return currIsland;
+    }
+
+    public void setCurrIsland(Island currIsland) {
+        this.currIsland = currIsland;
+    }
+
     public Transition getMove() {
         return move;
     }

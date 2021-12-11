@@ -71,6 +71,13 @@ public class GamePlayController {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
             }
+            for(Island island : islands){
+                if((island.getImg().getX()+island.getWidth()/2.0) <= 100 && (island.getImg().getX()-island.getWidth()/2.0) > 0) {
+                    hero.setCurrIsland(island);
+                    System.out.println();
+                }
+            }
+
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();

@@ -59,6 +59,11 @@ public abstract class Game_objects {
     public ImageView getImg() {
         return img;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
     public double getSpeedx() {
         return speedx;
     }
