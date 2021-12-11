@@ -87,7 +87,7 @@ public class MainMenuController {
         int x=0;
         ArrayList<Island> islands = new ArrayList<>();
         //to change loop counter
-        for(int i=0;i<6;i++) {
+        for(int i=0;i<3;i++) {
             if(i>0)islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,gameObjectGenerator(50+x+100, 180,320)));
             else islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,null));
             islands.add(new Island(400+x, 80, 0, 0.5, isLand2 - 1, 400, 520, 210,gameObjectGenerator(400+x+180, 100,400)));

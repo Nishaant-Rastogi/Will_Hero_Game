@@ -71,7 +71,7 @@ public class GamePlayController {
             score.setText(Integer.toString(Integer.parseInt(score.getText())+1));
             for(int i = 1; i<root.getChildren().size()-2; i++) {
                 if (root.getChildren().get(i) != hero.getImg())
-                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 200);
+                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 70);
             }
             for(int i = cur[0]; i<islands.size(); i++){
 
