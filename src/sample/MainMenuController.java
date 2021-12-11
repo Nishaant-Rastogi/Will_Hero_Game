@@ -164,15 +164,17 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.show();
     }
-    public Game_objects gameObjectGenerator(int x, int y, int width){
+    public Game_objects gameObjectGenerator(double x, double y, int width){
         Random rand = new Random();
         int randInteger = 1 + rand.nextInt(3);
         if(randInteger == 1){
             Game_objects tnt = new TNT(x,y,0,0,70,70);
             return tnt;
         }else if(randInteger == 2){
-            Chests chest = new Weapon_chest(x,y,0,100,100,70);
-            return chest;
+            Random randChest = new Random();
+            int randChestType = 1 + randChest.nextInt(2);
+            if(randChestType == 1) return new Weapon_chest(x,y,0,100,100,70);
+            else return new Coin_chest(x,y,0,0,140,110);
         }
         return null;
     }

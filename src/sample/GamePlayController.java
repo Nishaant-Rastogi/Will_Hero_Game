@@ -97,7 +97,8 @@ public class GamePlayController {
             for(int i=0;i< islands.size();i++){
                 islands.get(i).jump();
                 try{
-                    islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+islands.get(i).getBase());
+                    if(islands.get(i).getObject() instanceof Coin_chest) islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+islands.get(i).getBase()-30);
+                    else islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+islands.get(i).getBase());
                 }catch (NullPointerException ignored){}
             }
 
