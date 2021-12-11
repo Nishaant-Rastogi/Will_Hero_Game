@@ -7,6 +7,7 @@ import java.util.spi.AbstractResourceBundleProvider;
 public class Island extends Game_objects implements Jumpable{
     private static ArrayList<String> paths= new ArrayList<String>(Arrays.asList("src/assets/island_1.png","src/assets/island_2.png", "src/assets/island_3.png","src/assets/island_4.png","src/assets/island_5.png","src/assets/island_6.png"));
     private Game_objects object;
+    private ArrayList<Orc> orcs;
     private int base;
     public Island(double x, double y, double sx, double sy, int path, int width, int height, int base, Game_objects game_object){
         super(x,y,sx,sy, paths.get(path), width,height);
@@ -17,7 +18,9 @@ public class Island extends Game_objects implements Jumpable{
     public Game_objects getObject() {
         return object;
     }
-
+    public void setOrcs(ArrayList<Orc> o){
+        this.orcs=o;
+    }
     public int getBase() {
         return base;
     }

@@ -66,6 +66,50 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.show();
     }
+    public ArrayList<Orc> genOrcs(Island island){
+        ArrayList<Orc> orcs= new ArrayList<>();
+        int usableL=island.getWidth();
+        int maxNo=0; double x,y;
+        Game_objects onIsland= island.getObject();
+        //max number of orcs possible
+        try {
+            usableL-=onIsland.getWidth();
+        }
+        catch (NullPointerException n){
+
+        }
+
+        for(int i=0;i<maxNo;i++){
+
+           x=island.getImg().getX();
+            //y here was set randomly
+            y=island.getImg().getY()+island.getBase();
+            try{
+                //complexity reduction to be done over here
+                for(int j=0;j<orcs.size();j++){
+                    if(x+70> orcs.get(j).getImg().getX()){
+                        x+=Math.abs(x+70-orcs.get(j).getImg().getX());
+                        j--;
+                    }
+                    if(orcs.get(j).getImg().getX()+70>x){
+                        x+=Math.abs(orcs.get(j).getImg().getX()+70-x);
+                        j--;
+                    }
+
+                }
+
+
+            }
+            catch(NullPointerException n){
+
+            }
+
+
+        }
+
+        return orcs;
+        //there may be no orcs
+    }
     public void gamePlay(MouseEvent event) throws IOException {
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));

@@ -15,8 +15,8 @@ public abstract class Game_objects {
     double speedy;
     private String path;
     transient private ImageView img;
-    protected int width;
-    protected int height;
+    private int width;
+    private int height;
 
     public Game_objects() {
         position = new double[2];
