@@ -77,8 +77,12 @@ public class GamePlayController {
 
                 if((islands.get(i).getImg().getX()+islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
                     hero.setCurrIsland(islands.get(i));
+                    if(islands.get(i).getImg().getX() > 100) {
+                        System.out.println("Fall");
+                        break;
+                    }
                     cur[0] = i;
-                    System.out.println(islands.get(i).getPath());
+                    System.out.println(hero.getImg().getX()+" "+islands.get(i).getImg().getX());
                     break;
                 }
             }
