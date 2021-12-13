@@ -72,21 +72,23 @@ public class GamePlayController {
         inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
         root.getChildren().add(inputButton);
         //see if hold can give a power up
-        root.getChildren().get(root.getChildren().size()-1).setOnMouseClicked(mouseEvent -> {
+        root.getChildren().get(root.getChildren().size()-1).setOnMousePressed(mouseEvent -> {
+            int count = mouseEvent.getClickCount();
             hero.getMove().play();
-            score.setText(Integer.toString(Integer.parseInt(score.getText())+1));
-            for(int i = 1; i<root.getChildren().size()-2; i++) {
+            score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
+            for (int i = 1; i < root.getChildren().size() - 2; i++) {
                 if (root.getChildren().get(i) != hero.getImg())
-                    ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 70);
+                    ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 70);
             }
-            for(int i = cur[0]; i<this.islands.size(); i++){
 
+            for(int i = cur[0]; i<this.islands.size(); i++){
                 if((this.islands.get(i).getImg().getX()+this.islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
-                    this.hero.setCurrIsland(this.islands.get(i));
                     if(this.islands.get(i).getImg().getX() > 100) {
                         System.out.println("Fall");
+                        this.hero.setCurrIsland(null);
                         break;
                     }
+                    this.hero.setCurrIsland(this.islands.get(i));
                     cur[0] = i;
                     System.out.println(hero.getImg().getX()+" "+islands.get(i).getImg().getX());
                     break;
