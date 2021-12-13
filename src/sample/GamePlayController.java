@@ -36,7 +36,7 @@ public class GamePlayController {
     private ArrayList<Coin> coins;
     private Button inputButton;
 
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,ArrayList<Orc> orcs,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         this.mediaPlayer = mediaPlayer;
         this.root = root;
@@ -52,11 +52,19 @@ public class GamePlayController {
                 island.getObject().makeImage(root);
             }catch (NullPointerException ignored){}
         }
+        int heroIsland = 0;
+        for(Island island : islands){
+            if(heroIsland == 0) {
+                heroIsland++;
+                continue;
+            }
+            island.setOrcs(generateOrcs(island));
+            for(Orc orc: island.getOrcs()){
+                orc.makeImage(root);
+            }
+        }
         for (Coin coin : coins) {
             coin.makeImage(root);
-        }
-        for(Orc orc : orcs){
-            orc.makeImage(root);
         }
         hero.makeImage(root);
         root.getChildren().add(root.getChildren().remove(0));
@@ -90,23 +98,75 @@ public class GamePlayController {
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
         });
-        KeyFrame orcFrame = new KeyFrame(Duration.millis(10), e->{
-            moveOrc();
-        });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
-            for(int i=0;i< islands.size();i++){
-                islands.get(i).jump();
-                try{
-                    if(islands.get(i).getObject() instanceof Coin_chest) islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+islands.get(i).getBase()-30);
-                    else islands.get(i).getObject().getImg().setY(islands.get(i).getImg().getY()+islands.get(i).getBase());
-                }catch (NullPointerException ignored){}
+            for (Island island : islands) {
+                try {
+                    if (island.getObject() instanceof Coin_chest)
+                        island.getObject().getImg().setY(island.getImg().getY() + island.getBase() - 30);
+                    else island.getObject().getImg().setY(island.getImg().getY() + island.getBase());
+                    for (Orc orc : island.getOrcs()){
+                        orc.setCurrIsland(island);
+                        orc.jump();
+                    }
+                } catch (NullPointerException ignored) {}
+                island.jump();
             }
 
         });
-        this.time = new Timeline(heroFrame,frame,orcFrame);
+        this.time = new Timeline(heroFrame,frame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
 
+    }
+    public ArrayList<Orc> generateOrcs(Island island){
+        ArrayList<Orc> orcs= new ArrayList<>();
+        Random randomOrc = new Random();
+        int maxNo=3; double x,y;
+        Game_objects onIsland= island.getObject();
+
+        for(int i=0;i<maxNo;i++){
+            x=island.getImg().getX()+50;
+            //y here was set randomly
+            y=island.getImg().getY()+island.getBase();
+            try{
+                if(orcs.size() > 0) {
+                    if (x + 70 > orcs.get(orcs.size()-1).getImg().getX()) {
+                        x += Math.abs(x + 70 - orcs.get(orcs.size()-1).getImg().getX());
+                    }else if (orcs.get(orcs.size()-1).getImg().getX() + 70 > x) {
+                        x += Math.abs(orcs.get(orcs.size()-1).getImg().getX() + 70 - x);
+                    }
+                    if (x + 140 > onIsland.getImg().getX()) {
+                        x += Math.abs(x + 140 - onIsland.getImg().getX());
+                    }else if (onIsland.getImg().getX() + 140 > x) {
+                        x += Math.abs(onIsland.getImg().getX() + 140 - x);
+                    }
+                }else {
+                    if (x + 140 > onIsland.getImg().getX()) {
+                        x += Math.abs(x + 140 - onIsland.getImg().getX());
+                    }
+                    if (onIsland.getImg().getX() + 140 > x) {
+                        x += Math.abs(onIsland.getImg().getX() + 140 - x);
+                    }
+                }
+            }
+            catch(NullPointerException ignored){
+                if(orcs.size() > 0) {
+                    if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0]) {
+                        x += Math.abs(x + 70 - orcs.get(orcs.size() - 1).getPosition()[0]);
+                    } else if (orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
+                        x += Math.abs(orcs.get(orcs.size() - 1).getPosition()[0] + 70 - x);
+                    }
+                }
+            }
+            if(x + 70 < island.getImg().getX()+island.getWidth()) {
+                int orcChoice = 1 + randomOrc.nextInt(2);
+                int speedChoice = 2 + randomOrc.nextInt(3);
+                if (orcChoice == 1) orcs.add(new Normal_G_Orc(x, y, 0, speedChoice, 70, 70));
+                else orcs.add(new Shield_R_Orc(x, y, 0, speedChoice, 70, 70));
+            }
+        }
+        return orcs;
+        //there may be no orcs
     }
     public void pause() throws IOException {
         inputButton.setDisable(true);
@@ -123,19 +183,7 @@ public class GamePlayController {
         }
         pauseMenuController.initData(this, pauseMenu,inputButton);
     }
-    public void moveOrc(){
-        if(orcs.get(0).getImg().getY()-orcs.get(0).getSpeedy() > islands.get(1).getImg().getY()+210){
-            orcs.get(0).getImg().setY(islands.get(1).getImg().getY()+210);
-            double speed = orcs.get(0).getSpeedy();
-            orcs.get(0).setSpeedy(-speed);
-        }else {
-            orcs.get(0).getImg().setY(orcs.get(0).getImg().getY() - orcs.get(0).getSpeedy());
-        }
-        if(orcs.get(0).getImg().getY()<=islands.get(1).getImg().getY()+100){
-            double speed = orcs.get(0).getSpeedy();
-            orcs.get(0).setSpeedy(-speed);
-        }
-    }
+
     public Group getRoot() {
         return root;
     }

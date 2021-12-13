@@ -89,6 +89,7 @@ public class PauseMenuController {
         FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
 
+
         //GameObjects Added
 
         int isLand1 = 1;
@@ -118,11 +119,7 @@ public class PauseMenuController {
             islands.add(new Island(3900+x, 20, 0, 0, isLand10 - 1, 440, 520, 265,gameObjectGenerator(3900+x+150, 100,440)));
             x+=4400;
         }
-        x=0;
-        ArrayList<Orc> orcs = new ArrayList<>();
         Hero hero = new Hero(100,250,0,2,70,70, islands.get(0));
-        Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
-        orcs.add(greenOrc);
         ArrayList<Coin> coins=new ArrayList<>();
         x=0;
         for(int i=0;i<3;i++){
@@ -132,7 +129,7 @@ public class PauseMenuController {
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, orcs, mediaPlayer,coins);
+        gamePlayController.initData(root, hero, islands, mediaPlayer,coins);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();

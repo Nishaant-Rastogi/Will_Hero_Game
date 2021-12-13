@@ -66,50 +66,6 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.show();
     }
-    public ArrayList<Orc> genOrcs(Island island){
-        ArrayList<Orc> orcs= new ArrayList<>();
-        int usableL=island.getWidth();
-        int maxNo=0; double x,y;
-        Game_objects onIsland= island.getObject();
-        //max number of orcs possible
-        try {
-            usableL-=onIsland.getWidth();
-        }
-        catch (NullPointerException n){
-
-        }
-
-        for(int i=0;i<maxNo;i++){
-
-           x=island.getImg().getX();
-            //y here was set randomly
-            y=island.getImg().getY()+island.getBase();
-            try{
-                //complexity reduction to be done over here
-                for(int j=0;j<orcs.size();j++){
-                    if(x+70> orcs.get(j).getImg().getX()){
-                        x+=Math.abs(x+70-orcs.get(j).getImg().getX());
-                        j--;
-                    }
-                    if(orcs.get(j).getImg().getX()+70>x){
-                        x+=Math.abs(orcs.get(j).getImg().getX()+70-x);
-                        j--;
-                    }
-
-                }
-
-
-            }
-            catch(NullPointerException n){
-
-            }
-
-
-        }
-
-        return orcs;
-        //there may be no orcs
-    }
     public void gamePlay(MouseEvent event) throws IOException {
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
@@ -145,11 +101,7 @@ public class MainMenuController {
             islands.add(new Island(3900+x, 20, 0, 0, isLand10 - 1, 440, 520, 265,gameObjectGenerator(3900+x+150, 100,440)));
             x+=4400;
         }
-        x=0;
-        ArrayList<Orc> orcs = new ArrayList<>();
         Hero hero = new Hero(100,250,0,2,70,70, islands.get(0));
-        Orc greenOrc = new Normal_G_Orc(450,250,0,2.5,70,70);
-        orcs.add(greenOrc);
         ArrayList<Coin> coins=new ArrayList<>();
         x=0;
         for(int i=0;i<3;i++){
@@ -159,7 +111,7 @@ public class MainMenuController {
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, orcs, mediaPlayer,coins);
+        gamePlayController.initData(root, hero, islands, mediaPlayer,coins);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();
