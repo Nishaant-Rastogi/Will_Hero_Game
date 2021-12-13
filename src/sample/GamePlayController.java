@@ -31,7 +31,6 @@ public class GamePlayController {
     private Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
-    private ArrayList<Orc> orcs;
     private ArrayList<Obstacle> obs;
     private ArrayList<Coin> coins;
     private Button inputButton;
@@ -42,18 +41,17 @@ public class GamePlayController {
         this.root = root;
         this.hero = hero;
         this.islands = islands;
-        this.orcs = orcs;
         this.coins=c;
         final int[] cur = {0};
         //current island index;
-        for(Island island : islands){
+        for(Island island : this.islands){
             island.makeImage(root);
             try {
                 island.getObject().makeImage(root);
             }catch (NullPointerException ignored){}
         }
         int heroIsland = 0;
-        for(Island island : islands){
+        for(Island island : this.islands){
             if(heroIsland == 0) {
                 heroIsland++;
                 continue;
@@ -81,11 +79,11 @@ public class GamePlayController {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView)root.getChildren().get(i)).setX(((ImageView)root.getChildren().get(i)).getX() - 70);
             }
-            for(int i = cur[0]; i<islands.size(); i++){
+            for(int i = cur[0]; i<this.islands.size(); i++){
 
-                if((islands.get(i).getImg().getX()+islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
-                    hero.setCurrIsland(islands.get(i));
-                    if(islands.get(i).getImg().getX() > 100) {
+                if((this.islands.get(i).getImg().getX()+this.islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
+                    this.hero.setCurrIsland(this.islands.get(i));
+                    if(this.islands.get(i).getImg().getX() > 100) {
                         System.out.println("Fall");
                         break;
                     }
@@ -99,7 +97,7 @@ public class GamePlayController {
             hero.jump();
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
-            for (Island island : islands) {
+            for (Island island : this.islands) {
                 try {
                     if (island.getObject() instanceof Coin_chest)
                         island.getObject().getImg().setY(island.getImg().getY() + island.getBase() - 30);
