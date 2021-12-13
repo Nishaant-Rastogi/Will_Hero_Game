@@ -102,11 +102,13 @@ public class GamePlayController {
                     if (island.getObject() instanceof Coin_chest)
                         island.getObject().getImg().setY(island.getImg().getY() + island.getBase() - 30);
                     else island.getObject().getImg().setY(island.getImg().getY() + island.getBase());
-                    for (Orc orc : island.getOrcs()){
+                } catch (NullPointerException ignored) {}
+                if(island.getOrcs().size() > 0) {
+                    for (Orc orc : island.getOrcs()) {
                         orc.setCurrIsland(island);
                         orc.jump();
                     }
-                } catch (NullPointerException ignored) {}
+                }
                 island.jump();
             }
 
@@ -126,28 +128,26 @@ public class GamePlayController {
             x=island.getImg().getX()+50;
             //y here was set randomly
             y=island.getImg().getY()+island.getBase();
-            try{
-                if(orcs.size() > 0) {
-                    if (x + 70 > orcs.get(orcs.size()-1).getImg().getX()) {
-                        x += Math.abs(x + 70 - orcs.get(orcs.size()-1).getImg().getX());
-                    }else if (orcs.get(orcs.size()-1).getImg().getX() + 70 > x) {
-                        x += Math.abs(orcs.get(orcs.size()-1).getImg().getX() + 70 - x);
-                    }
-                    if (x + 140 > onIsland.getImg().getX()) {
-                        x += Math.abs(x + 140 - onIsland.getImg().getX());
-                    }else if (onIsland.getImg().getX() + 140 > x) {
-                        x += Math.abs(onIsland.getImg().getX() + 140 - x);
-                    }
-                }else {
-                    if (x + 140 > onIsland.getImg().getX()) {
-                        x += Math.abs(x + 140 - onIsland.getImg().getX());
-                    }
-                    if (onIsland.getImg().getX() + 140 > x) {
-                        x += Math.abs(onIsland.getImg().getX() + 140 - x);
-                    }
+
+            if(orcs.size() > 0 && island.getObject() != null) {
+                if (x + 70 > orcs.get(orcs.size()-1).getPosition()[0]) {
+                    x += Math.abs(x + 70 - orcs.get(orcs.size()-1).getPosition()[0]);
+                }else if (orcs.get(orcs.size()-1).getPosition()[0] + 70 > x) {
+                    x += Math.abs(orcs.get(orcs.size()-1).getPosition()[0] + 70 - x);
                 }
-            }
-            catch(NullPointerException ignored){
+                if (x + 140 > onIsland.getImg().getX()) {
+                    x += Math.abs(x + 140 - onIsland.getImg().getX());
+                }else if (onIsland.getImg().getX() + 140 > x) {
+                    x += Math.abs(onIsland.getImg().getX() + 140 - x);
+                }
+            }else if(island.getObject() != null) {
+                if (x + 140 > onIsland.getImg().getX()) {
+                    x += Math.abs(x + 140 - onIsland.getImg().getX());
+                }
+                if (onIsland.getImg().getX() + 140 > x) {
+                    x += Math.abs(onIsland.getImg().getX() + 140 - x);
+                }
+            }else{
                 if(orcs.size() > 0) {
                     if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0]) {
                         x += Math.abs(x + 70 - orcs.get(orcs.size() - 1).getPosition()[0]);

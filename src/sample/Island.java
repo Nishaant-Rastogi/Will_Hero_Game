@@ -12,13 +12,14 @@ public class Island extends Game_objects implements Jumpable{
     public Island(double x, double y, double sx, double sy, int path, int width, int height, int base, Game_objects game_object){
         super(x,y,sx,sy, paths.get(path), width,height);
         this.base=base;
+        this.orcs=new ArrayList<>();
         object = game_object;
     }
     public Game_objects getObject() {
         return object;
     }
     public void setOrcs(ArrayList<Orc> orcs){
-        this.orcs=orcs;
+        this.orcs = orcs;
     }
 
     public ArrayList<Orc> getOrcs() {
