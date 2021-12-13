@@ -84,6 +84,7 @@ public class PauseMenuController {
     public void reloadButton(MouseEvent mouseEvent) throws IOException{
         this.root.getChildren().remove(0);
         this.root.getChildren().remove(1);
+        Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
