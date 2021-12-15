@@ -2,7 +2,6 @@ package sample;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.spi.AbstractResourceBundleProvider;
 
 public class Island extends Game_objects implements Jumpable{
     private static ArrayList<String> paths= new ArrayList<String>(Arrays.asList("src/assets/island_1.png","src/assets/island_2.png", "src/assets/island_3.png","src/assets/island_4.png","src/assets/island_5.png","src/assets/island_6.png"));

@@ -117,14 +117,18 @@ public class GamePlayController {
             hero.jump();
         });
         KeyFrame collideChestFrame = new KeyFrame(Duration.millis(11), e->{
-            for(Chests chest: this.chest ){
+            for(Chests chest: this.chest){
                 try {
                     chest.collide(hero);
-                    if(chest instanceof Coin_chest){
-                        hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
-                        coinsCollected.setText(Integer.toString(Integer.parseInt(coinsCollected.getText())+((Coin_chest) chest).getCoins().size()));
-                    }else if(chest instanceof Weapon_chest){
-                        hero.setWeapon(((Weapon_chest) chest).getWeapon());
+                    if(chest.getIsOpen()) {
+                        if (chest instanceof Coin_chest) {
+                            System.out.println(1);
+                            hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
+                            coinsCollected.setText(Integer.toString(Integer.parseInt(coinsCollected.getText()) + ((Coin_chest) chest).getCoins().size()));
+                        } else if (chest instanceof Weapon_chest) {
+                            hero.setWeapon(((Weapon_chest) chest).getWeapon());
+                        }
+                        this.chest.remove(chest);
                     }
                 }
                 catch (NullPointerException ignore){}

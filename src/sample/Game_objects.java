@@ -1,12 +1,9 @@
 package sample;
 
 import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 import java.io.File;
-import java.io.Serializable;
 
 
 public abstract class Game_objects {

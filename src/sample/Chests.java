@@ -2,7 +2,6 @@ package sample;
 
 import javafx.animation.Transition;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -25,9 +24,9 @@ public abstract class Chests extends Game_objects implements Jumpable{
     }
 
     @Override
-    public void collide(Game_objects hero){
+    public void collide(Game_objects game_objects){
         //System.out.println("hello");
-        if(this.getImg().getBoundsInLocal().intersects(hero.getImg().getBoundsInLocal()) && !this.isOpen) {
+        if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal()) && !this.isOpen) {
             chestAnimation();
             this.isOpen=true;
             //System.out.println("This is the animation");

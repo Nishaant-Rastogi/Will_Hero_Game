@@ -15,7 +15,7 @@
       <Blend />
    </effect>
    <children>
-      <ImageView fx:id="setting" fitHeight="59.0" fitWidth="71.0" layoutX="491.0" layoutY="6.0" onMouseClicked="#pause" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="setting" fitHeight="59.0" fitWidth="71.0" layoutX="470.0" layoutY="7.0" onMouseClicked="#pause" onMouseEntered="#shadowEffectSetting" onMouseExited="#removeShadowEffectSetting" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PauseButton.png" />
          </image>
@@ -30,8 +30,14 @@
             <Image url="@../assets/SwordDisplay.png" />
          </image>
       </ImageView>
-      <Text fx:id="score" fill="WHITE" layoutX="484.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="73.53535461425793" />
+      <Text fx:id="score" fill="WHITE" layoutX="463.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="73.53535461425793" />
       <Text fill="#ffcd00" layoutX="34.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
       <Text fill="#ffcd00" layoutX="119.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
+      <ImageView fitHeight="45.0" fitWidth="42.0" layoutX="854.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Coin.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="coinsCollected" fill="#fff312" layoutX="883.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 40; -fx-text-alignment: center; -fx-font-weight: bold;" text="0" wrappingWidth="73.53535461425781" />
    </children>
 </AnchorPane>
