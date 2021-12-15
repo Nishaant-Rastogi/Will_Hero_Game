@@ -13,7 +13,7 @@ public class Hero extends Game_objects implements Jumpable {
     private int location;
     private Weapon weapon;
     private Helmet helmet;
-    private ArrayList<Coin> coincase;
+    private ArrayList<Coin> coinCase;
     private boolean isAlive;
     private ArrayList<Image> movement;
     private Transition move;
@@ -56,6 +56,14 @@ public class Hero extends Game_objects implements Jumpable {
     @Override
     public void collide(Game_objects game_objects) {
 
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public ArrayList<Coin> getCoinCase() {
+        return coinCase;
     }
 
     public Island getCurrIsland() {

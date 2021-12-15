@@ -93,12 +93,7 @@ public class GamePlayController {
                 }
 
                 for (int i = cur[0]; i < this.islands.size(); i++) {
-                    if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
-//                    if(this.islands.get(i).getImg().getX() > 100) {
-//                        System.out.println("Fall");
-//                        this.hero.setCurrIsland(null);
-//                        break;
-//                    }
+                    if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= 100) {
                         this.hero.setCurrIsland(this.islands.get(i));
                         cur[0] = i;
                         System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX() + islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
@@ -111,14 +106,10 @@ public class GamePlayController {
                             break;
                         }
                     }
-
                 }
-
-            }
-            else{
+            }else{
                 System.exit(0);
-        }
-
+            }
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
@@ -127,11 +118,13 @@ public class GamePlayController {
             for(Chests chest: this.chest ){
                 try {
                     chest.collide(hero);
+                    if(chest instanceof Coin_chest){
+                        hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
+                    }else {
+                        hero.setWeapon(((Weapon_chest) chest).getWeapon());
+                    }
                 }
-                catch (NullPointerException chests){
-
-                }
-
+                catch (NullPointerException ignore){}
             }
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{

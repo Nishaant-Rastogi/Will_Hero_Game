@@ -17,7 +17,7 @@ public class Coin_chest extends Chests {
         getChestAnimation().add(new Image(new File("src/assets/Coin_Chest5.png").toURI().toString()));
 
         coins= new ArrayList<>();
-
+        setCoins();
     }
     public ArrayList<Coin> getCoins(){
         return this.coins;
