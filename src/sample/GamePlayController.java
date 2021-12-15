@@ -84,7 +84,7 @@ public class GamePlayController {
         //see if hold can give a power up
         root.getChildren().get(root.getChildren().size()-1).setOnMousePressed(mouseEvent -> {
             int count = mouseEvent.getClickCount();
-            if (hero.getIsAlive() == true && hero.getIsRevived() == false) {
+            if (hero.getIsAlive() && !hero.getIsRevived()) {
                 hero.getMove().play();
                 score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
                 for (int i = 1; i < root.getChildren().size() - 2; i++) {
@@ -139,7 +139,7 @@ public class GamePlayController {
             for (Island island : this.islands) {
                 try {
                     if (island.getObject() instanceof Coin_chest)
-                        island.getObject().getImg().setY(island.getImg().getY() + island.getBase() - 30);
+                        island.getObject().getImg().setY(island.getImg().getY() + island.getBase() - 20);
                     else island.getObject().getImg().setY(island.getImg().getY() + island.getBase());
                 } catch (NullPointerException ignored) {}
                 if(island.getOrcs().size() > 0) {

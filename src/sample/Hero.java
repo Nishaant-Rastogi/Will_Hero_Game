@@ -45,7 +45,7 @@ public class Hero extends Game_objects implements Jumpable {
                 if (index == 0) {
                     getImg().setFitWidth(100);
                 }else{
-                    getImg().setFitWidth(70);
+                    getImg().setFitWidth(55);
                 }
                 getImg().setImage(movement.get(index));
 

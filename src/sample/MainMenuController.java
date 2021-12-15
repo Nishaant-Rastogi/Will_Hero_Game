@@ -101,7 +101,7 @@ public class MainMenuController {
             islands.add(new Island(3900+x, 20, 0, 0, isLand10 - 1, 440, 520, 265,gameObjectGenerator(3900+x+150, 100,440)));
             x+=4400;
         }
-        Hero hero = new Hero(100,250,0,2,65,65, islands.get(0));
+        Hero hero = new Hero(100,250,0,2,55,65, islands.get(0));
         ArrayList<Coin> coins=new ArrayList<>();
         x=0;
         for(int i=0;i<3;i++){
@@ -126,7 +126,7 @@ public class MainMenuController {
             Random randChest = new Random();
             int randChestType = 1 + randChest.nextInt(2);
             if(randChestType == 1) return new Weapon_chest(x,y,0,100,100,70);
-            else return new Coin_chest(x,y,0,0,140,110);
+            else return new Coin_chest(x,y,0,0,110,90);
         }
         return null;
     }
