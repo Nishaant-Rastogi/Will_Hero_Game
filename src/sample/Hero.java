@@ -20,10 +20,21 @@ public class Hero extends Game_objects implements Jumpable {
     private Island currIsland;
     private boolean isRevived;
     Hero(){}
+
+    public boolean getIsRevived() {
+        return isRevived;
+    }
+
+    public boolean getIsAlive() {
+        return isAlive;
+    }
+
     Hero(double x, double y, double sx, double sy, int width, int height, Island currIsland){
         super(x,y,sx,sy,"src/assets/Gladiator.png",width,height);
         this.movement = new ArrayList<>();
         this.currIsland = currIsland;
+        this.isAlive=true;
+        this.isRevived=false;
         this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
         this.movement.add(new Image(new File("src/assets/Gladiator.png").toURI().toString()));
         this.move = new Transition() {

@@ -74,36 +74,41 @@ public class GamePlayController {
         //see if hold can give a power up
         root.getChildren().get(root.getChildren().size()-1).setOnMousePressed(mouseEvent -> {
             int count = mouseEvent.getClickCount();
-            hero.getMove().play();
-            score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
-            for (int i = 1; i < root.getChildren().size() - 2; i++) {
-                if (root.getChildren().get(i) != hero.getImg())
-                    ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 70);
-            }
+            if (hero.getIsAlive() == true && hero.getIsRevived() == false) {
+                hero.getMove().play();
+                score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
+                for (int i = 1; i < root.getChildren().size() - 2; i++) {
+                    if (root.getChildren().get(i) != hero.getImg())
+                        ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 70);
+                }
 
-            for(int i = cur[0]; i<this.islands.size(); i++){
-                if((this.islands.get(i).getImg().getX()+this.islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
+                for (int i = cur[0]; i < this.islands.size(); i++) {
+                    if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
 //                    if(this.islands.get(i).getImg().getX() > 100) {
 //                        System.out.println("Fall");
 //                        this.hero.setCurrIsland(null);
 //                        break;
 //                    }
-                    this.hero.setCurrIsland(this.islands.get(i));
-                    cur[0] = i;
-                    System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX()+islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
-                    if(hero.getCurrIsland().getImg().getX()>170){
-                        System.out.println("Fall");
-                    }
+                        this.hero.setCurrIsland(this.islands.get(i));
+                        cur[0] = i;
+                        System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX() + islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
+                        if (hero.getCurrIsland().getImg().getX() > 165) {
+                            System.out.println("Fall");
+                        }
                         if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= 100) {
                             System.out.println("Fall1");
                             continue;
-                        }
-                        else {
+                        } else {
                             break;
                         }
+                    }
+
                 }
 
             }
+            else{
+                System.exit(0);
+        }
 
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
