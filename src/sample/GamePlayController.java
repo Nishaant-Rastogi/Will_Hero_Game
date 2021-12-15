@@ -83,17 +83,28 @@ public class GamePlayController {
 
             for(int i = cur[0]; i<this.islands.size(); i++){
                 if((this.islands.get(i).getImg().getX()+this.islands.get(i).getWidth()) >= 100) { //&& (islands.get(i).getImg().getX()-islands.get(i).getWidth()/2.0) >= 0) {
-                    if(this.islands.get(i).getImg().getX() > 100) {
-                        System.out.println("Fall");
-                        this.hero.setCurrIsland(null);
-                        break;
-                    }
+//                    if(this.islands.get(i).getImg().getX() > 100) {
+//                        System.out.println("Fall");
+//                        this.hero.setCurrIsland(null);
+//                        break;
+//                    }
                     this.hero.setCurrIsland(this.islands.get(i));
                     cur[0] = i;
-                    System.out.println(hero.getImg().getX()+" "+islands.get(i).getImg().getX());
-                    break;
+                    System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX()+islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
+                    if(hero.getCurrIsland().getImg().getX()>170){
+                        System.out.println("Fall");
+                    }
+                        if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= 100) {
+                            System.out.println("Fall1");
+                            continue;
+                        }
+                        else {
+                            break;
+                        }
                 }
+
             }
+
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
