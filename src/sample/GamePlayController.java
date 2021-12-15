@@ -122,7 +122,6 @@ public class GamePlayController {
                     chest.collide(hero);
                     if(chest.getIsOpen()) {
                         if (chest instanceof Coin_chest) {
-                            System.out.println(1);
                             hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
                             coinsCollected.setText(Integer.toString(Integer.parseInt(coinsCollected.getText()) + ((Coin_chest) chest).getCoins().size()));
                         } else if (chest instanceof Weapon_chest) {
