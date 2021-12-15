@@ -5,8 +5,8 @@ public class Boss_orc extends Orc{
         super(x,y,sx,sy,"src/assets/Boss_orc.png",width,height);
     }
     @Override
-    public void collide(Game_objects game_objects){
-
+    public boolean collide(Game_objects game_objects){
+        return false;
     }
     public void move(){
 

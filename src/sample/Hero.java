@@ -50,11 +50,12 @@ public class Hero extends Game_objects implements Jumpable {
 
             }
         };
+        coinCase = new ArrayList<>();
     }
 
     @Override
-    public void collide(Game_objects game_objects) {
-
+    public boolean collide(Game_objects game_objects) {
+        return false;
     }
 
     public void setWeapon(Weapon weapon) {

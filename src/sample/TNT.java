@@ -77,8 +77,8 @@ public class TNT extends Obstacle{
         return timeToBurst;
     }
     @Override
-    public void collide(Game_objects game_objects){
-
+    public boolean collide(Game_objects game_objects){
+        return false;
     }
 
 }

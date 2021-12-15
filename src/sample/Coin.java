@@ -6,8 +6,8 @@ public class Coin extends Game_objects{
         super(x,y,sx,sy,"src/assets/Coin.png",width,height);
     }
     @Override
-    public void collide(Game_objects game_objects) {
-
+    public boolean collide(Game_objects game_objects) {
+        return false;
     }
 
 }

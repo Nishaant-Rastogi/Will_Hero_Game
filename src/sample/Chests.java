@@ -1,6 +1,9 @@
 package sample;
 
 import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
@@ -13,10 +16,10 @@ public abstract class Chests extends Game_objects implements Jumpable{
     public Chests(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
         chestAnimation= new ArrayList<>();
-        this.isOpen= false;
+        this.isOpen= true;
     }
     public void setIsOpen(){
-        this.isOpen=true;
+        this.isOpen=false;
     }
     public boolean getIsOpen(){
         return this.isOpen;
@@ -24,13 +27,15 @@ public abstract class Chests extends Game_objects implements Jumpable{
     }
 
     @Override
-    public void collide(Game_objects game_objects){
-        //System.out.println("hello");
-        if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal()) && !this.isOpen) {
-            chestAnimation();
-            this.isOpen=true;
-            //System.out.println("This is the animation");
+    public boolean collide(Game_objects game_objects){
+        if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
+            if(getIsOpen()) {
+                chestAnimation();
+                setIsOpen();
+                return true;
+            }
         }
+        return false;
     }
     public void chestAnimation(){
         Chests chest= this;
@@ -42,10 +47,8 @@ public abstract class Chests extends Game_objects implements Jumpable{
                 chest.getImg().setImage(chestAnimation.get(index));
             }
         };
-
         animation.play();
-
-
+        animation.setCycleCount(1);
     }
 
     public List<Image> getChestAnimation() {

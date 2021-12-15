@@ -5,8 +5,8 @@ public class Shield_R_Orc extends Orc{
         super(x,y,sx,sy,"src/assets/Red_Standard_Orc.png",width,height);
     }
     @Override
-    public void collide(Game_objects game_objects){
-
+    public boolean collide(Game_objects game_objects){
+        return false;
     }
 
 }

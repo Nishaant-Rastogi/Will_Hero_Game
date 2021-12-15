@@ -29,7 +29,7 @@ public class GamePlayController {
     private Text coinsCollected;
     private Group root;
     private MediaPlayer mediaPlayer;
-    private ArrayList<Chests> chest;
+    private ArrayList<Chests> chests;
     private Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
@@ -46,19 +46,20 @@ public class GamePlayController {
         this.islands = islands;
         this.coins=c;
         final int[] cur = {0};
-        this.tnts= new ArrayList<>();
-        this.chest= new ArrayList<>();
+        this.tnts = new ArrayList<>();
+        this.chests = new ArrayList<>();
 
         //current island index;
         for(Island island : this.islands){
-            island.makeImage(root);
-            if(island.getObject() instanceof TNT){
-                tnts.add((TNT)island.getObject());
-            }
-            else{
-                chest.add((Chests) island.getObject());
-            }
             try {
+                island.makeImage(root);
+                if(island.getObject() instanceof TNT){
+                    tnts.add((TNT)island.getObject());
+                }
+                else{
+                    System.out.println(island.getObject().getClass());
+                    chests.add((Chests) island.getObject());
+                }
                 island.getObject().makeImage(root);
             }catch (NullPointerException ignored){}
         }
@@ -117,18 +118,17 @@ public class GamePlayController {
             hero.jump();
         });
         KeyFrame collideChestFrame = new KeyFrame(Duration.millis(11), e->{
-            for(Chests chest: this.chest){
+            for (Chests chest : chests) {
                 try {
-                    chest.collide(hero);
-                    if (chest instanceof Coin_chest) {
-                        hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
-                        coinsCollected.setText(Integer.toString(Integer.parseInt(coinsCollected.getText()) + ((Coin_chest) chest).getCoins().size()));
-                    } else if (chest instanceof Weapon_chest) {
-                        hero.setWeapon(((Weapon_chest) chest).getWeapon());
+                    if(chest.collide(hero)) {
+                        if (chest instanceof Coin_chest) {
+                            this.getCoinsCollected().setText(Integer.toString(Integer.parseInt(this.getCoinsCollected().getText()) + ((Coin_chest) chest).getCoins().size()));
+                            hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
+                        } else if (chest instanceof Weapon_chest) {
+                            hero.setWeapon(((Weapon_chest) chest).getWeapon());
+                        }
                     }
-//                    this.chest.remove(chest);
-                }
-                catch (NullPointerException ignore){}
+                } catch (NullPointerException ignore) {}
             }
         });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
@@ -217,6 +217,9 @@ public class GamePlayController {
         pauseMenuController.initData(this, pauseMenu,inputButton);
     }
 
+    public Text getCoinsCollected() {
+        return coinsCollected;
+    }
     public Group getRoot() {
         return root;
     }

@@ -38,6 +38,6 @@
             <Image url="@../assets/Coin.png" />
          </image>
       </ImageView>
-      <Text fx:id="coinsCollected" fill="#fff312" layoutX="883.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 40; -fx-text-alignment: center; -fx-font-weight: bold;" text="0" wrappingWidth="73.53535461425781" />
+      <Text fx:id="coinsCollected" fill="#fff312" layoutX="896.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 40; -fx-text-alignment: center; -fx-font-weight: bold;" text="0" wrappingWidth="73.53535461425781" />
    </children>
 </AnchorPane>

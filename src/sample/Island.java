@@ -29,8 +29,8 @@ public class Island extends Game_objects implements Jumpable{
         return base;
     }
     @Override
-    public void collide(Game_objects game_objects){
-
+    public boolean collide(Game_objects game_objects){
+        return false;
     }
     @Override
     public void jump(){

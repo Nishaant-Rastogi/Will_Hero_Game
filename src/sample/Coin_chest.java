@@ -24,13 +24,13 @@ public class Coin_chest extends Chests {
     }
 
     private void setCoins(){
-        Random a= new Random();
+        Random a = new Random();
         for(int i=0;i<5;i++){
-            coins.add(new Coin(0,0,0,0,0,0));
+            coins.add(new Coin(0,0,0,0,10,10));
         }
         for(int i=0;i<15;i++){
             if(a.nextInt(2)==0){
-                coins.add(new Coin(0,0,0,0,0,0));
+                coins.add(new Coin(0,0,0,0,10,10));
             }
         }
     }

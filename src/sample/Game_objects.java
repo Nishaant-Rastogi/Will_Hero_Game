@@ -44,7 +44,7 @@ public abstract class Game_objects {
         img.setFitHeight(height);
         pane.getChildren().add(img);
     }
-    public abstract void collide(Game_objects game_objects);
+    public abstract boolean collide(Game_objects game_objects);
     public double[] getposition(){
         return this.position;
     }
