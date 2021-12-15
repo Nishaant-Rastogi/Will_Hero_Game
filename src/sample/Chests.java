@@ -23,6 +23,16 @@ public abstract class Chests extends Game_objects implements Jumpable{
         return this.isOpen;
 
     }
+
+    @Override
+    public void collide(Game_objects game_objects){
+        //System.out.println("hello");
+        if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())&&this.isOpen==false) {
+            chestAnimation();
+            this.isOpen=true;
+            //System.out.println("This is the animation");
+        }
+    }
     public void chestAnimation(){
         Chests chest= this;
         Transition animation = new Transition() {
@@ -33,9 +43,9 @@ public abstract class Chests extends Game_objects implements Jumpable{
                 chest.getImg().setImage(chestAnimation.get(index));
             }
         };
-        chest.getImg().addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-            animation.play();
-        });
+
+        animation.play();
+
 
     }
 

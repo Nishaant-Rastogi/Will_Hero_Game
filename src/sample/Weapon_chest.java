@@ -27,9 +27,5 @@ public class Weapon_chest extends Chests {
         this.weapon = weapon1;
     }
 
-    @Override
-    public void collide(Game_objects game_objects){
-
-    }
 
 }

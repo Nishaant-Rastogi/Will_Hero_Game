@@ -34,6 +34,7 @@ public class GamePlayController {
     private ArrayList<Obstacle> obs;
     private ArrayList<Coin> coins;
     private Button inputButton;
+    private ArrayList<TNT> tnts;
 
     public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
@@ -43,9 +44,18 @@ public class GamePlayController {
         this.islands = islands;
         this.coins=c;
         final int[] cur = {0};
+        this.tnts= new ArrayList<>();
+        this.chest= new ArrayList<>();
+
         //current island index;
         for(Island island : this.islands){
             island.makeImage(root);
+            if(island.getObject() instanceof TNT){
+                tnts.add((TNT)island.getObject());
+            }
+            else{
+                chest.add((Chests) island.getObject());
+            }
             try {
                 island.getObject().makeImage(root);
             }catch (NullPointerException ignored){}
@@ -114,6 +124,17 @@ public class GamePlayController {
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             hero.jump();
         });
+        KeyFrame collideChestFrame = new KeyFrame(Duration.millis(11), e->{
+            for(Chests chest: this.chest ){
+                try {
+                    chest.collide(hero);
+                }
+                catch (NullPointerException chests){
+
+                }
+
+            }
+        });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
             for (Island island : this.islands) {
                 try {
@@ -131,7 +152,7 @@ public class GamePlayController {
             }
 
         });
-        this.time = new Timeline(heroFrame,frame);
+        this.time = new Timeline(heroFrame,frame,collideChestFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
 

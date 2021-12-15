@@ -78,7 +78,7 @@ public class TNT extends Obstacle{
     }
     @Override
     public void collide(Game_objects game_objects){
-        
+
     }
 
 }
