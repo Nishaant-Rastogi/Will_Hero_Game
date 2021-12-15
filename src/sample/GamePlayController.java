@@ -102,12 +102,11 @@ public class GamePlayController {
                         this.hero.setCurrIsland(this.islands.get(i));
                         cur[0] = i;
                         System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX() + islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
-                        if (hero.getCurrIsland().getImg().getX() > 165) {
+                        if (hero.getCurrIsland().getImg().getX() > 160) {
                             System.out.println("Fall");
                         }
                         if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= 100) {
                             System.out.println("Fall1");
-                            continue;
                         } else {
                             break;
                         }
