@@ -120,8 +120,7 @@ public class MainMenuController {
         Random rand = new Random();
         int randInteger = 1 + rand.nextInt(3);
         if(randInteger == 1){
-            Game_objects tnt = new TNT(x,y,0,0,70,70);
-            return tnt;
+            return new TNT(x,y,0,0,70,70);
         }else if(randInteger == 2){
             Random randChest = new Random();
             int randChestType = 1 + randChest.nextInt(2);

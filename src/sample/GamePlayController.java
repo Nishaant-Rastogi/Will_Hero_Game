@@ -25,6 +25,8 @@ public class GamePlayController {
     private ImageView setting;
     @FXML
     private Text score;
+    @FXML
+    private Text coinsCollected;
     private Group root;
     private MediaPlayer mediaPlayer;
     private ArrayList<Chests> chest;
@@ -120,7 +122,8 @@ public class GamePlayController {
                     chest.collide(hero);
                     if(chest instanceof Coin_chest){
                         hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
-                    }else {
+                        coinsCollected.setText(Integer.toString(Integer.parseInt(coinsCollected.getText())+((Coin_chest) chest).getCoins().size()));
+                    }else if(chest instanceof Weapon_chest){
                         hero.setWeapon(((Weapon_chest) chest).getWeapon());
                     }
                 }

@@ -25,9 +25,9 @@ public abstract class Chests extends Game_objects implements Jumpable{
     }
 
     @Override
-    public void collide(Game_objects game_objects){
+    public void collide(Game_objects hero){
         //System.out.println("hello");
-        if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())&&this.isOpen==false) {
+        if(this.getImg().getBoundsInLocal().intersects(hero.getImg().getBoundsInLocal()) && !this.isOpen) {
             chestAnimation();
             this.isOpen=true;
             //System.out.println("This is the animation");
