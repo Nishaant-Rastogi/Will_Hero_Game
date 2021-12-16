@@ -57,7 +57,6 @@ public class GamePlayController {
                     tnts.add((TNT)island.getObject());
                 }
                 else{
-                    System.out.println(island.getObject().getClass());
                     chests.add((Chests) island.getObject());
                 }
                 island.getObject().makeImage(root);
