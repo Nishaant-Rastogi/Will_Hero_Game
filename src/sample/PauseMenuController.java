@@ -119,7 +119,7 @@ public class PauseMenuController {
             islands.add(new Island(3900+x, 20, 0, 0, isLand10 - 1, 440, 520, 265,gameObjectGenerator(3900+x+150, 100,440)));
             x+=4400;
         }
-        Hero hero = new Hero(100,250,0,2,70,70, islands.get(0));
+        Hero hero = new Hero(100,250,0,2,55,65, islands.get(0));
         ArrayList<Coin> coins=new ArrayList<>();
         x=0;
         for(int i=0;i<3;i++){
