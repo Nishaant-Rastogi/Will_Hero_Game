@@ -38,7 +38,7 @@ public class Hero extends Game_objects implements Jumpable {
         this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
         this.movement.add(new Image(new File("src/assets/Gladiator.png").toURI().toString()));
         this.move = new Transition() {
-            {setCycleDuration(Duration.millis(150));}
+            {setCycleDuration(Duration.millis(200));}
             @Override
             protected void interpolate(double fraction) {
                 int index = (int) (fraction * (movement.size() - 1));

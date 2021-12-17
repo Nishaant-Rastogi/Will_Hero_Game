@@ -145,6 +145,15 @@ public class GamePlayController {
                 } catch (NullPointerException ignore) {}
             }
         });
+        KeyFrame orcCrushFrame = new KeyFrame(Duration.millis(11), e->{
+            try{
+                for(Orc orc : hero.getCurrIsland().getOrcs()){
+                    orc.collide(hero);
+                }
+            }catch(NullPointerException ignore){
+
+            }
+        });
         KeyFrame frame = new KeyFrame(Duration.millis(10), e->{
             for (Island island : this.islands) {
                 try {
@@ -168,7 +177,7 @@ public class GamePlayController {
                 hero.getWeapon().getImg().setY(hero.getImg().getY()+50);
             }
         });
-        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame);
+        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
 

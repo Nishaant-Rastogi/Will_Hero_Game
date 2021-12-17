@@ -24,7 +24,10 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public Island getCurrIsland() {
         return currIsland;
     }
-
+    @Override
+    public boolean collide(Game_objects game_objects){
+        return false;
+    }
     @Override
     public void jump() {
         if(this.getImg().getY()-this.getSpeedy() >= currIsland.getImg().getY()+currIsland.getBase()){
