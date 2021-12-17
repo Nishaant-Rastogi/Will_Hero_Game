@@ -155,7 +155,7 @@ public class GamePlayController {
     public ArrayList<Orc> generateOrcs(Island island){
         ArrayList<Orc> orcs= new ArrayList<>();
         Random randomOrc = new Random();
-        int maxNo=3; double x,y;
+        int maxNo= randomOrc.nextInt(3); double x,y;
         Game_objects onIsland= island.getObject();
 
         for(int i=0;i<maxNo;i++){
@@ -164,29 +164,20 @@ public class GamePlayController {
             y=island.getImg().getY()+island.getBase();
 
             if(orcs.size() > 0 && island.getObject() != null) {
-                if (x + 70 > orcs.get(orcs.size()-1).getPosition()[0]) {
-                    x += Math.abs(x + 70 - orcs.get(orcs.size()-1).getPosition()[0]);
-                }else if (orcs.get(orcs.size()-1).getPosition()[0] + 70 > x) {
-                    x += Math.abs(orcs.get(orcs.size()-1).getPosition()[0] + 70 - x);
+                if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0] || orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
+                    x += Math.abs(x  - orcs.get(orcs.size() - 1).getPosition()[0])+ 70;
                 }
-                if (x + 140 > onIsland.getImg().getX()) {
-                    x += Math.abs(x + 140 - onIsland.getImg().getX());
-                }else if (onIsland.getImg().getX() + 140 > x) {
-                    x += Math.abs(onIsland.getImg().getX() + 140 - x);
+                if (x + 140 > onIsland.getImg().getX() || onIsland.getImg().getX() + 140 > x) {
+                    x += Math.abs(x - onIsland.getImg().getX())+140;
                 }
             }else if(island.getObject() != null) {
-                if (x + 140 > onIsland.getImg().getX()) {
-                    x += Math.abs(x + 140 - onIsland.getImg().getX());
-                }
-                if (onIsland.getImg().getX() + 140 > x) {
-                    x += Math.abs(onIsland.getImg().getX() + 140 - x);
+                if (x + 140 > onIsland.getImg().getX() || onIsland.getImg().getX() + 140 > x) {
+                    x += Math.abs(x - onIsland.getImg().getX())+140;
                 }
             }else{
                 if(orcs.size() > 0) {
-                    if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0]) {
-                        x += Math.abs(x + 70 - orcs.get(orcs.size() - 1).getPosition()[0]);
-                    } else if (orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
-                        x += Math.abs(orcs.get(orcs.size() - 1).getPosition()[0] + 70 - x);
+                    if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0] || orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
+                        x += Math.abs(x  - orcs.get(orcs.size() - 1).getPosition()[0])+ 70;
                     }
                 }
             }

@@ -144,7 +144,7 @@ public class PauseMenuController {
             Random randChest = new Random();
             int randChestType = 1 + randChest.nextInt(2);
             if(randChestType == 1) return new Weapon_chest(x,y,0,100,100,70);
-            else return new Coin_chest(x,y,0,0,140,110);
+            else return new Coin_chest(x,y,0,0,110,90);
         }
         return null;
     }
