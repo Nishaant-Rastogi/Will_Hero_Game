@@ -44,8 +44,10 @@ public class Hero extends Game_objects implements Jumpable {
                 int index = (int) (fraction * (movement.size() - 1));
                 if (index == 0) {
                     getImg().setFitWidth(100);
+                    if(weapon != null)weapon.getImg().setX(weapon.getImg().getX()+50);
                 }else{
                     getImg().setFitWidth(55);
+                    if(weapon != null)weapon.getImg().setX(weapon.getImg().getX()-50);
                 }
                 getImg().setImage(movement.get(index));
 
@@ -60,9 +62,13 @@ public class Hero extends Game_objects implements Jumpable {
     }
 
     public void setWeapon(Weapon weapon, Group root) {
+        if(this.weapon != null) {
+            root.getChildren().remove(root.getChildren().size()-3);
+        }
         this.weapon = weapon;
-        if(this.weapon.getImg() == null)this.weapon.makeImage(root,this.getImg().getX()-80,this.getImg().getY()+50);
-        else this.weapon.getImg().setImage(weapon.getImg().getImage());
+        if(weapon instanceof Lance)this.weapon.makeImage(root, this.getImg().getX() - 80, this.getImg().getY() + 40);
+        else this.weapon.makeImage(root, this.getImg().getX() - 150, this.getImg().getY() + 40);
+
     }
 
     public Weapon getWeapon() {
