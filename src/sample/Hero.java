@@ -66,8 +66,8 @@ public class Hero extends Game_objects implements Jumpable {
             root.getChildren().remove(root.getChildren().size()-3);
         }
         this.weapon = weapon;
-        if(weapon instanceof Lance)this.weapon.makeImage(root, this.getImg().getX() - 80, this.getImg().getY() + 40);
-        else this.weapon.makeImage(root, this.getImg().getX() - 150, this.getImg().getY() + 40);
+        if(weapon instanceof Lance)this.weapon.makeImage(root, this.getImg().getX(), this.getImg().getY() + 30);
+        else this.weapon.makeImage(root, this.getImg().getX(), this.getImg().getY() + 30);
 
     }
 
