@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.Transition;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
@@ -58,8 +59,14 @@ public class Hero extends Game_objects implements Jumpable {
         return false;
     }
 
-    public void setWeapon(Weapon weapon) {
+    public void setWeapon(Weapon weapon, Group root) {
         this.weapon = weapon;
+        if(this.weapon.getImg() == null)this.weapon.makeImage(root,this.getImg().getX()-80,this.getImg().getY()+50);
+        else this.weapon.getImg().setImage(weapon.getImg().getImage());
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
     }
 
     public ArrayList<Coin> getCoinCase() {

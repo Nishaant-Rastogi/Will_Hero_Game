@@ -27,6 +27,14 @@ public class GamePlayController {
     private Text score;
     @FXML
     private Text coinsCollected;
+    @FXML
+    private ImageView lance;
+    @FXML
+    private ImageView sword;
+    @FXML
+    private Text lanceLevel;
+    @FXML
+    private Text swordLevel;
     private Group root;
     private MediaPlayer mediaPlayer;
     private ArrayList<Chests> chests;
@@ -89,7 +97,7 @@ public class GamePlayController {
             if (hero.getIsAlive() && !hero.getIsRevived()) {
                 hero.getMove().play();
                 score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
-                for (int i = 1; i < root.getChildren().size() - 2; i++) {
+                for (int i = 1; i < root.getChildren().size() - 3; i++) {
                     if (root.getChildren().get(i) != hero.getImg())
                         ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 70);
                 }
@@ -124,7 +132,14 @@ public class GamePlayController {
                             this.getCoinsCollected().setText(Integer.toString(Integer.parseInt(this.getCoinsCollected().getText()) + ((Coin_chest) chest).getCoins().size()));
                             hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
                         } else if (chest instanceof Weapon_chest) {
-                            hero.setWeapon(((Weapon_chest) chest).getWeapon());
+                            hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
+                            if(((Weapon_chest) chest).getWeapon() instanceof Lance){
+                                lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+                                lanceLevel.setText(Integer.toString(Integer.parseInt(lanceLevel.getText())+1));
+                            }else{
+                                sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
+                                swordLevel.setText(Integer.toString(Integer.parseInt(swordLevel.getText())+1));
+                            }
                         }
                     }
                 } catch (NullPointerException ignore) {}
@@ -147,7 +162,13 @@ public class GamePlayController {
             }
 
         });
-        this.time = new Timeline(heroFrame,frame,collideChestFrame);
+        KeyFrame weaponFrame = new KeyFrame(Duration.millis(10), e->{
+            if(hero.getWeapon() != null){
+                hero.getWeapon().getImg().setX(hero.getImg().getX());
+                hero.getWeapon().getImg().setY(hero.getImg().getY()+50);
+            }
+        });
+        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
 

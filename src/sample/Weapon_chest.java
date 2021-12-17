@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Weapon_chest extends Chests {
     private Weapon weapon;
@@ -16,7 +17,10 @@ public class Weapon_chest extends Chests {
         getChestAnimation().add(new Image(new File("src/assets/WeaponChest_5.png").toURI().toString()));
         getChestAnimation().add(new Image(new File("src/assets/WeaponChest_6.png").toURI().toString()));
         getChestAnimation().add(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
-
+        Random weapon = new Random();
+        int weaponChoice = 1+weapon.nextInt(2);
+        if(weaponChoice == 1) setWeapon(new Lance(1,1,1));
+        else setWeapon(new Sword(1,1,1));
     }
 
     public Weapon getWeapon() {

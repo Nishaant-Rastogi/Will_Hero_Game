@@ -20,19 +20,19 @@
             <Image url="@../assets/PauseButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lance" fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/LanceDisplay.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sword" fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/SwordDisplay.png" />
          </image>
       </ImageView>
       <Text fx:id="score" fill="WHITE" layoutX="463.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="73.53535461425793" />
-      <Text fill="#ffcd00" layoutX="34.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
-      <Text fill="#ffcd00" layoutX="119.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
+      <Text fx:id="lanceLevel" fill="#ffcd00" layoutX="34.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
+      <Text fx:id="swordLevel" fill="#ffcd00" layoutX="119.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="5.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-alignment: center;" text="0" wrappingWidth="30.487205505371094" />
       <ImageView fitHeight="45.0" fitWidth="42.0" layoutX="854.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Coin.png" />
