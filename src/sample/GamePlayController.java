@@ -136,14 +136,16 @@ public class GamePlayController {
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             if(hero.getImg().getY()>=600){
                 System.exit(0);
+                //change
             }
             if(fall.get()){
                 //make a function here
                 hero.getImg().setY(hero.getImg().getY()+2);
             }
             else {
-                if(hero.getImg().getY()>hero.getCurrIsland().getImg().getY()){
-                    //hero.getImg().setY(hero.getImg().getY()+2);
+                if(hero.getImg().getY()>hero.getCurrIsland().getImg().getY()+hero.getCurrIsland().getBase()+0.6){
+                    //System.out.println(hero.getImg().getY()+" "+(hero.getCurrIsland().getImg().getY()+hero.getCurrIsland().getBase()));
+                    hero.getImg().setY(hero.getImg().getY()+2);
                 }
                 else{
                 hero.jump();
