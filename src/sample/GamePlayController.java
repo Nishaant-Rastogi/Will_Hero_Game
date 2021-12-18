@@ -76,10 +76,17 @@ public class GamePlayController {
                 heroIsland++;
                 continue;
             }
-            island.setOrcs(generateOrcs(island));
-            for(Orc orc: island.getOrcs()){
-                orc.makeImage(root);
+            if(heroIsland != islands.size()-3 && heroIsland != islands.size()-4) {
+                island.setOrcs(generateOrcs(island));
+                for (Orc orc : island.getOrcs()) {
+                    orc.makeImage(root);
+                }
+            }else if(heroIsland == islands.size()-3){
+                island.setOrcs(new ArrayList<Orc>());
+                island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
+                island.getOrcs().get(0).makeImage(root);
             }
+            heroIsland++;
         }
         for (Coin coin : coins) {
             coin.makeImage(root);
@@ -132,7 +139,6 @@ public class GamePlayController {
                             this.getCoinsCollected().setText(Integer.toString(Integer.parseInt(this.getCoinsCollected().getText()) + ((Coin_chest) chest).getCoins().size()));
                             hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
                         } else if (chest instanceof Weapon_chest) {
-                            hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
                             if(((Weapon_chest) chest).getWeapon() instanceof Lance){
                                 lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
                                 lanceLevel.setText(Integer.toString(Integer.parseInt(lanceLevel.getText())+1));
@@ -140,6 +146,7 @@ public class GamePlayController {
                                 sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
                                 swordLevel.setText(Integer.toString(Integer.parseInt(swordLevel.getText())+1));
                             }
+                            hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
                         }
                     }
                 } catch (NullPointerException ignore) {}
