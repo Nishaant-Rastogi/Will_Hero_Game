@@ -7,9 +7,9 @@ import java.io.File;
 
 
 public abstract class Game_objects {
-    double position[];
-    double speedx;
-    double speedy;
+   private double position[];
+   private double speedx;
+   private double speedy;
     private String path;
     transient private ImageView img;
     private int width;

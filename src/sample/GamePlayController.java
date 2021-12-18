@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GamePlayController {
     @FXML
@@ -56,7 +57,8 @@ public class GamePlayController {
         final int[] cur = {0};
         this.tnts = new ArrayList<>();
         this.chests = new ArrayList<>();
-
+        AtomicBoolean fall= new AtomicBoolean(false);
+        //fall used to check for fall condition
         //current island index;
         for(Island island : this.islands){
             try {
@@ -100,6 +102,7 @@ public class GamePlayController {
         root.getChildren().add(inputButton);
         //see if hold can give a power up
         root.getChildren().get(root.getChildren().size()-1).setOnMousePressed(mouseEvent -> {
+            fall.set(false);
             int count = mouseEvent.getClickCount();
             if (hero.getIsAlive() && !hero.getIsRevived()) {
                 hero.getMove().play();
@@ -116,9 +119,11 @@ public class GamePlayController {
                         System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX() + islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
                         if (hero.getCurrIsland().getImg().getX() > 160) {
                             System.out.println("Fall");
+                            fall.set(true);
                         }
                         if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= 100) {
                             System.out.println("Fall1");
+                            fall.set(true);
                         } else {
                             break;
                         }
@@ -129,7 +134,21 @@ public class GamePlayController {
             }
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
-            hero.jump();
+            if(hero.getImg().getY()>=600){
+                System.exit(0);
+            }
+            if(fall.get()){
+                //make a function here
+                hero.getImg().setY(hero.getImg().getY()+2);
+            }
+            else {
+                if(hero.getImg().getY()>hero.getCurrIsland().getImg().getY()){
+                    //hero.getImg().setY(hero.getImg().getY()+2);
+                }
+                else{
+                hero.jump();
+                }
+            }
         });
         KeyFrame collideChestFrame = new KeyFrame(Duration.millis(11), e->{
             for (Chests chest : chests) {
