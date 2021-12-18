@@ -120,16 +120,16 @@ public class PauseMenuController {
             x+=4400;
         }
         Hero hero = new Hero(100,250,0,2,55,65, islands.get(0));
-        ArrayList<Coin> coins=new ArrayList<>();
+        //ArrayList<Coin> coins=new ArrayList<>();
         x=0;
-        for(int i=0;i<3;i++){
-            coins.add(new Coin(340+x,160,0,0,30,30));
-            x+=40;
-        }
+//        for(int i=0;i<3;i++){
+//            coins.add(new Coin(340+x,160,0,0,30,30));
+//            x+=40;
+//        }
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, mediaPlayer,coins);
+        gamePlayController.initData(root, hero, islands, mediaPlayer);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();

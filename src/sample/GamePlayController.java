@@ -43,17 +43,17 @@ public class GamePlayController {
     private Hero hero;
     private ArrayList<Island> islands;
     private ArrayList<Obstacle> obs;
-    private ArrayList<Coin> coins;
     private Button inputButton;
     private ArrayList<TNT> tnts;
+    //private ArrayList<Coin> coins;
 
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer,ArrayList<Coin> c) throws IOException {
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
         this.islands = islands;
-        this.coins=c;
+        //this.coins=c;
         final int[] cur = {0};
         this.tnts = new ArrayList<>();
         this.chests = new ArrayList<>();
@@ -90,9 +90,9 @@ public class GamePlayController {
             }
             heroIsland++;
         }
-        for (Coin coin : coins) {
-            coin.makeImage(root);
-        }
+//        for (Coin coin : coins) {
+//            coin.makeImage(root);
+//        }
         hero.makeImage(root);
         root.getChildren().add(root.getChildren().remove(0));
         inputButton = new Button();
@@ -153,6 +153,7 @@ public class GamePlayController {
             }
         });
         KeyFrame collideChestFrame = new KeyFrame(Duration.millis(11), e->{
+            //refine the loop
             for (Chests chest : chests) {
                 try {
                     if(chest.collide(hero)) {
