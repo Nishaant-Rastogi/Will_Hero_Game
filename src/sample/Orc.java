@@ -30,17 +30,32 @@ public abstract class Orc extends Game_objects implements Jumpable{
     }
     @Override
     public void jump() {
-        if(this.getImg().getY()-this.getSpeedy() >= currIsland.getImg().getY()+currIsland.getBase()){
-            this.getImg().setY(currIsland.getImg().getY()+currIsland.getBase());
-            double speed = this.getSpeedy();
-            this.setSpeedy(-speed);
-        }else {
-            this.getImg().setY(this.getImg().getY() - this.getSpeedy());
-        }
-        if(this.getImg().getY()<=currIsland.getImg().getY()+currIsland.getBase()-100){
-            this.getImg().setY(currIsland.getImg().getY()+currIsland.getBase()-100);
-            double speed = this.getSpeedy();
-            this.setSpeedy(-speed);
+        if(this instanceof Boss_orc) {
+            if (this.getImg().getY() - this.getSpeedy() >= currIsland.getImg().getY() + currIsland.getBase() - 80) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 80);
+                double speed = this.getSpeedy();
+                this.setSpeedy(-speed);
+            } else {
+                this.getImg().setY(this.getImg().getY() - this.getSpeedy());
+            }
+            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 200) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 200);
+                double speed = this.getSpeedy();
+                this.setSpeedy(-speed);
+            }
+        }else{
+            if (this.getImg().getY() - this.getSpeedy() >= currIsland.getImg().getY() + currIsland.getBase()) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase());
+                double speed = this.getSpeedy();
+                this.setSpeedy(-speed);
+            } else {
+                this.getImg().setY(this.getImg().getY() - this.getSpeedy());
+            }
+            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 100) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 100);
+                double speed = this.getSpeedy();
+                this.setSpeedy(-speed);
+            }
         }
     }
     public void die(){

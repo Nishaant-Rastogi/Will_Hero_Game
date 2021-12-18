@@ -98,8 +98,8 @@ public class MainMenuController {
             islands.add(new Island(2750+x, 200, 0, 0.3, isLand7 - 1, 320, 350, 70,gameObjectGenerator(2750+x+100, 180,320)));
             islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, 210,gameObjectGenerator(3200+x+20, 100,150)));
             if(i == 1){
-                islands.add(new Island(3420+x, 100, 0, 0, isLand6 - 1, 380, 500, 107,null));
-                islands.add(new Island(3700+x, 65, 0, 0, isLand2 - 1, 400, 520, 140,null));
+                islands.add(new Island(3420+x, 100, 0, 0, isLand6 - 1, 380, 500, 177,null));
+                islands.add(new Island(3700+x, 65, 0, 0, isLand2 - 1, 400, 520, 210,null));
                 x += 800;
             }
             islands.add(new Island(3420+x, 100, 0, 0.5, isLand9 - 1, 380, 480, 177,gameObjectGenerator(3420+x+120, 100,380)));
