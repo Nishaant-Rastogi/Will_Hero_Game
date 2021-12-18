@@ -26,6 +26,18 @@ public abstract class Orc extends Game_objects implements Jumpable{
     }
     @Override
     public boolean collide(Game_objects game_objects){
+        if(game_objects instanceof Hero) {
+            Hero h1 = (Hero) game_objects;
+            if (this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
+                if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
+                    if (this.getImg().getY() + 70 <= h1.getImg().getY()) {
+                        //System.out.println("Hero under orc");
+
+                        this.kill(h1);
+                    }
+                }
+            }
+        }
         return false;
     }
     @Override
@@ -51,8 +63,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
             } else {
                 this.getImg().setY(this.getImg().getY() - this.getSpeedy());
             }
-            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 100) {
-                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 100);
+            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 150) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 150);
                 double speed = this.getSpeedy();
                 this.setSpeedy(-speed);
             }
@@ -61,8 +73,9 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public void die(){
 
     }
-    public void hurt(Hero h){
-
+    public void kill(Hero h){
+        //this needs to be changed
+        System.exit(0);
     }
 
     public ArrayList<Coin> getCoins() {
