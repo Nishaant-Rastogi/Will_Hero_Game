@@ -247,7 +247,7 @@ public class GamePlayController {
             }
             if(x + 70 < island.getImg().getX()+island.getWidth()) {
                 int orcChoice = 1 + randomOrc.nextInt(2);
-                int speedChoice = 1 + randomOrc.nextInt(2);
+                int speedChoice = 2 + randomOrc.nextInt(3);
                 if (orcChoice == 1) orcs.add(new Normal_G_Orc(x, y, 0, speedChoice, 70, 70));
                 else orcs.add(new Shield_R_Orc(x, y, 0, speedChoice, 70, 70));
             }
