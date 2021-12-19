@@ -135,8 +135,13 @@ public class GamePlayController {
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             if(hero.getImg().getY()>=600){
-                System.exit(0);
-                //change
+//                System.exit(0);
+//                change
+                try {
+                    reviveMenu();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
             if(fall.get()){
                 //make a function here
@@ -249,6 +254,15 @@ public class GamePlayController {
         }
         return orcs;
         //there may be no orcs
+    }
+    private void reviveMenu() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ReviveMenu.fxml"));
+
+        AnchorPane reviveMenu = fxmlLoader.load();
+        root.getChildren().add(reviveMenu);
+        time.pause();
+        ReviveMenuController reviveMenuController = fxmlLoader.getController();
+        reviveMenuController.initData(this,reviveMenu,hero);
     }
     public void pause() throws IOException {
         inputButton.setDisable(true);

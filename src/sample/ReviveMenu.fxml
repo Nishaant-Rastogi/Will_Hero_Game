@@ -4,30 +4,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
    <children>
-      <ImageView fitHeight="569.0" fitWidth="849.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/ReviveMenu.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="63.0" layoutX="393.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="93.0" layoutX="556.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="321.0" layoutY="276.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="76.0" fitWidth="78.0" layoutX="456.0" layoutY="393.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/HomeButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="57.0" layoutX="473.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="76.0" fitWidth="77.0" layoutX="669.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/RestartButton.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47046b" height="175.0" layoutX="337.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dcf6fa" height="71.0" layoutY="351.0" stroke="TRANSPARENT" strokeType="INSIDE" width="247.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47046b" height="250.0" layoutX="474.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
+      <Text fill="WHITE" layoutX="534.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="SCORE" wrappingWidth="133.8018035888672" />
+      <Text fill="WHITE" layoutX="534.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="COINS" wrappingWidth="133.8018035888672" />
+      <Text fill="WHITE" layoutX="534.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
+      <Text fill="WHITE" layoutX="534.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
    </children>
 </AnchorPane>
