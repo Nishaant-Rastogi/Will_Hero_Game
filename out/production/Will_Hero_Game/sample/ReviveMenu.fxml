@@ -6,32 +6,32 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
+<AnchorPane prefHeight="403.0" prefWidth="386.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="413.0" fitWidth="386.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/ReviveMenu.gif" />
+            <Image url="@../assets/ReviveMenu.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="89.0" fitWidth="93.0" layoutX="556.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="155.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="78.0" layoutX="456.0" layoutY="393.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="76.0" layoutX="75.0" layoutY="310.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/HomeButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="77.0" layoutX="669.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="249.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/RestartButton.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47046b" height="250.0" layoutX="474.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" width="251.0" />
-      <Text fill="WHITE" layoutX="534.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="SCORE" wrappingWidth="133.8018035888672" />
-      <Text fill="WHITE" layoutX="534.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="COINS" wrappingWidth="133.8018035888672" />
-      <Text fill="WHITE" layoutX="534.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
-      <Text fill="WHITE" layoutX="534.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47046b" height="208.0" layoutX="90.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="209.0" />
+      <Text fill="WHITE" layoutX="130.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="SCORE" wrappingWidth="133.8018035888672" />
+      <Text fill="WHITE" layoutX="128.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="COINS" wrappingWidth="133.8018035888672" />
+      <Text fx:id="score" fill="WHITE" layoutX="128.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
+      <Text fx:id="coins" fill="WHITE" layoutX="128.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
    </children>
 </AnchorPane>

@@ -259,10 +259,12 @@ public class GamePlayController {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ReviveMenu.fxml"));
 
         AnchorPane reviveMenu = fxmlLoader.load();
+        reviveMenu.setLayoutX(300);
+        reviveMenu.setLayoutY(60);
         root.getChildren().add(reviveMenu);
         time.pause();
         ReviveMenuController reviveMenuController = fxmlLoader.getController();
-        reviveMenuController.initData(this,reviveMenu,hero);
+        reviveMenuController.initData(this,reviveMenu,hero, score, coinsCollected);
     }
     public void pause() throws IOException {
         inputButton.setDisable(true);
