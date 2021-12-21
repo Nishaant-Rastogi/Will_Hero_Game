@@ -36,6 +36,7 @@ public class ReviveMenuController {
     private Group root;
     private Hero hero;
     private AnchorPane reviveMenu;
+    private Button inputButton;
     public void initData(GamePlayController gamePlayController, AnchorPane reviveMenu, Hero hero, Text score, Text coins){
         this.score.setText(score.getText());
         this.root = gamePlayController.getRoot();
@@ -44,19 +45,33 @@ public class ReviveMenuController {
         this.reviveMenu = reviveMenu;
         this.mediaPlayer = gamePlayController.getMediaPlayer();
         this.hero = hero;
+        this.inputButton=gamePlayController.getInputButton();
     }
-    public void revive(MouseEvent mouseEvent){
+    public void revive(MouseEvent mouseEvent)throws IOException{
         Button revive = new Button();
         revive.setGraphic(new ImageView(new Image(new File("src/assets/revive.png").toURI().toString())));
-        revive.setLayoutX(500);
-        revive.setLayoutY(300);
-        root.getChildren().add(root.getChildren().size(),revive);
-        root.getChildren().remove(reviveMenu);
-        if(!hero.getIsRevived()){
-            hero.setRevived();
-            hero.getImg().setX(hero.getCurrIsland().getImg().getX()+20);
-            time.play();
+        revive.setPrefWidth(100);
+        revive.setPrefHeight(50);
+        revive.setLayoutX(100);
+        revive.setLayoutY(100);
+        if(hero.getIsRevived()||hero.getCoinCase().size()<5) {
+           reloadButton(mouseEvent);
         }
+        root.getChildren().remove(reviveMenu);
+        root.getChildren().add(root.getChildren().size()-1,revive);
+        revive.setOnMousePressed(event -> {
+            inputButton.setDisable(true);
+            if(!hero.getIsRevived()){
+               for(int i=0;i<5;i++)
+                   hero.getCoinCase().remove(0);
+                hero.setRevived();
+                hero.getImg().setX(hero.getCurrIsland().getImg().getX()+20);
+                root.getChildren().remove(root.getChildren().size()-1);
+                time.play();
+            }
+
+        });
+
     }
     public void mainMenu(MouseEvent event) throws IOException {
         this.mediaPlayer.dispose();

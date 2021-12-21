@@ -278,6 +278,11 @@ public class GamePlayController {
         return orcs;
         //there may be no orcs
     }
+
+    public Button getInputButton() {
+        return inputButton;
+    }
+
     private void reviveMenu() throws IOException {
         inputButton.setDisable(true);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ReviveMenu.fxml"));
