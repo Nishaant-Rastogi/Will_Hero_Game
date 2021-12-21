@@ -48,7 +48,7 @@ public class GamePlayController {
     private Button inputButton;
     private ArrayList<TNT> tnts;
     //private ArrayList<Coin> coins;
-
+    private AtomicBoolean fall= new AtomicBoolean(false);
     public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         this.mediaPlayer = mediaPlayer;
@@ -59,7 +59,7 @@ public class GamePlayController {
         final int[] cur = {0};
         this.tnts = new ArrayList<>();
         this.chests = new ArrayList<>();
-        AtomicBoolean fall= new AtomicBoolean(false);
+
         //fall used to check for fall condition
         //current island index;
         for(Island island : this.islands){
@@ -155,7 +155,7 @@ public class GamePlayController {
                     hero.getImg().setY(hero.getImg().getY()+2);
                 }
                 else{
-                hero.jump();
+                    hero.jump();
                 }
             }
         });
@@ -342,6 +342,9 @@ public class GamePlayController {
     }
     public void shadowEffectSetting(MouseEvent mouseEvent) {
         setting.setEffect(new DropShadow(20, Color.BLACK));
+    }
+    public AtomicBoolean getFall() {
+        return fall;
     }
     public void removeShadowEffectSetting(MouseEvent mouseEvent) {
         setting.setEffect(null);
