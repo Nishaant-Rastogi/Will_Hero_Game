@@ -106,7 +106,7 @@ public class GamePlayController {
         root.getChildren().get(root.getChildren().size()-1).setOnMousePressed(mouseEvent -> {
             fall.set(false);
             int count = mouseEvent.getClickCount();
-            if (hero.getIsAlive() && !hero.getIsRevived()) {
+            if (hero.getIsAlive()) {
                 hero.getMove().play();
                 score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
                 for (int i = 1; i < root.getChildren().size() - 3; i++) {
