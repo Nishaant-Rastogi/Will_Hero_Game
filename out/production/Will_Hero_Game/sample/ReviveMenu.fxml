@@ -23,7 +23,7 @@
             <Image url="@../assets/HomeButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="249.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="249.0" layoutY="309.0" onMouseClicked="#reloadButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/RestartButton.png" />
          </image>
