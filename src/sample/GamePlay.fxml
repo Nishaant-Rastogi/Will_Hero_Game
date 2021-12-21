@@ -20,12 +20,12 @@
             <Image url="@../assets/PauseButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="lance" fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lance" fitHeight="80.0" fitWidth="87.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#selectLance" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/LanceDisplay.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sword" fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sword" fitHeight="80.0" fitWidth="83.0" layoutX="97.0" layoutY="515.0" onMouseClicked="#selectSword" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/SwordDisplay.png" />
          </image>

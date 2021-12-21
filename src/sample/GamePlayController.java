@@ -30,8 +30,10 @@ public class GamePlayController {
     private Text coinsCollected;
     @FXML
     private ImageView lance;
+    private boolean lanceSelect;
     @FXML
     private ImageView sword;
+    private boolean swordSelect;
     @FXML
     private Text lanceLevel;
     @FXML
@@ -167,10 +169,20 @@ public class GamePlayController {
                             hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
                         } else if (chest instanceof Weapon_chest) {
                             if(((Weapon_chest) chest).getWeapon() instanceof Lance){
+                                if(swordSelect) {
+                                    sword.setImage(new Image(new File("src/assets/SwordDisplay.png").toURI().toString()));
+                                    swordSelect = false;
+                                }
                                 lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
-                                lanceLevel.setText(Integer.toString(Integer.parseInt(lanceLevel.getText())+1));
+                                lanceSelect = true;
+                                lanceLevel.setText(Integer.toString(Integer.parseInt(lanceLevel.getText()) + 1));
                             }else{
+                                if(lanceSelect){
+                                    lance.setImage(new Image(new File("src/assets/LanceDisplay.png").toURI().toString()));
+                                    lanceSelect = false;
+                                }
                                 sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
+                                swordSelect = true;
                                 swordLevel.setText(Integer.toString(Integer.parseInt(swordLevel.getText())+1));
                             }
                             hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
@@ -182,7 +194,7 @@ public class GamePlayController {
         KeyFrame orcCrushFrame = new KeyFrame(Duration.millis(11), e->{
             try{
                 for(Orc orc : hero.getCurrIsland().getOrcs()){
-                    orc.collide(hero);
+//                    orc.collide(hero);
                 }
             }catch(NullPointerException ignore){
 
@@ -281,7 +293,20 @@ public class GamePlayController {
         }
         pauseMenuController.initData(this, pauseMenu,inputButton);
     }
-
+    public void selectLance(MouseEvent mouseEvent){
+        if(Integer.parseInt(lanceLevel.getText()) > 0 && !lanceSelect){
+            lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+            sword.setImage(new Image(new File("src/assets/SwordDisplay.png").toURI().toString()));
+            hero.setWeapon(new Lance(1,1,1),root);
+        }
+    }
+    public void selectSword(MouseEvent mouseEvent){
+        if(Integer.parseInt(swordLevel.getText()) > 0 && !swordSelect){
+            lance.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
+            sword.setImage(new Image(new File("src/assets/LanceDisplay.png").toURI().toString()));
+            hero.setWeapon(new Sword(1,1,1),root);
+        }
+    }
     public Text getCoinsCollected() {
         return coinsCollected;
     }
