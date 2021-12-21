@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
@@ -29,12 +30,24 @@ public class ReviveMenuController {
     private MediaPlayer mediaPlayer;
     private Stage stage;
     private Scene scene;
+    private Timeline time;
     private Group root;
+    private Hero hero;
+    private AnchorPane reviveMenu;
     public void initData(GamePlayController gamePlayController, AnchorPane reviveMenu, Hero hero, Text score, Text coins){
         this.score.setText(score.getText());
         this.root = gamePlayController.getRoot();
+        this.time = gamePlayController.getTime();
         this.coins.setText(coins.getText());
+        this.reviveMenu = reviveMenu;
         this.mediaPlayer = gamePlayController.getMediaPlayer();
+        this.hero = hero;
+    }
+    public void revive(MouseEvent mouseEvent){
+        root.getChildren().remove(reviveMenu);
+        if(!hero.getIsRevived()){
+            time.play();
+        }
     }
     public void mainMenu(MouseEvent event) throws IOException {
         this.mediaPlayer.dispose();
