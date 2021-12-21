@@ -268,6 +268,7 @@ public class GamePlayController {
         //there may be no orcs
     }
     private void reviveMenu() throws IOException {
+        inputButton.setDisable(true);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ReviveMenu.fxml"));
 
         AnchorPane reviveMenu = fxmlLoader.load();
