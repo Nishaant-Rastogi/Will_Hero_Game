@@ -194,9 +194,11 @@ public class GamePlayController {
         KeyFrame orcCrushFrame = new KeyFrame(Duration.millis(11), e->{
             try{
                 for(Orc orc : hero.getCurrIsland().getOrcs()){
-                    orc.collide(hero);
+                    if(orc.collide(hero)){
+                        reviveMenu();
+                    }
                 }
-            }catch(NullPointerException ignore){
+            }catch(NullPointerException | IOException ignore){
 
             }
         });
