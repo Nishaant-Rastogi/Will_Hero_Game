@@ -1,10 +1,14 @@
 package sample;
 
+import javafx.animation.Transition;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Orc extends Game_objects implements Jumpable{
     private int damage;
@@ -12,9 +16,18 @@ public abstract class Orc extends Game_objects implements Jumpable{
     private boolean dead;
     private Island currIsland;
     private ArrayList<Coin> coins;
+    private List<Image> orcDeathAnimation;
     public Orc(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
         dead=false;
+        orcDeathAnimation= new ArrayList<>();
+        orcDeathAnimation.add(new Image(new File(path).toURI().toString()));
+        orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+        orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+        orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+        orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+        orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+        orcDeathAnimation.add(new javafx.scene.image.Image(new File("src/assets/blank.png").toURI().toString()));
     }
 
     public void setCurrIsland(Island currIsland) {
@@ -28,10 +41,23 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public boolean collide(Game_objects game_objects){
         if(game_objects instanceof Hero) {
             Hero h1 = (Hero) game_objects;
-            if (this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
-                if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
-                    return this.getImg().getY() + 70 <= h1.getImg().getY();
+            if (h1.getWeapon() != null) {
+                if (this.getImg().getBoundsInLocal().intersects(h1.getWeapon().getImg().getBoundsInLocal())) {
+                    if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
+                            dead=true;
+                            orcDeathAnimation();
+                        }
+                    }
+            } else {
+                if (this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
+                    if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
+                        if (this.getImg().getY() + 70 <= h1.getImg().getY()) {
+                            return true;
+                        }
+
+                    }
                 }
+
             }
         }
         return false;
@@ -93,4 +119,18 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public void setDead() {
         this.dead = true;
     }
+    public void orcDeathAnimation(){
+        Orc orc= this;
+        Transition animation = new Transition() {
+            {setCycleDuration(Duration.millis(200));}
+            @Override
+            protected void interpolate(double fraction) {
+                int index = (int) (fraction*(orcDeathAnimation.size()-1));
+                orc.getImg().setImage(orcDeathAnimation.get(index));
+            }
+        };
+        animation.play();
+        animation.setCycleCount(1);
+    }
+
 }

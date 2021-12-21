@@ -29,6 +29,7 @@ public class Hero extends Game_objects implements Jumpable {
         return isAlive;
     }
 
+
     Hero(double x, double y, double sx, double sy, int width, int height, Island currIsland){
         super(x,y,sx,sy,"src/assets/Gladiator.png",width,height);
         this.movement = new ArrayList<>();
@@ -110,5 +111,9 @@ public class Hero extends Game_objects implements Jumpable {
 
         }
     }
+    public void setRevived() {
+        isRevived = true;
+    }
+
 
 }

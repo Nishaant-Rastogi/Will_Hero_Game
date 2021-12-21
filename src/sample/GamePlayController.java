@@ -192,10 +192,19 @@ public class GamePlayController {
             }
         });
         KeyFrame orcCrushFrame = new KeyFrame(Duration.millis(11), e->{
+            Orc orc;
             try{
-                for(Orc orc : hero.getCurrIsland().getOrcs()){
+                for(int i=0;i< hero.getCurrIsland().getOrcs().size();i++){
+                    orc=hero.getCurrIsland().getOrcs().get(i);
                     if(orc.collide(hero)){
                         reviveMenu();
+                    }
+                    else{
+                        if(orc.isDead()){
+                            hero.getCurrIsland().getOrcs().remove(i);
+                            //root
+                            i--;
+                        }
                     }
                 }
             }catch(NullPointerException | IOException ignore){

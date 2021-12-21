@@ -13,7 +13,7 @@
             <Image url="@../assets/ReviveMenu.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="155.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="155.0" layoutY="304.0" onMouseClicked="#revive" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/PlayButton.png" />
          </image>

@@ -46,6 +46,8 @@ public class ReviveMenuController {
     public void revive(MouseEvent mouseEvent){
         root.getChildren().remove(reviveMenu);
         if(!hero.getIsRevived()){
+            hero.setRevived();
+            hero.getImg().setX(hero.getCurrIsland().getImg().getX()+20);
             time.play();
         }
     }
