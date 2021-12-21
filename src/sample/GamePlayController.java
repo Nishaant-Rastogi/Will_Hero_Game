@@ -194,7 +194,7 @@ public class GamePlayController {
         KeyFrame orcCrushFrame = new KeyFrame(Duration.millis(11), e->{
             try{
                 for(Orc orc : hero.getCurrIsland().getOrcs()){
-//                    orc.collide(hero);
+                    orc.collide(hero);
                 }
             }catch(NullPointerException ignore){
 
@@ -299,13 +299,17 @@ public class GamePlayController {
             lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
             sword.setImage(new Image(new File("src/assets/SwordDisplay.png").toURI().toString()));
             hero.setWeapon(new Lance(1,1,1),root);
+            lanceSelect = true;
+            swordSelect = false;
         }
     }
     public void selectSword(MouseEvent mouseEvent){
         if(Integer.parseInt(swordLevel.getText()) > 0 && !swordSelect){
-            lance.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
-            sword.setImage(new Image(new File("src/assets/LanceDisplay.png").toURI().toString()));
+            sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
+            lance.setImage(new Image(new File("src/assets/LanceDisplay.png").toURI().toString()));
             hero.setWeapon(new Sword(1,1,1),root);
+            swordSelect = true;
+            lanceSelect = false;
         }
     }
     public Text getCoinsCollected() {
