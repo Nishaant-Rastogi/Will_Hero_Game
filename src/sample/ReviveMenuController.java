@@ -4,19 +4,21 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +46,11 @@ public class ReviveMenuController {
         this.hero = hero;
     }
     public void revive(MouseEvent mouseEvent){
+        Button revive = new Button();
+        revive.setGraphic(new ImageView(new Image(new File("src/assets/revive.png").toURI().toString())));
+        revive.setLayoutX(500);
+        revive.setLayoutY(300);
+        root.getChildren().add(root.getChildren().size(),revive);
         root.getChildren().remove(reviveMenu);
         if(!hero.getIsRevived()){
             hero.setRevived();
