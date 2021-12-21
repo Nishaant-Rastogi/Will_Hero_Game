@@ -197,6 +197,7 @@ public class GamePlayController {
                 for(int i=0;i< hero.getCurrIsland().getOrcs().size();i++){
                     orc=hero.getCurrIsland().getOrcs().get(i);
                     if(orc.collide(hero)){
+                        coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
                         reviveMenu();
                     }
                     else{

@@ -28,6 +28,10 @@ public abstract class Orc extends Game_objects implements Jumpable{
         orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
         orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
         orcDeathAnimation.add(new javafx.scene.image.Image(new File("src/assets/blank.png").toURI().toString()));
+        coins = new ArrayList<>();
+        for (int i = 0; i<5; i++){
+            coins.add(new Coin(0,0,0,0,10,10));
+        }
     }
 
     public void setCurrIsland(Island currIsland) {
@@ -45,6 +49,7 @@ public abstract class Orc extends Game_objects implements Jumpable{
                 if (this.getImg().getBoundsInLocal().intersects(h1.getWeapon().getImg().getBoundsInLocal())) {
                     if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
                             dead=true;
+                            h1.getCoinCase().addAll(this.coins);
                             orcDeathAnimation();
                         }
                     }
