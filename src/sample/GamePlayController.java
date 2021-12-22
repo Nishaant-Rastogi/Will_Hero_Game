@@ -240,9 +240,9 @@ public class GamePlayController {
             for(int i=0;i< tnts.size();i++){
                 curTNT=tnts.get(i);
                 if (curTNT.collide(hero)&&(!curTNT.getisBurst())){
-                    if(curTNT.activate(hero)){
+                    curTNT.activate(hero);
+                if(!hero.getIsAlive()){
                         try {
-                            System.out.println("Enter");
                             reviveMenu();
                         } catch (IOException ex) {
                             System.out.println("Error in tnt exp in game play controller");
