@@ -235,7 +235,25 @@ public class GamePlayController {
                 hero.getWeapon().getImg().setY(hero.getImg().getY()+50);
             }
         });
-        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame);
+        KeyFrame tnt = new KeyFrame(Duration.millis(10), e->{
+            TNT curTNT;
+            for(int i=0;i< tnts.size();i++){
+                curTNT=tnts.get(i);
+                if (curTNT.collide(hero)&&(!curTNT.getisBurst())){
+                    if(curTNT.activate(hero)){
+//                        try {
+//                            reviveMenu();
+//                        } catch (IOException ex) {
+//                            System.out.println("Error in tnt exp in game play controller");
+//                        }
+                    }
+
+                }
+
+
+            }
+            });
+        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame,tnt);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
 
