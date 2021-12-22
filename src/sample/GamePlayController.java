@@ -241,11 +241,15 @@ public class GamePlayController {
                 curTNT=tnts.get(i);
                 if (curTNT.collide(hero)&&(!curTNT.getisBurst())){
                     if(curTNT.activate(hero)){
-//                        try {
-//                            reviveMenu();
-//                        } catch (IOException ex) {
-//                            System.out.println("Error in tnt exp in game play controller");
-//                        }
+                        try {
+                            System.out.println("Enter");
+                            reviveMenu();
+                        } catch (IOException ex) {
+                            System.out.println("Error in tnt exp in game play controller");
+                        }
+                    }
+                    else{
+                        System.out.println("Did not enter");
                     }
 
                 }

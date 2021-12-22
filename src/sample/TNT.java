@@ -2,12 +2,12 @@ package sample;
 
 import javafx.animation.Transition;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class TNT extends Obstacle {
@@ -15,11 +15,13 @@ public class TNT extends Obstacle {
     private int radius;
     private int timeToBurst;
     private boolean isBurst;
+    private boolean isActivate;
     private List<Image> animation;
-
+    private Transition tntAnimation;
     public TNT(double x, double y, double sx, double sy, int width, int height) {
         super(x, y, sx, sy, "src/assets/TNT1.png", width, height);
         this.isBurst = false;
+        this.isActivate=false;
         List<Image> tntAnimation = new ArrayList<>();
         tntAnimation.add(new javafx.scene.image.Image(new File("src/assets/TNT1.png").toURI().toString()));
         tntAnimation.add(new javafx.scene.image.Image(new File("src/assets/TNT2.png").toURI().toString()));
@@ -59,12 +61,16 @@ public class TNT extends Obstacle {
             @Override
             protected void interpolate(double fraction) {
                 int index = (int) (fraction * (a.animation.size() - 1));
+                if(index==5){
+                    isActivate=true;
+                }
                 a.getImg().setImage(a.animation.get(index));
 
             }
         };
-        System.out.println("TNT animation ");
-            animation.play();
+//        System.out.println("TNT animation ");
+//            animation.play();
+        this.tntAnimation=animation;
 
     }
     public void activate(){
@@ -74,24 +80,26 @@ public class TNT extends Obstacle {
     public boolean activate(Hero h1) {
         //hopefully works
         isBurst=true;
+        AtomicBoolean returnVal= new AtomicBoolean(false);
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
         tntPlay();
-        for(int i=0;i<10000000;i++);
-        for (int i=0;i<orcs.size();i++) {
-            if (((this.getposition()[0] - (orcs.get(i).getImg().getX() + 70)) <= radius) || ((orcs.get(i).getImg().getX() - this.getposition()[0] + 70) <= radius)) {
-                orcs.get(i).orcDeathAnimation();
-                orcs.remove(i);
-                i--;
+        this.tntAnimation.play();
+        this.tntAnimation.setOnFinished(E->{
+            for (int i=0;i<orcs.size();i++) {
+                if (((this.getposition()[0] - (orcs.get(i).getImg().getX() + 70)) <= radius) || ((orcs.get(i).getImg().getX() - this.getposition()[0] + 70) <= radius)) {
+                    orcs.get(i).orcDeathAnimation();
+                    orcs.remove(i);
+                    i--;
+                }
             }
-        }
             if(((h1.getImg().getX()-(this.getposition()[0]+70))<=radius)||((this.getposition()[0]-h1.getImg().getX()-55)<=radius)){
-                return true;
+                 returnVal.set(true);
                 //if hero dies
             }
-
-        return false;
-
+        });
+        return returnVal.get();
     }
+
 
     public int getRadius() {
         return this.radius;
