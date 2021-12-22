@@ -79,6 +79,8 @@ public class TNT extends Obstacle {
 
     public boolean activate(Hero h1) {
         //hopefully works
+        this.getposition()[0]=this.getImg().getX();
+        this.getposition()[1]=this.getImg().getY();
         isBurst=true;
         AtomicBoolean returnVal= new AtomicBoolean(false);
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
@@ -93,11 +95,13 @@ public class TNT extends Obstacle {
                 }
             }
             if(((h1.getImg().getX()-(this.getposition()[0]+70))<=radius)||((this.getposition()[0]-h1.getImg().getX()-55)<=radius)){
+                System.out.println("Die stupid hero");
                  returnVal.set(true);
                 //if hero dies
             }
         });
         return returnVal.get();
+
     }
 
 
