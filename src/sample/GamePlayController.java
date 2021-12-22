@@ -165,8 +165,8 @@ public class GamePlayController {
                 try {
                     if(chest.collide(hero)) {
                         if (chest instanceof Coin_chest) {
-                            this.getCoinsCollected().setText(Integer.toString(Integer.parseInt(this.getCoinsCollected().getText()) + ((Coin_chest) chest).getCoins().size()));
                             hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
+                            this.getCoinsCollected().setText(Integer.toString(hero.getCoinCase().size()));
                         } else if (chest instanceof Weapon_chest) {
                             if(((Weapon_chest) chest).getWeapon() instanceof Lance){
                                 if(swordSelect) {
@@ -197,11 +197,11 @@ public class GamePlayController {
                 for(int i=0;i< hero.getCurrIsland().getOrcs().size();i++){
                     orc=hero.getCurrIsland().getOrcs().get(i);
                     if(orc.collide(hero)){
-                        coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
                         reviveMenu();
                     }
                     else{
                         if(orc.isDead()){
+                            coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
                             hero.getCurrIsland().getOrcs().remove(i);
                             //root
                             i--;

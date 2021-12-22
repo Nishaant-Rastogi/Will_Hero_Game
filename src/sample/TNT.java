@@ -78,6 +78,7 @@ public class TNT extends Obstacle{
     }
     @Override
     public boolean collide(Game_objects game_objects){
+
         return false;
     }
 

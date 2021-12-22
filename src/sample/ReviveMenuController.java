@@ -43,7 +43,7 @@ public class ReviveMenuController {
         this.score.setText(score.getText());
         this.root = gamePlayController.getRoot();
         this.time = gamePlayController.getTime();
-        this.coins.setText(coins.getText());
+        this.coins=coins;
         this.reviveMenu = reviveMenu;
         this.mediaPlayer = gamePlayController.getMediaPlayer();
         this.hero = hero;
@@ -72,8 +72,12 @@ public class ReviveMenuController {
                    hero.getCoinCase().remove(0);
                 hero.setRevived();
                 hero.getImg().setX(hero.getCurrIsland().getImg().getX() + 20);
+                if(hero.getImg().getX()<=0){
+                    hero.getImg().setX(hero.getCurrIsland().getImg().getX()+hero.getCurrIsland().getWidth()-55);
+                }
                 hero.getImg().setY(hero.getCurrIsland().getImg().getY() + hero.getCurrIsland().getBase());
                 root.getChildren().remove(root.getChildren().size() - 2);
+                coins.setText(Integer.toString(hero.getCoinCase().size()));
                 fall.set(false);
                 time.play();
             }
