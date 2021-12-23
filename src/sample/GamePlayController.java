@@ -235,15 +235,17 @@ public class GamePlayController {
         });
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
             Boss_orc boss_orc= (Boss_orc)islands.get(islands.size()-3).getOrcs().get(0);
-            if(boss_orc.collide(hero)&&(!boss_orc.isDead())){
-                if(hero.getIsAlive()){
-                    try {
-                        reviveMenu();
-                    } catch (IOException ex) {
+            if(boss_orc.collide(hero)){
+                if(!boss_orc.isDead()) {
+                    if (!hero.getIsAlive()) {
+                        try {
+                            reviveMenu();
+                        } catch (IOException ex) {
 
+                        }
                     }
                 }
-                if(boss_orc.isDead()){
+                else {
                     try {
                         endGameMenu();
                     } catch (IOException ex) {

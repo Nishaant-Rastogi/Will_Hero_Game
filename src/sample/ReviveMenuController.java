@@ -43,6 +43,8 @@ public class ReviveMenuController {
         this.score.setText(score.getText());
         this.root = gamePlayController.getRoot();
         this.time = gamePlayController.getTime();
+        this.coins.setText(coins.getText());
+        //java acting weird here with this.coins=coins up here
         this.coins=coins;
         this.reviveMenu = reviveMenu;
         this.mediaPlayer = gamePlayController.getMediaPlayer();
