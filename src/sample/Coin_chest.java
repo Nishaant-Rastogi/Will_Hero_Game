@@ -1,9 +1,11 @@
 package sample;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class Coin_chest extends Chests {
@@ -20,6 +22,8 @@ public class Coin_chest extends Chests {
         setCoins();
     }
     public ArrayList<Coin> getCoins(){
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/coin.mp3")).toExternalForm());
+        buzzer.play();
         return this.coins;
     }
 

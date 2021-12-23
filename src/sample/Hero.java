@@ -3,10 +3,12 @@ package sample;
 import javafx.animation.Transition;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Hero extends Game_objects implements Jumpable {
@@ -89,6 +91,8 @@ public class Hero extends Game_objects implements Jumpable {
     }
 
     public Transition getMove() {
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/move.mp3")).toExternalForm());
+        buzzer.play();
         return move;
     }
 

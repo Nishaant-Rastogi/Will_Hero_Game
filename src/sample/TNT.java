@@ -63,7 +63,9 @@ public class TNT extends Obstacle {
                 int index = (int) (fraction * (a.animation.size() - 1));
 
                 a.getImg().setImage(a.animation.get(index));
-                if(index==18){
+                if(index==5){
+                    a.getImg().setFitWidth(200);
+                    a.getImg().setFitHeight(200);
                     isActivate=true;
                 }
 
@@ -78,17 +80,16 @@ public class TNT extends Obstacle {
 
     public void activate(Hero h1) {
         //hopefully works
-        isBurst=true;
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
         tntPlay();
         this.tntAnimation.play();
         this.tntAnimation.setOnFinished(E->{
             for (Orc orc : orcs) {
-                if (((this.getImg().getX() - (orc.getImg().getX() + 70)) <= radius) || ((orc.getImg().getX() - this.getImg().getX() + 70) <= radius)) {
+                if (((this.getImg().getX() - (orc.getImg().getX() + 70)) <= radius) || ((orc.getImg().getX() - (this.getImg().getX() + 70)) <= radius)) {
                     orc.orcDeathAnimation();
                 }
             }
-            if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius)||((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){
+            if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius) || ((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){
                  h1.setAlive();
                  System.out.println("Die stupid hero");
                 //if hero dies
@@ -105,7 +106,7 @@ public class TNT extends Obstacle {
         return this.damage;
     }
 
-    public boolean getisBurst() {
+    public boolean getIsBurst() {
         return this.isBurst;
     }
 
@@ -113,13 +114,22 @@ public class TNT extends Obstacle {
         return timeToBurst;
     }
 
+    public void setBurst(boolean burst) {
+        isBurst = burst;
+    }
+
     @Override
     public boolean collide(Game_objects game_objects) {
         Hero h1 = (Hero) game_objects;
+        AtomicBoolean collision = new AtomicBoolean(false);
         if (this.getImg().getBoundsInLocal().intersects(h1.getImg().getBoundsInLocal())) {
-            activate(h1);
-            return true;
+            if(!getIsBurst()) {
+                activate(h1);
+                setBurst(true);
+                collision.set(true);
+                return collision.get();
+            }
         }
-        return false;
+        return collision.get();
     }
 }

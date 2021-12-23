@@ -24,6 +24,7 @@ public class Main extends Application {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setVolume(0.3);
         MediaView mediaView = new MediaView(mediaPlayer);
         Group root = new Group();
         root.getChildren().add(mediaView);

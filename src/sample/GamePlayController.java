@@ -117,7 +117,6 @@ public class GamePlayController {
                 if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= 100) {
                     this.hero.setCurrIsland(this.islands.get(i));
                     cur[0] = i;
-                    System.out.println(hero.getImg().getX() + " " + (islands.get(i).getImg().getX() + islands.get(i).getWidth()) + " " + hero.getCurrIsland().getImg().getX());
                     if (hero.getCurrIsland().getImg().getX() > 160) {
                         System.out.println("Fall");
                         fall.set(true);
@@ -232,21 +231,16 @@ public class GamePlayController {
             }
         });
         KeyFrame tnt = new KeyFrame(Duration.millis(10), e->{
-            TNT curTNT;
-            for (TNT value : tnts) {
-                curTNT = value;
+            for (TNT curTNT : tnts) {
                 if (curTNT.collide(hero)) {
-                    if(curTNT.getisBurst()) {
-                        if (!hero.getIsAlive()) {
-                            System.out.println(1);
-                            try {
-                                reviveMenu();
-                            } catch (IOException ex) {
-                                System.out.println("Error in tnt exp in game play controller");
-                            }
-                        } else {
-                            System.out.println("Did not enter");
+                    if (!hero.getIsAlive()) {
+                        try {
+                            reviveMenu();
+                        } catch (IOException ex) {
+                            System.out.println("Error in tnt exp in game play controller");
                         }
+                    } else {
+                        System.out.println("Did not enter");
                     }
                 }
             }
