@@ -76,8 +76,6 @@ public abstract class Orc extends Game_objects implements Jumpable{
                 this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 80);
                 double speed = this.getSpeedy();
                 this.setSpeedy(-speed);
-                AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcJump.mp3")).toExternalForm());
-                buzzer.play();
             } else {
                 this.getImg().setY(this.getImg().getY() - this.getSpeedy());
             }

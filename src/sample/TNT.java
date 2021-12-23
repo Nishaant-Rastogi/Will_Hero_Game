@@ -2,11 +2,13 @@ package sample;
 
 import javafx.animation.Transition;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
@@ -83,6 +85,8 @@ public class TNT extends Obstacle {
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
         tntPlay();
         this.tntAnimation.play();
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/tntBlast.mp3")).toExternalForm());
+        buzzer.play();
         this.tntAnimation.setOnFinished(E->{
             for (Orc orc : orcs) {
                 if (((this.getImg().getX() - (orc.getImg().getX() + 70)) <= radius) || ((orc.getImg().getX() - (this.getImg().getX() + 70)) <= radius)) {
