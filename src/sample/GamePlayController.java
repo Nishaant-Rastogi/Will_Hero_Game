@@ -170,7 +170,9 @@ public class GamePlayController {
                                 }
                                 lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
                                 lanceSelect = true;
-                                lanceLevel.setText(Integer.toString(Integer.parseInt(lanceLevel.getText()) + 1));
+                                ((Weapon_chest) chest).getWeapon().upgradeWeapon();
+                                lanceLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
+
                             }else{
                                 if(lanceSelect){
                                     lance.setImage(new Image(new File("src/assets/LanceDisplay.png").toURI().toString()));
@@ -178,7 +180,8 @@ public class GamePlayController {
                                 }
                                 sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
                                 swordSelect = true;
-                                swordLevel.setText(Integer.toString(Integer.parseInt(swordLevel.getText())+1));
+                                ((Weapon_chest) chest).getWeapon().upgradeWeapon();
+                                swordLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
                             }
                             hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
                         }
@@ -230,6 +233,19 @@ public class GamePlayController {
                 hero.getWeapon().getImg().setY(hero.getImg().getY()+50);
             }
         });
+        KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
+            Boss_orc boss_orc= (Boss_orc)islands.get(islands.size()-3).getOrcs().get(0);
+            if(boss_orc.collide(hero)){
+                if(hero.getIsAlive()){
+                    try {
+                        reviveMenu();
+                    } catch (IOException ex) {
+
+                    }
+                }
+            }
+
+        });
         KeyFrame tnt = new KeyFrame(Duration.millis(10), e->{
             for (TNT curTNT : tnts) {
                 if (curTNT.collide(hero)) {
@@ -245,7 +261,7 @@ public class GamePlayController {
                 }
             }
         });
-        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame,tnt);
+        this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame,tnt,BossFrame);
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
 

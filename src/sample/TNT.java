@@ -85,9 +85,11 @@ public class TNT extends Obstacle {
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
         tntPlay();
         this.tntAnimation.setOnFinished(E->{
-            for (Orc orc : orcs) {
-                if (((this.getImg().getX() - (orc.getImg().getX() + 70)) <= radius) || ((orc.getImg().getX() - (this.getImg().getX() + 70)) <= radius)) {
-                    orc.orcDeathAnimation();
+            for (int i=0;i<orcs.size();i++) {
+                if (((this.getImg().getX() - (orcs.get(i).getImg().getX() + 70)) <= radius) || ((orcs.get(i).getImg().getX() - (this.getImg().getX() + 70)) <= radius)) {
+                    orcs.get(i).orcDeathAnimation();
+                    orcs.remove(i);
+                    i--;
                 }
             }
             if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius) || ((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){

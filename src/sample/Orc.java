@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public abstract class Orc extends Game_objects implements Jumpable{
     private int damage;
-    private int health;
+    private int health=100;
     private boolean dead;
     private Island currIsland;
     private ArrayList<Coin> coins;
@@ -43,6 +43,11 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public Island getCurrIsland() {
         return currIsland;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     @Override
     public boolean collide(Game_objects game_objects){
         if(game_objects instanceof Hero) {
@@ -124,8 +129,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
         return dead;
     }
 
-    public void setDead() {
-        this.dead = true;
+    public void setDead(boolean b) {
+        this.dead = b;
     }
     public void orcDeathAnimation(){
         Orc orc= this;

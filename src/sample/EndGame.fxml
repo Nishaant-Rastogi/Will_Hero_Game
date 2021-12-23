@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="403.0" prefWidth="386.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
+   <children>
+      <ImageView fitHeight="413.0" fitWidth="386.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/ReviveMenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="155.0" layoutY="304.0" onMouseClicked="#revive" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/PlayButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="76.0" layoutX="75.0" layoutY="310.0" onMouseClicked="#mainMenu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/HomeButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="249.0" layoutY="309.0" onMouseClicked="#reloadButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/RestartButton.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47046b" height="208.0" layoutX="90.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="209.0" />
+      <Text fill="WHITE" layoutX="130.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="SCORE" wrappingWidth="133.8018035888672" />
+      <Text fill="WHITE" layoutX="128.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="COINS" wrappingWidth="133.8018035888672" />
+      <Text fx:id="score" fill="WHITE" layoutX="128.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
+      <Text fx:id="coins" fill="WHITE" layoutX="128.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 40;" text="0" wrappingWidth="133.8018035888672" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cc0000" height="46.0" layoutX="40.0" layoutY="15.0" stroke="TRANSPARENT" strokeType="INSIDE" width="311.0" />
+      <Text fill="#f7ff07" layoutX="99.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 45; -fx-text-alignment: center; -fx-font-weight: bold;" text="WINNER" wrappingWidth="195.47010803222656" />
+   </children>
+</AnchorPane>

@@ -19,8 +19,8 @@ public class Weapon_chest extends Chests {
         getChestAnimation().add(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
         Random weapon = new Random();
         int weaponChoice = 1+weapon.nextInt(2);
-        if(weaponChoice == 1) setWeapon(new Lance(1,1,1));
-        else setWeapon(new Sword(1,1,1));
+        if(weaponChoice == 1) setWeapon(new Lance(0,20,1));
+        else setWeapon(new Sword(0,10,1));
     }
 
     public Weapon getWeapon() {

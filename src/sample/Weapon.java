@@ -38,7 +38,13 @@ public abstract class Weapon {
     }
 
     public abstract void useWeapon();
-    public abstract void upgradeWeapon();
+    public int getLevel(){
+        return level;
+    }
+    public void upgradeWeapon(){
+        level+=1;
+        this.damage=this.damage*2;
+    }
     public int getDamage(){
         return this.damage;
     }
