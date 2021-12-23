@@ -170,7 +170,7 @@ public class GamePlayController {
                                 }
                                 lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
                                 lanceSelect = true;
-                                ((Weapon_chest) chest).getWeapon().upgradeWeapon();
+                                ((Weapon_chest) chest).getWeapon().upgradeWeapon(Integer.parseInt(lanceLevel.getText()));
                                 lanceLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
 
                             }else{
@@ -180,7 +180,7 @@ public class GamePlayController {
                                 }
                                 sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
                                 swordSelect = true;
-                                ((Weapon_chest) chest).getWeapon().upgradeWeapon();
+                                ((Weapon_chest) chest).getWeapon().upgradeWeapon(Integer.parseInt(swordLevel.getText()));
                                 swordLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
                             }
                             hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
@@ -235,7 +235,7 @@ public class GamePlayController {
         });
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
             Boss_orc boss_orc= (Boss_orc)islands.get(islands.size()-3).getOrcs().get(0);
-            if(boss_orc.collide(hero)){
+            if(boss_orc.collide(hero)&&(!boss_orc.isDead())){
                 if(hero.getIsAlive()){
                     try {
                         reviveMenu();
@@ -247,7 +247,7 @@ public class GamePlayController {
                     try {
                         endGameMenu();
                     } catch (IOException ex) {
-                        
+
                     }
                 }
             }
@@ -257,11 +257,11 @@ public class GamePlayController {
             for (TNT curTNT : tnts) {
                 if (curTNT.collide(hero)) {
                     if (!hero.getIsAlive()) {
-                        try {
-                            reviveMenu();
-                        } catch (IOException ex) {
-                            System.out.println("Error in tnt exp in game play controller");
-                        }
+//                        try {
+//                            reviveMenu();
+//                        } catch (IOException ex) {
+//                            System.out.println("Error in tnt exp in game play controller");
+//                        }
                     } else {
                         System.out.println("Did not enter");
                     }

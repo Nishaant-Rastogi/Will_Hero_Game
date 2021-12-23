@@ -41,9 +41,9 @@ public abstract class Weapon {
     public int getLevel(){
         return level;
     }
-    public void upgradeWeapon(){
-        level+=1;
-        this.damage=this.damage*2;
+    public void upgradeWeapon(int n){
+        level+=n;
+        this.damage=this.damage*(int)Math.pow(2,n-1);
     }
     public int getDamage(){
         return this.damage;

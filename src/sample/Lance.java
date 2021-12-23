@@ -9,9 +9,6 @@ public class Lance extends Weapon {
     public void useWeapon(){
         System.out.println("Lance");
     }
-    @Override
-    public void upgradeWeapon(){
 
-    }
 
 }
