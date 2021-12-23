@@ -84,9 +84,6 @@ public class TNT extends Obstacle {
         //hopefully works
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
         tntPlay();
-        this.tntAnimation.play();
-        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/tntBlast.mp3")).toExternalForm());
-        buzzer.play();
         this.tntAnimation.setOnFinished(E->{
             for (Orc orc : orcs) {
                 if (((this.getImg().getX() - (orc.getImg().getX() + 70)) <= radius) || ((orc.getImg().getX() - (this.getImg().getX() + 70)) <= radius)) {
@@ -99,6 +96,9 @@ public class TNT extends Obstacle {
                 //if hero dies
             }
         });
+        this.tntAnimation.play();
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/tntBlast.mp3")).toExternalForm());
+        buzzer.play();
     }
 
 
@@ -130,9 +130,7 @@ public class TNT extends Obstacle {
             if(!getIsBurst()) {
                 activate(h1);
                 setBurst(true);
-                this.tntAnimation.setOnFinished(e->{
-                    collision.set(true);
-                });
+                collision.set(true);
             }
         }
         return collision.get();
