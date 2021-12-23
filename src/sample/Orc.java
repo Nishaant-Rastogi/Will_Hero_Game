@@ -52,8 +52,6 @@ public abstract class Orc extends Game_objects implements Jumpable{
                     if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
                             dead=true;
                             h1.getCoinCase().addAll(this.coins);
-                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcDie.mp3")).toExternalForm());
-                            buzzer.play();
                             orcDeathAnimation();
 
                         }
@@ -140,6 +138,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
             }
         };
         animation.play();
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcDie.mp3")).toExternalForm());
+        buzzer.play();
         animation.setCycleCount(1);
     }
 
