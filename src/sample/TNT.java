@@ -45,7 +45,7 @@ public class TNT extends Obstacle {
         tntAnimation.add(new javafx.scene.image.Image(new File("src/assets/TNT9.png").toURI().toString()));
         tntAnimation.add(new javafx.scene.image.Image(new File("src/assets/blank.png").toURI().toString()));
         this.animation = tntAnimation;
-        this.radius=50;
+        this.radius=20;
 
 
         //others need to be added
@@ -69,10 +69,8 @@ public class TNT extends Obstacle {
 
             }
         };
-//        System.out.println("TNT animation ");
-//            animation.play();
         this.tntAnimation=animation;
-
+        this.tntAnimation.setCycleCount(1);
     }
     public void activate(){
 
@@ -80,30 +78,22 @@ public class TNT extends Obstacle {
 
     public void activate(Hero h1) {
         //hopefully works
-        this.getposition()[0]=this.getImg().getX();
-        this.getposition()[1]=this.getImg().getY();
         isBurst=true;
-        AtomicBoolean returnVal= new AtomicBoolean(false);
         ArrayList<Orc> orcs = h1.getCurrIsland().getOrcs();
         tntPlay();
         this.tntAnimation.play();
         this.tntAnimation.setOnFinished(E->{
-            for (int i=0;i<orcs.size();i++) {
-                if (((this.getposition()[0] - (orcs.get(i).getImg().getX() + 70)) <= radius) || ((orcs.get(i).getImg().getX() - this.getposition()[0] + 70) <= radius)) {
-                    orcs.get(i).orcDeathAnimation();
-                    orcs.remove(i);
-                    i--;
+            for (Orc orc : orcs) {
+                if (((this.getImg().getX() - (orc.getImg().getX() + 70)) <= radius) || ((orc.getImg().getX() - this.getImg().getX() + 70) <= radius)) {
+                    orc.orcDeathAnimation();
                 }
             }
-            if(((h1.getImg().getX()-(this.getposition()[0]+70))<=radius)||((this.getposition()[0]-h1.getImg().getX()-55)<=radius)){
-                System.out.println("Die stupid hero");
+            if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius)||((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){
                  h1.setAlive();
+                 System.out.println("Die stupid hero");
                 //if hero dies
             }
         });
-
-
-
     }
 
 
@@ -127,10 +117,9 @@ public class TNT extends Obstacle {
     public boolean collide(Game_objects game_objects) {
         Hero h1 = (Hero) game_objects;
         if (this.getImg().getBoundsInLocal().intersects(h1.getImg().getBoundsInLocal())) {
+            activate(h1);
             return true;
-        } else {
-            return false;
         }
-
+        return false;
     }
 }
