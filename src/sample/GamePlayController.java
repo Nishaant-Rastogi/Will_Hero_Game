@@ -247,6 +247,7 @@ public class GamePlayController {
                 }
                 else {
                     try {
+                        System.out.println("Game won");
                         endGameMenu();
                     } catch (IOException ex) {
 
