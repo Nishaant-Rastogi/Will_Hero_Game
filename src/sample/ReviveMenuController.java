@@ -73,6 +73,7 @@ public class ReviveMenuController {
                for(int i=0;i<5;i++)
                    hero.getCoinCase().remove(0);
                 hero.setRevived();
+                hero.setAlive(true);
                 hero.getImg().setX(hero.getCurrIsland().getImg().getX() + 20);
                 if(hero.getImg().getX()<=0){
                     hero.getImg().setX(hero.getCurrIsland().getImg().getX()+hero.getCurrIsland().getWidth()-55);

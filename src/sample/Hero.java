@@ -119,7 +119,7 @@ public class Hero extends Game_objects implements Jumpable {
         isRevived = true;
     }
 
-    public void setAlive() {
-        isAlive = false;
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
     }
 }

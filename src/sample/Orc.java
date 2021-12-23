@@ -54,7 +54,7 @@ public abstract class Orc extends Game_objects implements Jumpable{
             Hero h1 = (Hero) game_objects;
             if (h1.getWeapon() != null) {
                 if (this.getImg().getBoundsInLocal().intersects(h1.getWeapon().getImg().getBoundsInLocal())) {
-                    if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
+                    if ((this.getImg().getX() <= h1.getWeapon().getImg().getX()) || (this.getImg().getX() + 70 >= h1.getWeapon().getImg().getX() + 55)) {
                             dead=true;
                             h1.getCoinCase().addAll(this.coins);
                             orcDeathAnimation();

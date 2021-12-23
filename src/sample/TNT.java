@@ -93,7 +93,7 @@ public class TNT extends Obstacle {
                 }
             }
             if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius) || ((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){
-                 h1.setAlive();
+                 h1.setAlive(false);
                  System.out.println("Die stupid hero");
                 //if hero dies
             }

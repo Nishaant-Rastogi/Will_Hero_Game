@@ -236,40 +236,38 @@ public class GamePlayController {
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
             Boss_orc boss_orc= (Boss_orc)islands.get(islands.size()-3).getOrcs().get(0);
             if(boss_orc.collide(hero)){
-                if(!boss_orc.isDead()) {
-                    if (!hero.getIsAlive()) {
-                        try {
-                            reviveMenu();
-                        } catch (IOException ex) {
-
-                        }
-                    }
+                try {
+                    reviveMenu();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
-                else {
+            }else{
+                if(boss_orc.isDead()){
+                    coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
                     try {
                         System.out.println("Game won");
                         endGameMenu();
-                    } catch (IOException ex) {
+                    } catch (IOException ignored) {
 
                     }
+                    //root
                 }
             }
-
         });
         KeyFrame tnt = new KeyFrame(Duration.millis(10), e->{
-            for (TNT curTNT : tnts) {
-                if (curTNT.collide(hero)) {
-                    if (!hero.getIsAlive()) {
+//            for (TNT curTNT : tnts) {
+//                if (curTNT.collide(hero)) {
+//                    if (!hero.getIsAlive()) {
 //                        try {
 //                            reviveMenu();
 //                        } catch (IOException ex) {
 //                            System.out.println("Error in tnt exp in game play controller");
 //                        }
-                    } else {
-                        System.out.println("Did not enter");
-                    }
-                }
-            }
+//                    } else {
+//                        System.out.println("Did not enter");
+//                    }
+//                }
+//            }
         });
         this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame,tnt,BossFrame);
         time.setCycleCount(Timeline.INDEFINITE);
