@@ -234,6 +234,7 @@ public class GamePlayController {
             for (TNT curTNT : tnts) {
                 if (curTNT.collide(hero)) {
                     if (!hero.getIsAlive()) {
+                        System.out.println(1);
                         try {
                             reviveMenu();
                         } catch (IOException ex) {
