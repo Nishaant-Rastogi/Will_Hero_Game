@@ -133,7 +133,6 @@ public class TNT extends Obstacle {
                 this.tntAnimation.setOnFinished(e->{
                     collision.set(true);
                 });
-                return collision.get();
             }
         }
         return collision.get();
