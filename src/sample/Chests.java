@@ -5,10 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Chests extends Game_objects implements Jumpable{
     private boolean isOpen;
@@ -31,6 +33,8 @@ public abstract class Chests extends Game_objects implements Jumpable{
         if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
             if(getIsOpen()) {
                 chestAnimation();
+                AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/chestOpen.mp3")).toExternalForm());
+                buzzer.play();
                 setIsOpen();
                 return true;
             }

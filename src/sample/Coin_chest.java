@@ -22,8 +22,6 @@ public class Coin_chest extends Chests {
         setCoins();
     }
     public ArrayList<Coin> getCoins(){
-        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/coin.mp3")).toExternalForm());
-        buzzer.play();
         return this.coins;
     }
 

@@ -130,7 +130,9 @@ public class TNT extends Obstacle {
             if(!getIsBurst()) {
                 activate(h1);
                 setBurst(true);
-                collision.set(true);
+                this.tntAnimation.setOnFinished(e->{
+                    collision.set(true);
+                });
                 return collision.get();
             }
         }
