@@ -243,6 +243,13 @@ public class GamePlayController {
 
                     }
                 }
+                if(boss_orc.isDead()){
+                    try {
+                        endGameMenu();
+                    } catch (IOException ex) {
+                        
+                    }
+                }
             }
 
         });
@@ -321,6 +328,18 @@ public class GamePlayController {
         time.pause();
         ReviveMenuController reviveMenuController = fxmlLoader.getController();
         reviveMenuController.initData(this,reviveMenu,hero, score, coinsCollected);
+    }
+    private void endGameMenu() throws IOException {
+        inputButton.setDisable(true);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("EndGame.fxml"));
+
+        AnchorPane endGameMenu = fxmlLoader.load();
+        endGameMenu.setLayoutX(300);
+        endGameMenu.setLayoutY(60);
+        root.getChildren().add(endGameMenu);
+        time.pause();
+        EndGameController endGameController = fxmlLoader.getController();
+        endGameController.initData(this,endGameMenu,hero, score, coinsCollected);
     }
     public void pause() throws IOException {
         inputButton.setDisable(true);

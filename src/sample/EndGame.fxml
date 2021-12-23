@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="403.0" prefWidth="386.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReviveMenuController">
+<AnchorPane prefHeight="403.0" prefWidth="386.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EndGameController">
    <children>
       <ImageView fitHeight="413.0" fitWidth="386.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
