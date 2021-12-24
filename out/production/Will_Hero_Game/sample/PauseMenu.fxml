@@ -31,7 +31,7 @@
             <Image url="@../assets/HomeButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="171.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="74.0" layoutX="171.0" layoutY="84.0" onMouseClicked="#save" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/SaveButton.png" />
          </image>
