@@ -176,14 +176,9 @@ public class PauseMenuController {
         stage.show();
     }
     public void save(MouseEvent mouseEvent) throws IOException {
-        try {
-            FileOutputStream fileOut = new FileOutputStream("src/savedGames/save.txt");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        String fileName = "src/savedGames/save.txt";
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             out.writeObject(gamePlayController);
-            out.close();
-            fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
         }
     }
     public ImageView getMusic() {
