@@ -52,6 +52,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
         if(index + 1 < currIsland.getOrcs().size()){
             if (this.getImg().getBoundsInLocal().intersects(currIsland.getOrcs().get(index + 1).getImg().getBoundsInLocal())) {
                 currIsland.getOrcs().get(index + 1).getImg().setX(currIsland.getOrcs().get(index + 1).getImg().getX()+20);
+                AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcCollide.mp3")).toExternalForm());
+                buzzer.play();
                 orcToOrcCollision(index + 1, h1);
             }
         }
@@ -99,6 +101,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
                             if (this.getImg().getY() + 60 <= h1.getImg().getY()) {
                                 return true;
                             }
+                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcCollide.mp3")).toExternalForm());
+                            buzzer.play();
                             this.getImg().setX(this.getImg().getX()+20);
                             int index = 0;
                             for (int i = 0; i<currIsland.getOrcs().size(); i++){

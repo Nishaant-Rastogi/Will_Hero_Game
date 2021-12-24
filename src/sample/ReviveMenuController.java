@@ -6,6 +6,7 @@ import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -22,6 +23,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -60,6 +62,8 @@ public class ReviveMenuController {
                 i--;
             }
         }
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/revive.mp3")).toExternalForm());
+        buzzer.play();
     }
     public void revive(MouseEvent mouseEvent)throws IOException{
         Button revive = new Button();
