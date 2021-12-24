@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -195,6 +196,8 @@ public class GamePlayController {
                 for(int i=0;i< hero.getCurrIsland().getOrcs().size();i++){
                     orc=hero.getCurrIsland().getOrcs().get(i);
                     if(orc.collide(hero)){
+                        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
+                        buzzer.play();
                         reviveMenu();
                     }
                     else{
@@ -259,6 +262,8 @@ public class GamePlayController {
                 if (curTNT.collide(hero)) {
                     if (!hero.getIsAlive()) {
                         try {
+                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
+                            buzzer.play();
                             reviveMenu();
                         } catch (IOException ex) {
                             System.out.println("Error in tnt exp in game play controller");
