@@ -47,7 +47,29 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public void setHealth(int health) {
         this.health = health;
     }
-
+    public void orcToOrcCollision(int index, Hero h1){
+        if(index >= currIsland.getOrcs().size()) return;
+        if(index + 1 < currIsland.getOrcs().size()){
+            if (this.getImg().getBoundsInLocal().intersects(currIsland.getOrcs().get(index + 1).getImg().getBoundsInLocal())) {
+                currIsland.getOrcs().get(index + 1).getImg().setX(currIsland.getOrcs().get(index + 1).getImg().getX()+20);
+                orcToOrcCollision(index + 1, h1);
+            }
+        }
+        if ((currIsland.getImg().getX() > this.getImg().getX()+70) || (currIsland.getImg().getX() + currIsland.getWidth() <= this.getImg().getX())) {
+            System.out.println("Fall");
+            //need to slow down the animation
+            TranslateTransition animation = new TranslateTransition(Duration.seconds(2),this.getImg());
+            animation.setCycleCount(Animation.INDEFINITE);
+            animation.setFromY(this.getImg().getY());
+            animation.setToY(530);
+            animation.setAutoReverse(false);
+            animation.play();
+            dead=true;
+            h1.getCoinCase().addAll(this.coins);
+            orcDeathAnimation();
+            //fall
+        }
+    }
     @Override
     public boolean collide(Game_objects game_objects){
         if(game_objects instanceof Hero) {
@@ -78,37 +100,14 @@ public abstract class Orc extends Game_objects implements Jumpable{
                                 return true;
                             }
                             this.getImg().setX(this.getImg().getX()+20);
-                            if (currIsland.getImg().getX() > this.getImg().getX()+70) {
-                                System.out.println("Fall");
-                                    //need to slow down the animation
-                                TranslateTransition animation = new TranslateTransition(Duration.seconds(2),this.getImg());
-                                animation.setCycleCount(Animation.INDEFINITE);
-                                animation.setFromY(this.getImg().getY());
-                                animation.setToY(530);
-                                animation.setAutoReverse(false);
-                                animation.play();
-                                dead=true;
-                                h1.getCoinCase().addAll(this.coins);
-                                orcDeathAnimation();
-                                //fall
+                            int index = 0;
+                            for (int i = 0; i<currIsland.getOrcs().size(); i++){
+                                if(this.equals(currIsland.getOrcs().get(i))){
+                                    index = i;
+                                    break;
+                                }
                             }
-                            if (currIsland.getImg().getX() + currIsland.getWidth() <= this.getImg().getX()) {
-                                System.out.println("Fall1");
-//                                while(this.getImg().getY()<=530){
-//                                    this.getImg().setY(this.getImg().getY()+3);
-//                                }
-                                TranslateTransition animation = new TranslateTransition(Duration.seconds(2),this.getImg());
-                                animation.setCycleCount(Animation.INDEFINITE);
-                                animation.setFromY(this.getImg().getY());
-                                animation.setToY(530);
-                                animation.setAutoReverse(false);
-                                animation.play();
-                                dead=true;
-                                h1.getCoinCase().addAll(this.coins);
-                                orcDeathAnimation();
-
-                                //fall
-                            }
+                            orcToOrcCollision(index, h1);
                             return false;
                        }
 
