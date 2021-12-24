@@ -21,11 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+
 
 public class PauseMenuController {
     @FXML
@@ -177,7 +175,17 @@ public class PauseMenuController {
         stage.setTitle("Will Hero");
         stage.show();
     }
-
+    public void save(MouseEvent mouseEvent) throws IOException {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("src/savedGames/save.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(root);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
     public ImageView getMusic() {
         return music;
     }

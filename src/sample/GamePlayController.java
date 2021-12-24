@@ -260,21 +260,21 @@ public class GamePlayController {
             }
         });
         KeyFrame tnt = new KeyFrame(Duration.millis(10), e->{
-//            for (TNT curTNT : tnts) {
-//                if (curTNT.collide(hero)) {
-//                    if (!hero.getIsAlive()) {
-//                        try {
-//                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
-//                            buzzer.play();
-//                            reviveMenu();
-//                        } catch (IOException ex) {
-//                            System.out.println("Error in tnt exp in game play controller");
-//                        }
-//                    } else {
-//                        System.out.println("Did not enter");
-//                    }
-//                }
-//            }
+            for (TNT curTNT : tnts) {
+                if (curTNT.collide(hero)) {
+                    if (!hero.getIsAlive()) {
+                        try {
+                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
+                            buzzer.play();
+                            reviveMenu();
+                        } catch (IOException ex) {
+                            System.out.println("Error in tnt exp in game play controller");
+                        }
+                    } else {
+                        System.out.println("Did not enter");
+                    }
+                }
+            }
         });
         this.time = new Timeline(heroFrame,frame,collideChestFrame,weaponFrame,orcCrushFrame,tnt,BossFrame);
         time.setCycleCount(Timeline.INDEFINITE);

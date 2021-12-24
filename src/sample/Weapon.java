@@ -4,14 +4,15 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.Serializable;
 
-public abstract class Weapon {
+public abstract class Weapon implements Serializable {
     private int level;
     private int damage;
-    private int radius;
-    private String path;
-    private int height;
-    private int width;
+    private final int radius;
+    private final String path;
+    private final int height;
+    private final int width;
     transient private ImageView img;
     Weapon(int level, int damage, int radius, String path, int width, int height){
         this.level = level;

@@ -1,9 +1,7 @@
 package sample;
 
 import javafx.animation.Transition;
-import javafx.scene.Group;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
@@ -81,30 +79,30 @@ public abstract class Orc extends Game_objects implements Jumpable{
     @Override
     public void jump() {
         if(this instanceof Boss_orc) {
-            if (this.getImg().getY() - this.getSpeedy() >= currIsland.getImg().getY() + currIsland.getBase() - 80) {
+            if (this.getImg().getY() - this.getSpeedY() >= currIsland.getImg().getY() + currIsland.getBase() - 80) {
                 this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 80);
-                double speed = this.getSpeedy();
-                this.setSpeedy(-speed);
+                double speed = this.getSpeedY();
+                this.setSpeedY(-speed);
             } else {
-                this.getImg().setY(this.getImg().getY() - this.getSpeedy());
+                this.getImg().setY(this.getImg().getY() - this.getSpeedY());
             }
             if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 200) {
                 this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 200);
-                double speed = this.getSpeedy();
-                this.setSpeedy(-speed);
+                double speed = this.getSpeedY();
+                this.setSpeedY(-speed);
             }
         }else{
-            if (this.getImg().getY() - this.getSpeedy() >= currIsland.getImg().getY() + currIsland.getBase()) {
+            if (this.getImg().getY() - this.getSpeedY() >= currIsland.getImg().getY() + currIsland.getBase()) {
                 this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase());
-                double speed = this.getSpeedy();
-                this.setSpeedy(-speed);
+                double speed = this.getSpeedY();
+                this.setSpeedY(-speed);
             } else {
-                this.getImg().setY(this.getImg().getY() - this.getSpeedy());
+                this.getImg().setY(this.getImg().getY() - this.getSpeedY());
             }
             if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 150) {
                 this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 150);
-                double speed = this.getSpeedy();
-                this.setSpeedy(-speed);
+                double speed = this.getSpeedY();
+                this.setSpeedY(-speed);
             }
         }
     }

@@ -4,12 +4,13 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.Serializable;
 
 
-public abstract class Game_objects {
-   private double position[];
-   private double speedx;
-   private double speedy;
+public abstract class Game_objects implements Serializable {
+    private final double[] position;
+    private double speedX;
+    private double speedY;
     private String path;
     transient private ImageView img;
     private int width;
@@ -17,8 +18,8 @@ public abstract class Game_objects {
 
     public Game_objects() {
         position = new double[2];
-        speedx=0;
-        speedy=0;
+        speedX =0;
+        speedY =0;
     }
 
 
@@ -27,8 +28,8 @@ public abstract class Game_objects {
         position[0]=x;
         position[1]=y;
         this.path=path;
-        speedx=sx;
-        speedy=sy;
+        speedX =sx;
+        speedY =sy;
         this.width=width;
         this.height=height;
     }
@@ -65,24 +66,24 @@ public abstract class Game_objects {
         return width;
     }
 
-    public double getSpeedx() {
-        return speedx;
+    public double getSpeedX() {
+        return speedX;
     }
 
     public double[] getPosition() {
         return position;
     }
 
-    public void setSpeedx(double speedx) {
-        this.speedx = speedx;
+    public void setSpeedX(double speedX) {
+        this.speedX = speedX;
     }
 
-    public double getSpeedy() {
-        return speedy;
+    public double getSpeedY() {
+        return speedY;
     }
 
-    public void setSpeedy(double speedy) {
-        this.speedy = speedy;
+    public void setSpeedY(double speedY) {
+        this.speedY = speedY;
     }
 
     public void display(){
