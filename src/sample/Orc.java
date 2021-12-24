@@ -64,10 +64,13 @@ public abstract class Orc extends Game_objects implements Jumpable{
             } else {
                 if (this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
                     if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
-                        if (this.getImg().getY() + 70 <= h1.getImg().getY()) {
+                        if((this.getImg().getX() <= h1.getImg().getX() + 55) || (this.getImg().getX() + 70 >= h1.getImg().getX())){
+                            this.getImg().setX(this.getImg().getX()+20);
+                            return false;
+                        }
+                        if (this.getImg().getY() + 70 >= h1.getImg().getY()) {
                             return true;
                         }
-
                     }
                 }
 
