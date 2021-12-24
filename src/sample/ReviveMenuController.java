@@ -52,6 +52,15 @@ public class ReviveMenuController {
         this.fall = gamePlayController.getFall();
         this.inputButton=gamePlayController.getInputButton();
     }
+    public void respawn(Hero hero){
+        for(int i = 0; i < hero.getCurrIsland().getOrcs().size(); i++){
+            if((hero.getCurrIsland().getOrcs().get(i).getImg().getX() <= hero.getImg().getX() + 55) || (hero.getCurrIsland().getOrcs().get(i).getImg().getX() + 70 >= hero.getImg().getX())){
+                hero.getCurrIsland().getOrcs().get(i).orcDeathAnimation();
+                hero.getCurrIsland().getOrcs().remove(i);
+                i--;
+            }
+        }
+    }
     public void revive(MouseEvent mouseEvent)throws IOException{
         Button revive = new Button();
         ImageView button = new ImageView(new Image(new File("src/assets/revive.png").toURI().toString()));
@@ -75,8 +84,10 @@ public class ReviveMenuController {
                 hero.setRevived();
                 hero.setAlive(true);
                 hero.getImg().setX(hero.getCurrIsland().getImg().getX() + 20);
+                respawn(hero);
                 if(hero.getImg().getX()<=0){
                     hero.getImg().setX(hero.getCurrIsland().getImg().getX()+hero.getCurrIsland().getWidth()-55);
+                    respawn(hero);
                 }
                 hero.getImg().setY(hero.getCurrIsland().getImg().getY() + hero.getCurrIsland().getBase());
                 root.getChildren().remove(root.getChildren().size() - 2);
