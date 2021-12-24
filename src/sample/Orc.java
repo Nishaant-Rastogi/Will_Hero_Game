@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.animation.Animation;
 import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
@@ -51,24 +53,65 @@ public abstract class Orc extends Game_objects implements Jumpable{
         if(game_objects instanceof Hero) {
             Hero h1 = (Hero) game_objects;
             if (h1.getWeapon() != null) {
+                if (this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
+                    if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
+                        if ((this.getImg().getX() <= h1.getImg().getX() + 55)) {
+                            if (this.getImg().getY() + 60 <= h1.getImg().getY()) {
+                                return true;
+                            }
+                        }
+                    }
+                }
                 if (this.getImg().getBoundsInLocal().intersects(h1.getWeapon().getImg().getBoundsInLocal())) {
                     if ((this.getImg().getX() <= h1.getWeapon().getImg().getX()) || (this.getImg().getX() + 70 >= h1.getWeapon().getImg().getX() + 55)) {
+                        //System.out.println((this.getImg().getY() +60)+" "+h1.getImg().getY()+" "+h1.getWeapon().getImg().getY());
                             dead=true;
                             h1.getCoinCase().addAll(this.coins);
                             orcDeathAnimation();
-
                         }
                     }
             } else {
                 if (this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
                     if ((this.getImg().getX() <= h1.getImg().getX()) || (this.getImg().getX() + 70 >= h1.getImg().getX() + 55)) {
-                        if((this.getImg().getX() <= h1.getImg().getX() + 55) || (this.getImg().getX() + 70 >= h1.getImg().getX())){
+                        if((this.getImg().getX() <= h1.getImg().getX() + 55)){
+                            if (this.getImg().getY() + 60 <= h1.getImg().getY()) {
+                                return true;
+                            }
                             this.getImg().setX(this.getImg().getX()+20);
+                            if (currIsland.getImg().getX() > this.getImg().getX()+70) {
+                                System.out.println("Fall");
+                                    //need to slow down the animation
+                                TranslateTransition animation = new TranslateTransition(Duration.seconds(2),this.getImg());
+                                animation.setCycleCount(Animation.INDEFINITE);
+                                animation.setFromY(this.getImg().getY());
+                                animation.setToY(530);
+                                animation.setAutoReverse(false);
+                                animation.play();
+                                dead=true;
+                                h1.getCoinCase().addAll(this.coins);
+                                orcDeathAnimation();
+                                //fall
+                            }
+                            if (currIsland.getImg().getX() + currIsland.getWidth() <= this.getImg().getX()) {
+                                System.out.println("Fall1");
+//                                while(this.getImg().getY()<=530){
+//                                    this.getImg().setY(this.getImg().getY()+3);
+//                                }
+                                TranslateTransition animation = new TranslateTransition(Duration.seconds(2),this.getImg());
+                                animation.setCycleCount(Animation.INDEFINITE);
+                                animation.setFromY(this.getImg().getY());
+                                animation.setToY(530);
+                                animation.setAutoReverse(false);
+                                animation.play();
+                                dead=true;
+                                h1.getCoinCase().addAll(this.coins);
+                                orcDeathAnimation();
+
+                                //fall
+                            }
                             return false;
-                        }
-                        if (this.getImg().getY() + 70 >= h1.getImg().getY()) {
-                            return true;
-                        }
+                       }
+
                     }
                 }
 
@@ -99,8 +142,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
             } else {
                 this.getImg().setY(this.getImg().getY() - this.getSpeedY());
             }
-            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 150) {
-                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 150);
+            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 200) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 200);
                 double speed = this.getSpeedY();
                 this.setSpeedY(-speed);
             }

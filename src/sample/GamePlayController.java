@@ -116,14 +116,14 @@ public class GamePlayController implements Serializable {
             }
 
             for (int i = cur[0]; i < this.islands.size(); i++) {
-                if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= 100) {
+                if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= hero.getImg().getX())   {
                     this.hero.setCurrIsland(this.islands.get(i));
                     cur[0] = i;
-                    if (hero.getCurrIsland().getImg().getX() > 160) {
+                    if (hero.getCurrIsland().getImg().getX() > hero.getImg().getX()+60) {
                         System.out.println("Fall");
                         fall.set(true);
                     }
-                    if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= 100) {
+                    if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
                         System.out.println("Fall1");
                         fall.set(true);
                     } else {
@@ -264,13 +264,13 @@ public class GamePlayController implements Serializable {
             for (TNT curTNT : tnts) {
                 if (curTNT.collide(hero)) {
                     if (!hero.getIsAlive()) {
-                        try {
-                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
-                            buzzer.play();
-                            reviveMenu();
-                        } catch (IOException ex) {
-                            System.out.println("Error in tnt exp in game play controller");
-                        }
+//                        try {
+//                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
+//                            buzzer.play();
+//                            reviveMenu();
+//                        } catch (IOException ex) {
+//                            System.out.println("Error in tnt exp in game play controller");
+//                        }
                     } else {
                         System.out.println("Did not enter");
                     }

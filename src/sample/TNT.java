@@ -86,12 +86,13 @@ public class TNT extends Obstacle {
         tntPlay();
         this.tntAnimation.setOnFinished(E->{
             for (int i=0;i<orcs.size();i++) {
-                if (((this.getImg().getX() - (orcs.get(i).getImg().getX() + 70)) <= radius) || ((orcs.get(i).getImg().getX() - (this.getImg().getX() + 70)) <= radius)) {
+                if ((((this.getImg().getX() - (orcs.get(i).getImg().getX() + 70)) <= radius)&&(orcs.get(i).getImg().getX()-this.getImg().getY())<=radius)|| ((((orcs.get(i).getImg().getX() - (this.getImg().getX() + 70)) <= radius))&&(orcs.get(i).getImg().getX()-this.getImg().getY())<=radius)) {
                     orcs.get(i).orcDeathAnimation();
                     orcs.remove(i);
                     i--;
                 }
             }
+            //hero circle equation missing as done in orc
             if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius) || ((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){
                  h1.setAlive(false);
                  System.out.println("Die stupid hero");
