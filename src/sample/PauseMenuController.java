@@ -179,7 +179,7 @@ public class PauseMenuController {
         try {
             FileOutputStream fileOut = new FileOutputStream("src/savedGames/save.txt");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(root);
+            out.writeObject(gamePlayController);
             out.close();
             fileOut.close();
         } catch (IOException i) {

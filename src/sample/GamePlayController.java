@@ -19,10 +19,11 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class GamePlayController {
+public class GamePlayController implements Serializable {
     @FXML
     private ImageView setting;
     @FXML
