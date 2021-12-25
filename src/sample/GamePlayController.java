@@ -82,12 +82,12 @@ public class GamePlayController implements Serializable {
                 heroIsland++;
                 continue;
             }
-            if(heroIsland != islands.size()-3 && heroIsland != islands.size()-4) {
+            if(heroIsland != 18 && heroIsland != 19) {
                 island.setOrcs(generateOrcs(island));
                 for (Orc orc : island.getOrcs()) {
                     orc.makeImage(root);
                 }
-            }else if(heroIsland == islands.size()-3){
+            }else if(heroIsland == 19){
                 island.setOrcs(new ArrayList<Orc>());
                 island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
                 island.getOrcs().get(0).makeImage(root);
@@ -240,7 +240,7 @@ public class GamePlayController implements Serializable {
             }
         });
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
-            Boss_orc boss_orc= (Boss_orc)islands.get(islands.size()-3).getOrcs().get(0);
+            Boss_orc boss_orc= (Boss_orc)islands.get(19).getOrcs().get(0);
             if(boss_orc.collide(hero)){
                 try {
                     reviveMenu();
@@ -339,6 +339,8 @@ public class GamePlayController implements Serializable {
         reviveMenuController.initData(this,reviveMenu,hero, score, coinsCollected);
     }
     private void endGameMenu() throws IOException {
+        AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/win.mp3")).toExternalForm());
+        buzzer.play();
         inputButton.setDisable(true);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("EndGame.fxml"));
 

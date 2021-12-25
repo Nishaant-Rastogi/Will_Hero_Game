@@ -54,6 +54,19 @@ public abstract class Orc extends Game_objects implements Jumpable{
                 currIsland.getOrcs().get(index + 1).getImg().setX(currIsland.getOrcs().get(index + 1).getImg().getX()+20);
                 AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcCollide.mp3")).toExternalForm());
                 buzzer.play();
+                if ((currIsland.getImg().getX() > currIsland.getOrcs().get(index + 1).getImg().getX()+70) || (currIsland.getImg().getX() + currIsland.getWidth() <= currIsland.getOrcs().get(index + 1).getImg().getX())) {
+                    System.out.println("Fall");
+                    //need to slow down the animation
+                    TranslateTransition animation = new TranslateTransition(Duration.seconds(3),currIsland.getOrcs().get(index + 1).getImg());
+                    animation.setFromY(currIsland.getOrcs().get(index + 1).getImg().getY());
+                    animation.setToY(530);
+                    animation.setAutoReverse(false);
+                    animation.play();
+                    currIsland.getOrcs().get(index + 1).setDead(true);
+                    h1.getCoinCase().addAll(currIsland.getOrcs().get(index + 1).coins);
+                    currIsland.getOrcs().get(index + 1).orcDeathAnimation();
+                    //fall
+                }
                 orcToOrcCollision(index + 1, h1);
             }
         }
