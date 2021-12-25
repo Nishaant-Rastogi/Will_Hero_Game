@@ -18,8 +18,8 @@ public class TNT extends Obstacle {
     private int timeToBurst;
     private boolean isBurst;
     private boolean isActivate;
-    private List<Image> animation;
-    private Transition tntAnimation;
+    private transient List<Image> animation;
+    private transient Transition tntAnimation;
     public TNT(double x, double y, double sx, double sy, int width, int height) {
         super(x, y, sx, sy, "src/assets/TNT1.png", width, height);
         this.isBurst = false;

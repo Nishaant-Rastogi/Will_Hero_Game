@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public abstract class Chests extends Game_objects implements Jumpable{
     private boolean isOpen;
-    private List<Image> chestAnimation;
+    private transient List<Image> chestAnimation;
     public Chests(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
         chestAnimation= new ArrayList<>();

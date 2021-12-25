@@ -1,8 +1,9 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Helmet {
+public abstract class Helmet implements Serializable {
     private ArrayList<Weapon> weapons;
     private Weapon activeWeapon;
     public Helmet(){

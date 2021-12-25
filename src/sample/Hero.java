@@ -17,8 +17,8 @@ public class Hero extends Game_objects implements Jumpable {
     private Helmet helmet;
     private ArrayList<Coin> coinCase;
     private boolean isAlive;
-    private ArrayList<Image> movement;
-    private Transition move;
+    private transient ArrayList<Image> movement;
+    private transient Transition move;
     private Island currIsland;
     private boolean isRevived;
     Hero(){}

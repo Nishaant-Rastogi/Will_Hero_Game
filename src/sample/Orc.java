@@ -18,7 +18,7 @@ public abstract class Orc extends Game_objects implements Jumpable{
     private boolean dead;
     private Island currIsland;
     private ArrayList<Coin> coins;
-    private List<Image> orcDeathAnimation;
+    private transient List<Image> orcDeathAnimation;
     public Orc(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
         dead=false;
