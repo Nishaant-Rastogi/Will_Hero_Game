@@ -11,9 +11,7 @@ public class Boss_orc extends Orc{
             Hero h1 = (Hero) game_objects;
             if (h1.getWeapon() != null) {
                 if (this.getImg().getBoundsInLocal().intersects(h1.getWeapon().getImg().getBoundsInLocal())) {
-                    System.out.println(1);
                     if ((this.getImg().getX() <= h1.getWeapon().getImg().getX()) || (this.getImg().getX() + 150 >= h1.getWeapon().getImg().getX() + 55)) {
-                        System.out.println(2);
                         if(this.getHealth()<=0) {
                             setDead(true);
                             h1.getCoinCase().addAll(this.getCoins());
@@ -22,7 +20,6 @@ public class Boss_orc extends Orc{
                             this.getImg().setX(this.getImg().getX()+50);
                             this.setHealth(getHealth()-h1.getWeapon().getDamage());
                         }
-                        System.out.println(3);
                     }
                 }
             } else {
