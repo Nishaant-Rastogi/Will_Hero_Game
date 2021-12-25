@@ -240,23 +240,24 @@ public class GamePlayController implements Serializable {
             }
         });
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
-            Boss_orc boss_orc= (Boss_orc)islands.get(19).getOrcs().get(0);
-            if(boss_orc.collide(hero)){
-                try {
-                    reviveMenu();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }else{
-                if(boss_orc.isDead()){
-                    coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
+            if(islands.get(19).getOrcs().size() > 0) {
+                Boss_orc boss_orc = (Boss_orc) islands.get(19).getOrcs().get(0);
+                if (boss_orc.collide(hero)) {
                     try {
-                        System.out.println("Game won");
-                        endGameMenu();
-                    } catch (IOException ignored) {
-
+                        reviveMenu();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
                     }
-                    //root
+                } else {
+                    if (boss_orc.isDead()) {
+                        coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
+                        try {
+                            System.out.println("Game won");
+                            endGameMenu();
+                        } catch (IOException ignored) {
+
+                        }
+                    }
                 }
             }
         });
