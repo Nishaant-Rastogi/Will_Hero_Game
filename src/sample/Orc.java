@@ -158,8 +158,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
             } else {
                 this.getImg().setY(this.getImg().getY() - this.getSpeedY());
             }
-            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 200) {
-                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 200);
+            if (this.getImg().getY() <= currIsland.getImg().getY() + currIsland.getBase() - 150) {
+                this.getImg().setY(currIsland.getImg().getY() + currIsland.getBase() - 150);
                 double speed = this.getSpeedY();
                 this.setSpeedY(-speed);
             }
