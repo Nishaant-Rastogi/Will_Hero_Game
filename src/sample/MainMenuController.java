@@ -137,7 +137,7 @@ public class MainMenuController {
         try {
             in = new ObjectInputStream(new FileInputStream("src/savedGames/save.txt"));
             GamePlayController gamePlayController=(GamePlayController) in.readObject();
-            Group root = gamePlayController.getRoot();
+            Group root = new Group();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
             FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -146,6 +146,7 @@ public class MainMenuController {
             ArrayList<Island> islands = gamePlayController.getIslands();
             //to change loop counter
             Hero hero = gamePlayController.getHero();
+            hero.transientObjInitializer();
             root.getChildren().add(fxmlLoader.load());
             root.getChildren().add(sky.load());
             fxmlLoader.setController(gamePlayController);
@@ -154,7 +155,12 @@ public class MainMenuController {
             stage.setScene(scene);
             stage.show();
         }
+//        catch (Exception e){
+//
+//            gamePlay(event);
+//        }
         finally {
+            if(in!=null)
             in.close();
         }
 

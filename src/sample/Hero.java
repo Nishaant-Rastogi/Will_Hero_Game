@@ -31,6 +31,30 @@ public class Hero extends Game_objects implements Jumpable {
         return isAlive;
     }
 
+    public void transientObjInitializer(){
+        this.movement = new ArrayList<>();
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/Gladiator.png").toURI().toString()));
+        this.move = new Transition() {
+            {setCycleDuration(Duration.millis(200));}
+            @Override
+            protected void interpolate(double fraction) {
+                int index = (int) (fraction * (movement.size() - 1));
+                if (index == 0 || index == 1 || index == 2 || index == 3) {
+                    getImg().setFitWidth(100);
+                    if(weapon != null)weapon.getImg().setX(weapon.getImg().getX()+50);
+                }else{
+                    getImg().setFitWidth(55);
+                    if(weapon != null)weapon.getImg().setX(weapon.getImg().getX()-50);
+                }
+                getImg().setImage(movement.get(index));
+
+            }
+        };
+    }
 
     Hero(double x, double y, double sx, double sy, int width, int height, Island currIsland){
         super(x,y,sx,sy,"src/assets/Gladiator.png",width,height);
@@ -76,6 +100,7 @@ public class Hero extends Game_objects implements Jumpable {
         else this.weapon.makeImage(root, this.getImg().getX(), this.getImg().getY() + 30);
 
     }
+
 
     public Weapon getWeapon() {
         return weapon;

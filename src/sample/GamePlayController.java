@@ -323,6 +323,7 @@ public class GamePlayController implements Serializable {
         //there may be no orcs
     }
 
+
     public Button getInputButton() {
         return inputButton;
     }

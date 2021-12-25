@@ -26,7 +26,7 @@
             <Image url="@../assets/MusicButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="load" fitHeight="83.0" fitWidth="83.0" layoutX="358.0" layoutY="391.0" onMouseEntered="#shadowEffectLoad" onMouseExited="#removeShadowEffectLoad" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="load" fitHeight="83.0" fitWidth="83.0" layoutX="358.0" layoutY="391.0" onMouseClicked="#Load" onMouseEntered="#shadowEffectLoad" onMouseExited="#removeShadowEffectLoad" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/loadgame.png" />
          </image>
