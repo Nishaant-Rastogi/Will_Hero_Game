@@ -385,6 +385,11 @@ public class GamePlayController implements Serializable {
             lanceSelect = false;
         }
     }
+
+    public ArrayList<Island> getIslands() {
+        return islands;
+    }
+
     public Text getCoinsCollected() {
         return coinsCollected;
     }

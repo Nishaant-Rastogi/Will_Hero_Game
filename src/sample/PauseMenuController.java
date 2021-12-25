@@ -178,7 +178,7 @@ public class PauseMenuController {
     public void save(MouseEvent mouseEvent) throws IOException {
         String fileName = "src/savedGames/save.txt";
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            out.writeObject(gamePlayController);
+            out.writeObject(gamePlayController.getIslands());
         }
     }
     public ImageView getMusic() {
