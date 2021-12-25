@@ -25,29 +25,29 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GamePlayController implements Serializable {
     @FXML
-    private ImageView setting;
+    private transient ImageView setting;
     @FXML
-    private Text score;
+    private transient Text score;
     @FXML
-    private Text coinsCollected;
+    private transient Text coinsCollected;
     @FXML
-    private ImageView lance;
+    private transient ImageView lance;
     private boolean lanceSelect;
     @FXML
-    private ImageView sword;
+    private transient ImageView sword;
     private boolean swordSelect;
     @FXML
-    private Text lanceLevel;
+    private transient Text lanceLevel;
     @FXML
-    private Text swordLevel;
-    private Group root;
-    private MediaPlayer mediaPlayer;
+    private transient Text swordLevel;
+    private transient Group root;
+    private transient MediaPlayer mediaPlayer;
     private ArrayList<Chests> chests;
-    private Timeline time;
+    private transient Timeline time;
     private Hero hero;
     private ArrayList<Island> islands;
     private ArrayList<Obstacle> obs;
-    private Button inputButton;
+    private transient Button inputButton;
     private ArrayList<TNT> tnts;
     //private ArrayList<Coin> coins;
     private AtomicBoolean fall= new AtomicBoolean(false);
