@@ -387,6 +387,10 @@ public class GamePlayController implements Serializable {
         }
     }
 
+    public Hero getHero() {
+        return hero;
+    }
+
     public ArrayList<Island> getIslands() {
         return islands;
     }

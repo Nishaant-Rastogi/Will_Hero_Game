@@ -137,46 +137,15 @@ public class MainMenuController {
         try {
             in = new ObjectInputStream(new FileInputStream("src/savedGames/save.txt"));
             GamePlayController gamePlayController=(GamePlayController) in.readObject();
-            Group root = new Group();
+            Group root = gamePlayController.getRoot();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
             FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
             //GameObjects Added
-
-            int isLand1 = 1;
-            int isLand2 =4;
-            int  isLand3 =3;
-            int  isLand4 =2;
-            int isLand5 =5;
-            int  isLand6 =6;
-            int  isLand7 =1;
-            int isLand8 =2;
-            int isLand9 =6;
-            int isLand10 =5;
-            int x=0;
-            ArrayList<Island> islands = new ArrayList<>();
+            ArrayList<Island> islands = gamePlayController.getIslands();
             //to change loop counter
-            for(int i=0;i<3;i++) {
-                if(i>0)islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,gameObjectGenerator(50+x+100, 180,320)));
-                else islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,null));
-                islands.add(new Island(400+x, 80, 0, 0.5, isLand2 - 1, 400, 520, 210,gameObjectGenerator(400+x+180, 100,400)));
-                islands.add(new Island(900+x, 100, 0, 0.2, isLand3 - 1, 280, 420, 165,gameObjectGenerator(900+x+50, 100,400)));
-                islands.add(new Island(1300+x, 100, 0, 0, isLand4 - 1, 150, 400, 210,gameObjectGenerator(1300+x+20, 100,150)));
-                islands.add(new Island(1650+x, 20, 0, 0, isLand5 - 1, 440, 520, 265,gameObjectGenerator(1650+x+150, 100,440)));
-                islands.add(new Island(2250+x, 100, 0, 0.5, isLand6 - 1, 380, 500, 177,gameObjectGenerator(2250+x+100, 150,380)));
-                islands.add(new Island(2750+x, 200, 0, 0.3, isLand7 - 1, 320, 350, 70,gameObjectGenerator(2750+x+100, 180,320)));
-                islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, 210,gameObjectGenerator(3200+x+20, 100,150)));
-                if(i == 1){
-                    islands.add(new Island(3420+x, 100, 0, 0, isLand6 - 1, 380, 500, 177,null));
-                    islands.add(new Island(3700+x, 65, 0, 0, isLand2 - 1, 400, 520, 210,null));
-                    x += 800;
-                }
-                islands.add(new Island(3420+x, 100, 0, 0.5, isLand9 - 1, 380, 480, 177,gameObjectGenerator(3420+x+120, 100,380)));
-                islands.add(new Island(3900+x, 20, 0, 0, isLand10 - 1, 440, 520, 265,gameObjectGenerator(3900+x+150, 100,440)));
-                x+=4400;
-            }
-            Hero hero = new Hero(100,250,0,2,55,65, islands.get(0));
+            Hero hero = gamePlayController.getHero();
             root.getChildren().add(fxmlLoader.load());
             root.getChildren().add(sky.load());
             fxmlLoader.setController(gamePlayController);
