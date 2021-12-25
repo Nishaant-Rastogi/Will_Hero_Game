@@ -54,39 +54,7 @@ public class EndGameController {
     }
 
     public void revive(MouseEvent mouseEvent)throws IOException{
-        Button revive = new Button();
-        ImageView button = new ImageView(new Image(new File("src/assets/revive.png").toURI().toString()));
-        button.setFitWidth(320);
-        button.setFitHeight(150);
-        revive.setGraphic(button);
-        revive.setPrefWidth(300);
-        revive.setPrefHeight(150);
-        revive.setLayoutX(350);
-        revive.setLayoutY(200);
-        if(hero.getIsRevived()||hero.getCoinCase().size()<5) {
-            reloadButton(mouseEvent);
-        }
-        root.getChildren().remove(root.getChildren().size()-1);
-        root.getChildren().add(root.getChildren().size()-1,revive);
-        revive.setOnMousePressed(event -> {
-            inputButton.setDisable(false);
-            if(!hero.getIsRevived()){
-                for(int i=0;i<5;i++)
-                    hero.getCoinCase().remove(0);
-                hero.setRevived();
-                hero.getImg().setX(hero.getCurrIsland().getImg().getX() + 20);
-                if(hero.getImg().getX()<=0){
-                    hero.getImg().setX(hero.getCurrIsland().getImg().getX()+hero.getCurrIsland().getWidth()-55);
-                }
-                hero.getImg().setY(hero.getCurrIsland().getImg().getY() + hero.getCurrIsland().getBase());
-                root.getChildren().remove(root.getChildren().size() - 2);
-                coins.setText(Integer.toString(hero.getCoinCase().size()));
-                fall.set(false);
-                time.play();
-            }
-
-        });
-
+        mainMenu(mouseEvent);
     }
     public void mainMenu(MouseEvent event) throws IOException {
         this.mediaPlayer.dispose();

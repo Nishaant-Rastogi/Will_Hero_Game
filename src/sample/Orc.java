@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public abstract class Orc extends Game_objects implements Jumpable{
     private int damage;
-    private int health=100;
+    private int health;
     private boolean dead;
     private Island currIsland;
     private ArrayList<Coin> coins;
@@ -22,6 +22,7 @@ public abstract class Orc extends Game_objects implements Jumpable{
     public Orc(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
         dead=false;
+        health=100;
         orcDeathAnimation= new ArrayList<>();
         orcDeathAnimation.add(new Image(new File(path).toURI().toString()));
         orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
