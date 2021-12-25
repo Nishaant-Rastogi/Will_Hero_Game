@@ -265,16 +265,25 @@ public class GamePlayController implements Serializable {
             for (TNT curTNT : tnts) {
                 if (curTNT.collide(hero)) {
                     if (!hero.getIsAlive()) {
-//                        try {
-//                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
-//                            buzzer.play();
-//                            reviveMenu();
-//                        } catch (IOException ex) {
-//                            System.out.println("Error in tnt exp in game play controller");
-//                        }
+                        try {
+                            AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
+                            buzzer.play();
+                            reviveMenu();
+                        } catch (IOException ex) {
+                            System.out.println("Error in tnt exp in game play controller");
+                        }
                     } else {
                         System.out.println("Did not enter");
                     }
+                }
+            }
+            if(!hero.getIsAlive()){
+                try {
+                    AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/heroDie.mp3")).toExternalForm());
+                    buzzer.play();
+                    reviveMenu();
+                } catch (IOException ex) {
+                    System.out.println("Error in tnt exp in game play controller");
                 }
             }
         });

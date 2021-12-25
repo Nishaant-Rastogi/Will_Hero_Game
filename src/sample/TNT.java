@@ -93,10 +93,12 @@ public class TNT extends Obstacle {
                 }
             }
             //hero circle equation missing as done in orc
-            if(((h1.getImg().getX()-(this.getImg().getX()+70))<=radius) || ((this.getImg().getX()-h1.getImg().getX()-55)<=radius)){
-                 h1.setAlive(false);
-                 System.out.println("Die stupid hero");
-                //if hero dies
+            if(this.getImg().getBoundsInLocal().intersects(h1.getImg().getBoundsInLocal())) {
+                if (((h1.getImg().getX() - (this.getImg().getX() + 70)) <= radius) || ((this.getImg().getX() - h1.getImg().getX() - 55) <= radius)) {
+                    h1.setAlive(false);
+                    System.out.println("Die stupid hero");
+                    //if hero dies
+                }
             }
         });
         this.tntAnimation.play();
