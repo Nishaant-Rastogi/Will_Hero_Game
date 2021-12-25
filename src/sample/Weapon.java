@@ -44,7 +44,7 @@ public abstract class Weapon implements Serializable {
     }
     public void upgradeWeapon(int n){
         level+=n;
-        this.damage=this.damage*(int)Math.pow(2,n-1);
+        this.damage=this.damage*((int)Math.ceil(Math.pow(2,n-1)));
     }
     public int getDamage(){
         return this.damage;

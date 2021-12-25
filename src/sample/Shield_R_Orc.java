@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Shield_R_Orc extends Orc {
     Shield_R_Orc(double x, double y, double sx, double sy, int width, int height) {
         super(x, y, sx, sy, "src/assets/Red_Standard_Orc.png", width, height);
-        this.setHealth(20);
+        this.setHealth(30);
     }
 
     @Override
@@ -27,15 +27,27 @@ public class Shield_R_Orc extends Orc {
                 if (this.getImg().getBoundsInLocal().intersects(h1.getWeapon().getImg().getBoundsInLocal())) {
                     if ((this.getImg().getX() <= h1.getWeapon().getImg().getX()) || (this.getImg().getX() + 70 >= h1.getWeapon().getImg().getX() + 55)) {
                         //System.out.println((this.getImg().getY() +60)+" "+h1.getImg().getY()+" "+h1.getWeapon().getImg().getY());
+//                        System.out.println(this.getHealth());
                         if(this.getHealth()<=0){
-                        setDead(true);
-                        h1.getCoinCase().addAll(this.getCoins());
-                        orcDeathAnimation();
+                            setDead(true);
+                            h1.getCoinCase().addAll(this.getCoins());
+                            orcDeathAnimation();
                         }
                         else{
                             //System.out.println("Health reduction of shielded orc");
-                            this.getImg().setX(this.getImg().getX()+1);
-                            this.setHealth(getHealth()-h1.getWeapon().getDamage());
+                            this.getImg().setX(this.getImg().getX()+10);
+//                            System.out.println(getHealth()+" "+h1.getWeapon().getLevel());
+                            this.setHealth(this.getHealth()-h1.getWeapon().getDamage());
+                            int index = 0;
+                            for (int i = 0; i < getCurrIsland().getOrcs().size(); i++) {
+                                if (getCurrIsland().getOrcs().get(i) instanceof Shield_R_Orc) {
+                                    if (this.equals((Shield_R_Orc) this.getCurrIsland().getOrcs().get(i))) {
+                                        index = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            orcToOrcCollision(index, h1);
                         }
                     }
                 }
