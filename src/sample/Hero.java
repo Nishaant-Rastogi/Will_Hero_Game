@@ -39,13 +39,16 @@ public class Hero extends Game_objects implements Jumpable {
         this.isAlive=true;
         this.isRevived=false;
         this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
+        this.movement.add(new Image(new File("src/assets/MovingHero.png").toURI().toString()));
         this.movement.add(new Image(new File("src/assets/Gladiator.png").toURI().toString()));
         this.move = new Transition() {
             {setCycleDuration(Duration.millis(200));}
             @Override
             protected void interpolate(double fraction) {
                 int index = (int) (fraction * (movement.size() - 1));
-                if (index == 0) {
+                if (index == 0 || index == 1 || index == 2 || index == 3) {
                     getImg().setFitWidth(100);
                     if(weapon != null)weapon.getImg().setX(weapon.getImg().getX()+50);
                 }else{

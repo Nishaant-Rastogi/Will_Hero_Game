@@ -60,8 +60,7 @@ public abstract class Orc extends Game_objects implements Jumpable{
         if ((currIsland.getImg().getX() > this.getImg().getX()+70) || (currIsland.getImg().getX() + currIsland.getWidth() <= this.getImg().getX())) {
             System.out.println("Fall");
             //need to slow down the animation
-            TranslateTransition animation = new TranslateTransition(Duration.seconds(2),this.getImg());
-            animation.setCycleCount(Animation.INDEFINITE);
+            TranslateTransition animation = new TranslateTransition(Duration.seconds(3),this.getImg());
             animation.setFromY(this.getImg().getY());
             animation.setToY(530);
             animation.setAutoReverse(false);
