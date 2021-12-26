@@ -13,8 +13,9 @@ public abstract class Weapon extends Game_objects implements Serializable {
     private final String path;
     private final int height;
     private final int width;
-    Weapon(int level, int damage, int radius, double x, double y, double sx, double sy, String path, int width, int height){
-        super(x,y,sx,sy,path,width,height);
+    transient private ImageView img;
+    Weapon(int level, int damage, int radius, String path, int width, int height){
+        super();
         this.level = level;
         this.damage = damage;
         this.radius = radius;
@@ -25,7 +26,18 @@ public abstract class Weapon extends Game_objects implements Serializable {
     public void setActive(){
 
     }
+    public void makeImage(Group root,double x, double y){
+        img = new ImageView(new File(path).toURI().toString());
+        img.setX(x);
+        img.setY(y);
+        img.setFitWidth(width);
+        img.setFitHeight(height);
+        root.getChildren().add(root.getChildren().size()-2,img);
+    }
 
+    public ImageView getImg() {
+        return img;
+    }
 
     public abstract void useWeapon();
     public int getLevel(){
