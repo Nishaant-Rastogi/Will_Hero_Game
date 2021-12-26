@@ -192,6 +192,7 @@ public class GamePlayController implements Serializable {
                                 swordLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
                             }
                             hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
+                            gameObjects.add(((Weapon_chest) chest).getWeapon());
                         }
                     }
                 } catch (NullPointerException ignore) {}

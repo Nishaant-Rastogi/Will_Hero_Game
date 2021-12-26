@@ -10,4 +10,8 @@ public class Sword extends Weapon{
         System.out.println("Sword");
     }
 
+    @Override
+    public boolean collide(Game_objects game_objects) {
+        return false;
+    }
 }

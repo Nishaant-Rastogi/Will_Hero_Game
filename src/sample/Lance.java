@@ -11,4 +11,8 @@ public class Lance extends Weapon {
     }
 
 
+    @Override
+    public boolean collide(Game_objects game_objects) {
+        return false;
+    }
 }

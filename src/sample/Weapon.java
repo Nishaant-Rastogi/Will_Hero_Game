@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.Serializable;
 
-public abstract class Weapon implements Serializable {
+public abstract class Weapon extends Game_objects implements Serializable {
     private int level;
     private int damage;
     private final int radius;
