@@ -5,7 +5,7 @@ public class player {
     private Hero hero;
     public player(){
         score=0;
-        hero= new Hero();
+        hero= null;
     }
     public void play(){
 

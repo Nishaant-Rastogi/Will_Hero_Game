@@ -16,13 +16,6 @@ public abstract class Game_objects implements Serializable {
     private int width;
     private int height;
 
-    public Game_objects() {
-        position = new double[2];
-        speedX =0;
-        speedY =0;
-    }
-
-
     Game_objects(double x, double y, double sx, double sy, String path, int width, int height){
         position = new double[2];
         position[0]=x;

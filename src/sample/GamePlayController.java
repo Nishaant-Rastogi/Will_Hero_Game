@@ -389,7 +389,7 @@ public class GamePlayController implements Serializable {
         if(Integer.parseInt(lanceLevel.getText()) > 0 && !lanceSelect){
             lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
             sword.setImage(new Image(new File("src/assets/SwordDisplay.png").toURI().toString()));
-            hero.setWeapon(new Lance(1,1,1),root);
+            hero.setWeapon(new Lance(1,1,1, (int)hero.getImg().getX(), (int)hero.getImg().getY()+ 30),root);
             lanceSelect = true;
             swordSelect = false;
         }
@@ -398,7 +398,7 @@ public class GamePlayController implements Serializable {
         if(Integer.parseInt(swordLevel.getText()) > 0 && !swordSelect){
             sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
             lance.setImage(new Image(new File("src/assets/LanceDisplay.png").toURI().toString()));
-            hero.setWeapon(new Sword(1,1,1),root);
+            hero.setWeapon(new Sword(1,1,1, (int)hero.getImg().getX(), (int)hero.getImg().getY()+ 30),root);
             swordSelect = true;
             lanceSelect = false;
         }
