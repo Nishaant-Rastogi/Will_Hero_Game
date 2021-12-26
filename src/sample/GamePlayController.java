@@ -49,6 +49,7 @@ public class GamePlayController implements Serializable {
     private ArrayList<Obstacle> obs;
     private transient Button inputButton;
     private ArrayList<TNT> tnts;
+    private ArrayList<Game_objects> gameObjects;
     //private ArrayList<Coin> coins;
     private AtomicBoolean fall= new AtomicBoolean(false);
     public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer) throws IOException {
@@ -61,12 +62,13 @@ public class GamePlayController implements Serializable {
         final int[] cur = {0};
         this.tnts = new ArrayList<>();
         this.chests = new ArrayList<>();
-
+        this.gameObjects = new ArrayList<>();
         //fall used to check for fall condition
         //current island index;
         for(Island island : this.islands){
             try {
                 island.makeImage(root);
+                gameObjects.add(island);
                 if(island.getObject() instanceof TNT){
                     tnts.add((TNT)island.getObject());
                 }
@@ -74,6 +76,7 @@ public class GamePlayController implements Serializable {
                     chests.add((Chests) island.getObject());
                 }
                 island.getObject().makeImage(root);
+                gameObjects.add(island.getObject());
             }catch (NullPointerException ignored){}
         }
         int heroIsland = 0;
@@ -86,11 +89,13 @@ public class GamePlayController implements Serializable {
                 island.setOrcs(generateOrcs(island));
                 for (Orc orc : island.getOrcs()) {
                     orc.makeImage(root);
+                    gameObjects.add(orc);
                 }
             }else if(heroIsland == 19){
                 island.setOrcs(new ArrayList<Orc>());
                 island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
                 island.getOrcs().get(0).makeImage(root);
+                gameObjects.add(island.getOrcs().get(0));
             }
             heroIsland++;
         }
@@ -98,6 +103,7 @@ public class GamePlayController implements Serializable {
 //            coin.makeImage(root);
 //        }
         hero.makeImage(root);
+        gameObjects.add(hero);
         root.getChildren().add(root.getChildren().remove(0));
         inputButton = new Button();
         inputButton.setStyle("-fx-background-color: transparent;");
@@ -395,6 +401,10 @@ public class GamePlayController implements Serializable {
             swordSelect = true;
             lanceSelect = false;
         }
+    }
+
+    public ArrayList<Game_objects> getGameObjects() {
+        return gameObjects;
     }
 
     public Hero getHero() {

@@ -178,6 +178,10 @@ public class PauseMenuController {
     public void save(MouseEvent mouseEvent) throws IOException {
         String fileName = "src/savedGames/save.txt";
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            for(int i = 0; i<gamePlayController.getGameObjects().size(); i++){
+                Game_objects gameObject = gamePlayController.getGameObjects().get(i);
+                gameObject.setPosition(new double[]{gameObject.getImg().getX(), gameObject.getImg().getY()});
+            }
             out.writeObject(gamePlayController);
         }
     }
