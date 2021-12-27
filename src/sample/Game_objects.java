@@ -45,6 +45,14 @@ public abstract class Game_objects implements Serializable {
         img.setFitHeight(height);
         pane.getChildren().add(img);
     }
+    public void makeImage(Group pane, int index){
+        img = new ImageView(new File(path).toURI().toString());
+        img.setX(position[0]);
+        img.setY(position[1]);
+        img.setFitWidth(width);
+        img.setFitHeight(height);
+        pane.getChildren().add(index,img);
+    }
     public abstract boolean collide(Game_objects game_objects);
     public double[] getposition(){
         return this.position;

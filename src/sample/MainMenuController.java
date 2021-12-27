@@ -149,8 +149,12 @@ public class MainMenuController {
             hero.transientObjInitializer();
             root.getChildren().add(fxmlLoader.load());
             root.getChildren().add(sky.load());
-            fxmlLoader.setController(gamePlayController);
-            gamePlayController.initData(root, hero, islands, mediaPlayer);
+            GamePlayController gamePlayController1 = fxmlLoader.getController();
+            gamePlayController1.setLanceLevel(gamePlayController.getLanceLevelT());
+            gamePlayController1.setSwordLevel(gamePlayController.getSwordLevelT());
+            gamePlayController1.setCoinsCollected(gamePlayController.getCoinsCollectedT());
+            gamePlayController1.setScore(gamePlayController.getScoreT());
+            gamePlayController1.initData(root, hero, islands, mediaPlayer);
             scene = new Scene(root,1000,600);
             stage.setScene(scene);
             stage.show();

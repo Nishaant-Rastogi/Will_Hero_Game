@@ -92,11 +92,14 @@ public class Hero extends Game_objects implements Jumpable {
 
     public void setWeapon(Weapon weapon, Group root) {
         if(this.weapon != null) {
-            root.getChildren().remove(root.getChildren().size()-3);
+            root.getChildren().remove(root.getChildren().size()-4);
         }
         this.weapon = weapon;
-        if(weapon instanceof Lance)this.weapon.makeImage(root, this.getImg().getX(), this.getImg().getY() + 30);
-        else this.weapon.makeImage(root, this.getImg().getX(), this.getImg().getY() + 30);
+        if(weapon instanceof Lance) {
+            this.weapon.setPosition(new double[]{this.getImg().getX(),this.getImg().getY()+30});
+            this.weapon.makeImage(root, root.getChildren().size()-3);
+        }
+        else this.weapon.makeImage(root, root.getChildren().size()-3);
 
     }
 

@@ -28,8 +28,10 @@ public class GamePlayController implements Serializable {
     private transient ImageView setting;
     @FXML
     private transient Text score;
+    private int scoreT;
     @FXML
     private transient Text coinsCollected;
+    private int coinsCollectedT;
     @FXML
     private transient ImageView lance;
     private boolean lanceSelect;
@@ -38,8 +40,10 @@ public class GamePlayController implements Serializable {
     private boolean swordSelect;
     @FXML
     private transient Text lanceLevel;
+    private int lanceLevelT;
     @FXML
     private transient Text swordLevel;
+    private int swordLevelT;
     private transient Group root;
     private transient MediaPlayer mediaPlayer;
     private ArrayList<Chests> chests;
@@ -103,6 +107,9 @@ public class GamePlayController implements Serializable {
 //            coin.makeImage(root);
 //        }
         hero.makeImage(root);
+        if(hero.getWeapon() != null){
+            hero.setWeapon(hero.getWeapon(), root);
+        }
         gameObjects.add(hero);
         root.getChildren().add(root.getChildren().remove(0));
         inputButton = new Button();
@@ -116,6 +123,7 @@ public class GamePlayController implements Serializable {
             int count = mouseEvent.getClickCount();
             hero.getMove().play();
             score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
+            scoreT = Integer.parseInt(score.getText());
             for (int i = 1; i < root.getChildren().size() - 3; i++) {
                 if (root.getChildren().get(i) != hero.getImg())
                     ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 70);
@@ -170,6 +178,7 @@ public class GamePlayController implements Serializable {
                         if (chest instanceof Coin_chest) {
                             hero.getCoinCase().addAll(((Coin_chest) chest).getCoins());
                             this.getCoinsCollected().setText(Integer.toString(hero.getCoinCase().size()));
+                            coinsCollectedT = Integer.parseInt(this.getCoinsCollected().getText());
                         } else if (chest instanceof Weapon_chest) {
                             if(((Weapon_chest) chest).getWeapon() instanceof Lance){
                                 if(swordSelect) {
@@ -180,6 +189,7 @@ public class GamePlayController implements Serializable {
                                 lanceSelect = true;
                                 ((Weapon_chest) chest).getWeapon().upgradeWeapon(Integer.parseInt(lanceLevel.getText()));
                                 lanceLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
+                                lanceLevelT = Integer.parseInt(lanceLevel.getText());
 
                             }else{
                                 if(lanceSelect){
@@ -190,6 +200,7 @@ public class GamePlayController implements Serializable {
                                 swordSelect = true;
                                 ((Weapon_chest) chest).getWeapon().upgradeWeapon(Integer.parseInt(swordLevel.getText()));
                                 swordLevel.setText(Integer.toString(((Weapon_chest) chest).getWeapon().getLevel()));
+                                swordLevelT = Integer.parseInt(swordLevel.getText());
                             }
                             hero.setWeapon(((Weapon_chest) chest).getWeapon(), root);
                             gameObjects.add(((Weapon_chest) chest).getWeapon());
@@ -211,6 +222,7 @@ public class GamePlayController implements Serializable {
                     else{
                         if(orc.isDead()){
                             coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
+                            coinsCollectedT = Integer.parseInt(coinsCollected.getText());
                             hero.getCurrIsland().getOrcs().remove(i);
                             //root
                             i--;
@@ -258,6 +270,7 @@ public class GamePlayController implements Serializable {
                 } else {
                     if (boss_orc.isDead()) {
                         coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
+                        coinsCollectedT = Integer.parseInt(coinsCollected.getText());
                         try {
                             System.out.println("Game won");
                             endGameMenu();
@@ -412,8 +425,40 @@ public class GamePlayController implements Serializable {
         return hero;
     }
 
+    public void setLanceLevel(int lanceLevel) {
+        this.lanceLevel.setText(Integer.toString(lanceLevel));
+    }
+
+    public void setSwordLevel(int swordLevel) {
+        this.swordLevel.setText(Integer.toString(swordLevel));
+    }
+
+    public int getLanceLevelT() {
+        return lanceLevelT;
+    }
+
+    public int getSwordLevelT() {
+        return swordLevelT;
+    }
+
+    public int getCoinsCollectedT() {
+        return coinsCollectedT;
+    }
+
     public ArrayList<Island> getIslands() {
         return islands;
+    }
+
+    public void setCoinsCollected(int coinsCollected) {
+        this.coinsCollected.setText(Integer.toString(coinsCollected));
+    }
+
+    public void setScore(int score) {
+        this.score.setText(Integer.toString(score));
+    }
+
+    public int getScoreT() {
+        return scoreT;
     }
 
     public Text getCoinsCollected() {
