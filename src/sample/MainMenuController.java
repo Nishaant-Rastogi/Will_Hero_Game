@@ -154,15 +154,14 @@ public class MainMenuController {
             gamePlayController1.setSwordLevel(gamePlayController.getSwordLevelT());
             gamePlayController1.setCoinsCollected(gamePlayController.getCoinsCollectedT());
             gamePlayController1.setScore(gamePlayController.getScoreT());
+            gamePlayController1.setSword(gamePlayController.isSwordSelect());
+            gamePlayController1.setLance(gamePlayController.isLanceSelect());
             gamePlayController1.initData(root, hero, islands, mediaPlayer);
             scene = new Scene(root,1000,600);
             stage.setScene(scene);
             stage.show();
         }
-//        catch (Exception e){
-//
-//            gamePlay(event);
-//        }
+
         finally {
             if(in!=null)
             in.close();

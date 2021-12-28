@@ -334,37 +334,38 @@ public class GamePlayController implements Serializable {
         Random randomOrc = new Random();
         int maxNo= randomOrc.nextInt(3); double x,y;
         Game_objects onIsland= island.getObject();
+        try {
+            for (int i = 0; i < maxNo; i++) {
+                x = island.getImg().getX() + 50;
+                //y here was set randomly
+                y = island.getImg().getY() + island.getBase();
 
-        for(int i=0;i<maxNo;i++){
-            x=island.getImg().getX()+50;
-            //y here was set randomly
-            y=island.getImg().getY()+island.getBase();
-
-            if(orcs.size() > 0 && island.getObject() != null) {
-                if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0] || orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
-                    x += Math.abs(x  - orcs.get(orcs.size() - 1).getPosition()[0])+ 70;
-                }
-                if (x + 140 > onIsland.getImg().getX() || onIsland.getImg().getX() + 140 > x) {
-                    x += Math.abs(x - onIsland.getImg().getX())+140;
-                }
-            }else if(island.getObject() != null) {
-                if (x + 140 > onIsland.getImg().getX() || onIsland.getImg().getX() + 140 > x) {
-                    x += Math.abs(x - onIsland.getImg().getX())+140;
-                }
-            }else{
-                if(orcs.size() > 0) {
+                if (orcs.size() > 0 && island.getObject() != null) {
                     if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0] || orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
-                        x += Math.abs(x  - orcs.get(orcs.size() - 1).getPosition()[0])+ 70;
+                        x += Math.abs(x - orcs.get(orcs.size() - 1).getPosition()[0]) + 70;
+                    }
+                    if (x + 140 > onIsland.getImg().getX() || onIsland.getImg().getX() + 140 > x) {
+                        x += Math.abs(x - onIsland.getImg().getX()) + 140;
+                    }
+                } else if (island.getObject() != null) {
+                    if (x + 140 > onIsland.getImg().getX() || onIsland.getImg().getX() + 140 > x) {
+                        x += Math.abs(x - onIsland.getImg().getX()) + 140;
+                    }
+                } else {
+                    if (orcs.size() > 0) {
+                        if (x + 70 > orcs.get(orcs.size() - 1).getPosition()[0] || orcs.get(orcs.size() - 1).getPosition()[0] + 70 > x) {
+                            x += Math.abs(x - orcs.get(orcs.size() - 1).getPosition()[0]) + 70;
+                        }
                     }
                 }
+                if (x + 70 < island.getImg().getX() + island.getWidth()) {
+                    int orcChoice = 1 + randomOrc.nextInt(2);
+                    int speedChoice = 2 + randomOrc.nextInt(3);
+                    if (orcChoice == 1) orcs.add(new Normal_G_Orc(x, y, 0, speedChoice, 70, 70));
+                    else orcs.add(new Shield_R_Orc(x, y, 0, speedChoice, 70, 70));
+                }
             }
-            if(x + 70 < island.getImg().getX()+island.getWidth()) {
-                int orcChoice = 1 + randomOrc.nextInt(2);
-                int speedChoice = 2 + randomOrc.nextInt(3);
-                if (orcChoice == 1) orcs.add(new Normal_G_Orc(x, y, 0, speedChoice, 70, 70));
-                else orcs.add(new Shield_R_Orc(x, y, 0, speedChoice, 70, 70));
-            }
-        }
+        }catch (NullPointerException ignored){}
         return orcs;
         //there may be no orcs
     }
@@ -476,6 +477,30 @@ public class GamePlayController implements Serializable {
 
     public int getScoreT() {
         return scoreT;
+    }
+
+    public void setSetting(ImageView setting) {
+        this.setting = setting;
+    }
+
+    public void setLance(boolean lance) {
+        if(lance){
+            this.lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+        };
+    }
+
+    public void setSword(boolean sword) {
+        if(sword){
+            this.sword.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+        }
+    }
+
+    public boolean isLanceSelect() {
+        return lanceSelect;
+    }
+
+    public boolean isSwordSelect() {
+        return swordSelect;
     }
 
     public Text getCoinsCollected() {
