@@ -8,12 +8,24 @@ public class Island extends Game_objects implements Jumpable{
     private Game_objects object;
     private ArrayList<Orc> orcs;
     private int base;
+    private boolean orcRevive;
+
     public Island(double x, double y, double sx, double sy, int path, int width, int height, int base, Game_objects game_object){
         super(x,y,sx,sy, paths.get(path), width,height);
         this.base=base;
         this.orcs=new ArrayList<>();
         object = game_object;
+        orcRevive=false;
     }
+
+    public boolean isOrcRevive() {
+        return orcRevive;
+    }
+
+    public void setOrcRevive(boolean orcRevive) {
+        this.orcRevive = orcRevive;
+    }
+
     public Game_objects getObject() {
         return object;
     }

@@ -102,21 +102,24 @@ public class GamePlayController implements Serializable {
                 continue;
             }
             if(heroIsland != 18 && heroIsland != 19) {
-                //if(island.getOrcs()==null){
+                if(!island.isOrcRevive()) {
                     island.setOrcs(generateOrcs(island));
-                //}
+                    island.setOrcRevive(true);
+                }
                 for (Orc orc : island.getOrcs()) {
                     orc.makeImage(root);
                     gameObjects.add(orc);
                 }
             }else if(heroIsland == 19){
-                //if(island.getOrcs()==null){
+                if(!island.isOrcRevive()){
                 island.setOrcs(new ArrayList<Orc>());
                 island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
-                //}
-
-                island.getOrcs().get(0).makeImage(root);
-                gameObjects.add(island.getOrcs().get(0));
+                island.setOrcRevive(true);
+                }
+                if(island.getOrcs().size()>=0) {
+                    island.getOrcs().get(0).makeImage(root);
+                    gameObjects.add(island.getOrcs().get(0));
+                }
             }
             heroIsland++;
         }
