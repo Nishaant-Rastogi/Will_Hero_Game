@@ -486,12 +486,14 @@ public class GamePlayController implements Serializable {
     public void setLance(boolean lance) {
         if(lance){
             this.lance.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+            swordSelect = false;
         };
     }
 
     public void setSword(boolean sword) {
         if(sword){
             this.sword.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+            lanceSelect = false;
         }
     }
 
