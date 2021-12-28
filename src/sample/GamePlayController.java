@@ -81,7 +81,7 @@ public class GamePlayController implements Serializable {
                 }
                 else{
                     island.getObject().makeImage(root);
-                    if(((Chests) island.getObject()).getIsOpen()) {
+                    if(!((Chests) island.getObject()).getIsOpen()) {
                         if ((Chests) island.getObject() instanceof Weapon_chest) {
                             ((Chests) island.getObject()).getImg().setImage(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
                         } else {
@@ -102,18 +102,19 @@ public class GamePlayController implements Serializable {
                 continue;
             }
             if(heroIsland != 18 && heroIsland != 19) {
-                if(island.getOrcs()==null){
+                //if(island.getOrcs()==null){
                     island.setOrcs(generateOrcs(island));
-                }
+                //}
                 for (Orc orc : island.getOrcs()) {
                     orc.makeImage(root);
                     gameObjects.add(orc);
                 }
             }else if(heroIsland == 19){
-                if(island.getOrcs()==null){
+                //if(island.getOrcs()==null){
                 island.setOrcs(new ArrayList<Orc>());
                 island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
-                }
+                //}
+
                 island.getOrcs().get(0).makeImage(root);
                 gameObjects.add(island.getOrcs().get(0));
             }
