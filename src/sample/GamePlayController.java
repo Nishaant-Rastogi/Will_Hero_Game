@@ -74,12 +74,24 @@ public class GamePlayController implements Serializable {
                 island.makeImage(root);
                 gameObjects.add(island);
                 if(island.getObject() instanceof TNT){
-                    tnts.add((TNT)island.getObject());
+                    if(!((TNT)island.getObject()).getIsBurst()) {
+                        tnts.add((TNT) island.getObject());
+                        island.getObject().makeImage(root);
+                    }
                 }
                 else{
+                    island.getObject().makeImage(root);
+                    if(((Chests) island.getObject()).getIsOpen()) {
+                        if ((Chests) island.getObject() instanceof Weapon_chest) {
+                            ((Chests) island.getObject()).getImg().setImage(new Image(new File("src/assets/WeaponChest_7.png").toURI().toString()));
+                        } else {
+                            ((Chests) island.getObject()).getImg().setImage(new Image(new File("src/assets/Coin_Chest5.png").toURI().toString()));
+                        }
+                    }
                     chests.add((Chests) island.getObject());
+
                 }
-                island.getObject().makeImage(root);
+
                 gameObjects.add(island.getObject());
             }catch (NullPointerException ignored){}
         }
@@ -90,14 +102,18 @@ public class GamePlayController implements Serializable {
                 continue;
             }
             if(heroIsland != 18 && heroIsland != 19) {
-                island.setOrcs(generateOrcs(island));
+                if(island.getOrcs()==null){
+                    island.setOrcs(generateOrcs(island));
+                }
                 for (Orc orc : island.getOrcs()) {
                     orc.makeImage(root);
                     gameObjects.add(orc);
                 }
             }else if(heroIsland == 19){
+                if(island.getOrcs()==null){
                 island.setOrcs(new ArrayList<Orc>());
                 island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
+                }
                 island.getOrcs().get(0).makeImage(root);
                 gameObjects.add(island.getOrcs().get(0));
             }

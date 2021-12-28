@@ -29,6 +29,7 @@ public abstract class Chests extends Game_objects implements Jumpable{
 
     }
 
+
     @Override
     public boolean collide(Game_objects game_objects){
         if(this.getImg().getBoundsInLocal().intersects(game_objects.getImg().getBoundsInLocal())) {
