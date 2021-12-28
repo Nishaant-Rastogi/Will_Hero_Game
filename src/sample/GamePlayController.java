@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import javax.swing.text.Position;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -101,7 +103,7 @@ public class GamePlayController implements Serializable {
                 heroIsland++;
                 continue;
             }
-            if(heroIsland != 18 && heroIsland != 19) {
+            if(heroIsland != 28 && heroIsland != 29) {
                 if(!island.isOrcRevive()) {
                     island.setOrcs(generateOrcs(island));
                     island.setOrcRevive(true);
@@ -110,11 +112,11 @@ public class GamePlayController implements Serializable {
                     orc.makeImage(root);
                     gameObjects.add(orc);
                 }
-            }else if(heroIsland == 19){
+            }else if(heroIsland == 29){
                 if(!island.isOrcRevive()){
-                island.setOrcs(new ArrayList<Orc>());
-                island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
-                island.setOrcRevive(true);
+                    island.setOrcs(new ArrayList<Orc>());
+                    island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
+                    island.setOrcRevive(true);
                 }
                 if(island.getOrcs().size()>=0) {
                     island.getOrcs().get(0).makeImage(root);
@@ -144,27 +146,37 @@ public class GamePlayController implements Serializable {
             hero.getMove().play();
             score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
             scoreT = Integer.parseInt(score.getText());
-            for (int i = 1; i < root.getChildren().size() - 3; i++) {
-                if (root.getChildren().get(i) != hero.getImg())
-                    ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 70);
-            }
-
-            for (int i = cur[0]; i < this.islands.size(); i++) {
-                if ((this.islands.get(i).getImg().getX() + this.islands.get(i).getWidth()) >= hero.getImg().getX())   {
-                    this.hero.setCurrIsland(this.islands.get(i));
-                    cur[0] = i;
-                    if (hero.getCurrIsland().getImg().getX() > hero.getImg().getX()+60) {
-                        System.out.println("Fall");
-                        fall.set(true);
+            final int[] counter = {0};
+            AnimationTimer timer = new AnimationTimer() {
+                @Override
+                public void handle(long l) {
+                    counter[0] = counter[0] + 30;
+                    for (int i = 1; i < root.getChildren().size() - 3; i++) {
+                        if (root.getChildren().get(i) != hero.getImg())
+                            ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 40);
                     }
-                    if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
-                        System.out.println("Fall1");
-                        fall.set(true);
-                    } else {
-                        break;
+                    for (int i = cur[0]; i < islands.size(); i++) {
+                        if ((islands.get(i).getImg().getX() + islands.get(i).getWidth()) >= hero.getImg().getX())   {
+                            hero.setCurrIsland(islands.get(i));
+                            cur[0] = i;
+                            if (hero.getCurrIsland().getImg().getX() > hero.getImg().getX()+60) {
+                                System.out.println("Fall");
+                                fall.set(true);
+                            }
+                            if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
+                                System.out.println("Fall1");
+                                fall.set(true);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    if (counter[0] >= 100) {
+                        stop();
                     }
                 }
-            }
+            };
+            timer.start();
         });
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             if(hero.getImg().getY()>=600){
@@ -279,8 +291,8 @@ public class GamePlayController implements Serializable {
             }
         });
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
-            if(islands.get(19).getOrcs().size() > 0) {
-                Boss_orc boss_orc = (Boss_orc) islands.get(19).getOrcs().get(0);
+            if(islands.get(29).getOrcs().size() > 0) {
+                Boss_orc boss_orc = (Boss_orc) islands.get(29).getOrcs().get(0);
                 if (boss_orc.collide(hero)) {
                     try {
                         reviveMenu();
@@ -495,7 +507,7 @@ public class GamePlayController implements Serializable {
 
     public void setSword(boolean sword) {
         if(sword){
-            this.sword.setImage(new Image(new File("src/assets/selectLance.png").toURI().toString()));
+            this.sword.setImage(new Image(new File("src/assets/selectSword.png").toURI().toString()));
             lanceSelect = false;
         }
     }
