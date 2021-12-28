@@ -18,6 +18,7 @@ public abstract class Orc extends Game_objects implements Jumpable{
     private boolean dead;
     private Island currIsland;
     private ArrayList<Coin> coins;
+    private String path;
     private transient List<Image> orcDeathAnimation;
     public Orc(double x, double y, double sx, double sy, String path, int width, int height){
         super(x,y,sx,sy,path,width,height);
@@ -30,7 +31,8 @@ public abstract class Orc extends Game_objects implements Jumpable{
         orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
         orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
         orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
-        orcDeathAnimation.add(new javafx.scene.image.Image(new File("src/assets/blank.png").toURI().toString()));
+        orcDeathAnimation.add(new Image(new File("src/assets/blank.png").toURI().toString()));
+        this.path = path;
         coins = new ArrayList<>();
         for (int i = 0; i<5; i++){
             coins.add(new Coin(0,0,0,0,10,10));
@@ -198,6 +200,16 @@ public abstract class Orc extends Game_objects implements Jumpable{
             {setCycleDuration(Duration.millis(200));}
             @Override
             protected void interpolate(double fraction) {
+                if(orcDeathAnimation == null){
+                    orcDeathAnimation= new ArrayList<>();
+                    orcDeathAnimation.add(new Image(new File(path).toURI().toString()));
+                    orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+                    orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+                    orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+                    orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+                    orcDeathAnimation.add(new Image(new File("src/assets/Dead.png").toURI().toString()));
+                    orcDeathAnimation.add(new Image(new File("src/assets/blank.png").toURI().toString()));
+                }
                 int index = (int) (fraction*(orcDeathAnimation.size()-1));
                 orc.getImg().setImage(orcDeathAnimation.get(index));
             }
