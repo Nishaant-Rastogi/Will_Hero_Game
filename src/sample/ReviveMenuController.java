@@ -152,7 +152,7 @@ public class ReviveMenuController {
         int x=0;
         ArrayList<Island> islands = new ArrayList<>();
         //to change loop counter
-        for(int i=0;i<3;i++) {
+        for(int i=0;i<4;i++) {
             if(i>0)islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,gameObjectGenerator(50+x+100, 180,320)));
             else islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,null));
             islands.add(new Island(400+x, 80, 0, 0.5, isLand2 - 1, 400, 520, 210,gameObjectGenerator(400+x+180, 100,400)));
@@ -172,12 +172,6 @@ public class ReviveMenuController {
             x+=4400;
         }
         Hero hero = new Hero(100,250,0,2,55,65, islands.get(0));
-        //ArrayList<Coin> coins=new ArrayList<>();
-        x=0;
-//        for(int i=0;i<3;i++){
-//            coins.add(new Coin(340+x,160,0,0,30,30));
-//            x+=40;
-//        }
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
