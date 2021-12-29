@@ -39,6 +39,7 @@ public class EndGameController {
     private AnchorPane reviveMenu;
     private Button inputButton;
     private AtomicBoolean fall;
+    private Player player;
     public void initData(GamePlayController gamePlayController, AnchorPane reviveMenu, Hero hero, Text score, Text coins){
         this.score.setText(score.getText());
         this.root = gamePlayController.getRoot();
@@ -51,6 +52,7 @@ public class EndGameController {
         this.hero = hero;
         this.fall = gamePlayController.getFall();
         this.inputButton=gamePlayController.getInputButton();
+        this.player = player;
     }
 
     public void revive(MouseEvent mouseEvent)throws IOException{
@@ -73,7 +75,7 @@ public class EndGameController {
         root.getChildren().add(fxmlLoader.load());
         Scene scene = new Scene(root,800,600);
         MainMenuController mainMenuController = fxmlLoader.getController();
-        mainMenuController.initData(root, mediaPlayer);
+        mainMenuController.initData(root, mediaPlayer,player);
         if(this.mediaPlayer.isMute()){
             mainMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
             mediaPlayer.setMute(true);
@@ -134,7 +136,7 @@ public class EndGameController {
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, mediaPlayer,player);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();

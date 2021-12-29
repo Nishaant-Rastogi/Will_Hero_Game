@@ -56,9 +56,10 @@ public class GamePlayController implements Serializable {
     private transient Button inputButton;
     private ArrayList<TNT> tnts;
     private ArrayList<Game_objects> gameObjects;
+    private Player player;
     //private ArrayList<Coin> coins;
     private AtomicBoolean fall= new AtomicBoolean(false);
-    public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer) throws IOException {
+    public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer, Player player) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
         this.mediaPlayer = mediaPlayer;
         this.root = root;
@@ -69,6 +70,7 @@ public class GamePlayController implements Serializable {
         this.tnts = new ArrayList<>();
         this.chests = new ArrayList<>();
         this.gameObjects = new ArrayList<>();
+        this.player = player;
         //fall used to check for fall condition
         //current island index;
         for(Island island : this.islands){
@@ -137,44 +139,84 @@ public class GamePlayController implements Serializable {
         inputButton.setPrefWidth(800);inputButton.setPrefHeight(400);
         root.getChildren().add(inputButton);
         //see if hold can give a power up
-        root.getChildren().get(root.getChildren().size()-1).setOnMousePressed(mouseEvent -> {
-            fall.set(false);
-            int count = mouseEvent.getClickCount();
-            hero.getMove().play();
-            score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
-            scoreT = Integer.parseInt(score.getText());
-            final int[] counter = {0};
-            AnimationTimer timer = new AnimationTimer() {
-                @Override
-                public void handle(long l) {
-                    counter[0] = counter[0] + 30;
-                    for (int i = 1; i < root.getChildren().size() - 3; i++) {
-                        if (root.getChildren().get(i) != hero.getImg())
-                            ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 40);
-                    }
-                    for (int i = cur[0]; i < islands.size(); i++) {
-                        if ((islands.get(i).getImg().getX() + islands.get(i).getWidth()) >= hero.getImg().getX())   {
-                            hero.setCurrIsland(islands.get(i));
-                            cur[0] = i;
-                            if (hero.getCurrIsland().getImg().getX() - 40> hero.getImg().getX()+60) {
+        if(player.getKey() == 0) {
+            root.getChildren().get(root.getChildren().size() - 1).setOnMousePressed(mouseEvent -> {
+                fall.set(false);
+                int count = mouseEvent.getClickCount();
+                hero.getMove().play();
+                score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
+                scoreT = Integer.parseInt(score.getText());
+                final int[] counter = {0};
+                AnimationTimer timer = new AnimationTimer() {
+                    @Override
+                    public void handle(long l) {
+                        counter[0] = counter[0] + 30;
+                        for (int i = 1; i < root.getChildren().size() - 3; i++) {
+                            if (root.getChildren().get(i) != hero.getImg())
+                                ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 40);
+                        }
+                        for (int i = cur[0]; i < islands.size(); i++) {
+                            if ((islands.get(i).getImg().getX() + islands.get(i).getWidth()) >= hero.getImg().getX()) {
+                                hero.setCurrIsland(islands.get(i));
+                                cur[0] = i;
+                                if (hero.getCurrIsland().getImg().getX() - 40 > hero.getImg().getX() + 60) {
 
-                                fall.set(true);
-                            }
-                            if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
+                                    fall.set(true);
+                                }
+                                if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
 
-                                fall.set(true);
-                            } else {
-                                break;
+                                    fall.set(true);
+                                } else {
+                                    break;
+                                }
                             }
                         }
+                        if (counter[0] >= 100) {
+                            stop();
+                        }
                     }
-                    if (counter[0] >= 100) {
-                        stop();
+                };
+                timer.start();
+            });
+        }else{
+            root.getChildren().get(root.getChildren().size() - 1).setOnKeyPressed(mouseEvent -> {
+                fall.set(false);
+                hero.getMove().play();
+                score.setText(Integer.toString(Integer.parseInt(score.getText()) + 1));
+                scoreT = Integer.parseInt(score.getText());
+                final int[] counter = {0};
+                AnimationTimer timer = new AnimationTimer() {
+                    @Override
+                    public void handle(long l) {
+                        counter[0] = counter[0] + 30;
+                        for (int i = 1; i < root.getChildren().size() - 3; i++) {
+                            if (root.getChildren().get(i) != hero.getImg())
+                                ((ImageView) root.getChildren().get(i)).setX(((ImageView) root.getChildren().get(i)).getX() - 40);
+                        }
+                        for (int i = cur[0]; i < islands.size(); i++) {
+                            if ((islands.get(i).getImg().getX() + islands.get(i).getWidth()) >= hero.getImg().getX()) {
+                                hero.setCurrIsland(islands.get(i));
+                                cur[0] = i;
+                                if (hero.getCurrIsland().getImg().getX() - 40 > hero.getImg().getX() + 60) {
+
+                                    fall.set(true);
+                                }
+                                if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
+
+                                    fall.set(true);
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                        if (counter[0] >= 100) {
+                            stop();
+                        }
                     }
-                }
-            };
-            timer.start();
-        });
+                };
+                timer.start();
+            });
+        }
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             if(hero.getImg().getY()>=600){
 //                System.exit(0);
@@ -535,6 +577,11 @@ public class GamePlayController implements Serializable {
     public AtomicBoolean getFall() {
         return fall;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public void removeShadowEffectSetting(MouseEvent mouseEvent) {
         setting.setEffect(null);
     }

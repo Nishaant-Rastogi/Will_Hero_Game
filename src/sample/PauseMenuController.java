@@ -37,6 +37,7 @@ public class PauseMenuController {
     private MainMenuController mainMenuController;
     private GamePlayController gamePlayController;
     private Button inputButton;
+    private Player player;
     public void initData(GamePlayController gamePlayController, AnchorPane menu, Button inputButton){
         this.gamePlayController = gamePlayController;
         this.root = gamePlayController.getRoot();
@@ -44,6 +45,7 @@ public class PauseMenuController {
         this.pauseMenu = menu;
         this.mediaPlayer = gamePlayController.getMediaPlayer();
         this.inputButton=inputButton;
+        this.player = gamePlayController.getPlayer();
     }
     public void initData(MainMenuController mainMenuController, AnchorPane menu){
         this.mainMenuController = mainMenuController;
@@ -125,7 +127,7 @@ public class PauseMenuController {
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, mediaPlayer, player);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();
@@ -160,7 +162,7 @@ public class PauseMenuController {
         root.getChildren().add(fxmlLoader.load());
         Scene scene = new Scene(root,800,600);
         MainMenuController mainMenuController = fxmlLoader.getController();
-        mainMenuController.initData(root, mediaPlayer);
+        mainMenuController.initData(root, mediaPlayer, player);
         if(this.mediaPlayer.isMute()){
             mainMenuController.getMusic().setImage(new Image(new File("src/assets/MusicButtonClose.png").toURI().toString()));
             mediaPlayer.setMute(true);

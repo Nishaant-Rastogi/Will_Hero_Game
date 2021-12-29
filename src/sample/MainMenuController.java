@@ -44,10 +44,11 @@ public class MainMenuController {
     private ImageView settings;
 
     private MediaPlayer mediaPlayer;
-
-    public void initData(Group root, MediaPlayer mediaPlayer){
+    private Player player;
+    public void initData(Group root, MediaPlayer mediaPlayer, Player player){
         this.mediaPlayer = mediaPlayer;
         this.root = root;
+        this.player = player;
     }
     public void exitGame(MouseEvent event) throws IOException {
         exit(0);
@@ -63,13 +64,7 @@ public class MainMenuController {
             mediaPlayer.setMute(true);
         }
     }
-    public void reviveMenu(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ReviveMenu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
     public void gamePlay(MouseEvent event) throws IOException {
         Group root = new Group();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
@@ -114,7 +109,7 @@ public class MainMenuController {
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();
-        gamePlayController.initData(root, hero, islands, mediaPlayer);
+        gamePlayController.initData(root, hero, islands, mediaPlayer, player);
         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();
@@ -146,6 +141,7 @@ public class MainMenuController {
             ArrayList<Island> islands = gamePlayController.getIslands();
             //to change loop counter
             Hero hero = gamePlayController.getHero();
+            Player player = gamePlayController.getPlayer();
             hero.transientObjInitializer();
             root.getChildren().add(fxmlLoader.load());
             root.getChildren().add(sky.load());
@@ -156,7 +152,7 @@ public class MainMenuController {
             gamePlayController1.setScore(gamePlayController.getScoreT());
             gamePlayController1.setSword(gamePlayController.isSwordSelect());
             gamePlayController1.setLance(gamePlayController.isLanceSelect());
-            gamePlayController1.initData(root, hero, islands, mediaPlayer);
+            gamePlayController1.initData(root, hero, islands, mediaPlayer, player);
             scene = new Scene(root,1000,600);
             stage.setScene(scene);
             stage.show();
