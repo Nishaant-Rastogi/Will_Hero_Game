@@ -58,7 +58,6 @@ public abstract class Orc extends Game_objects implements Jumpable{
                 AudioClip buzzer = new AudioClip(Objects.requireNonNull(getClass().getResource("../assets/orcCollide.mp3")).toExternalForm());
                 buzzer.play();
                 if ((currIsland.getImg().getX() > currIsland.getOrcs().get(index + 1).getImg().getX()+70) || (currIsland.getImg().getX() + currIsland.getWidth() <= currIsland.getOrcs().get(index + 1).getImg().getX())) {
-                    System.out.println("Fall");
                     //need to slow down the animation
                     TranslateTransition animation = new TranslateTransition(Duration.seconds(3),currIsland.getOrcs().get(index + 1).getImg());
                     animation.setFromY(currIsland.getOrcs().get(index + 1).getImg().getY());
@@ -74,7 +73,6 @@ public abstract class Orc extends Game_objects implements Jumpable{
             }
         }
         if ((currIsland.getImg().getX() > this.getImg().getX()+70) || (currIsland.getImg().getX() + currIsland.getWidth() <= this.getImg().getX())) {
-            System.out.println("Fall");
             //need to slow down the animation
             TranslateTransition animation = new TranslateTransition(Duration.seconds(3),this.getImg());
             animation.setFromY(this.getImg().getY());
