@@ -157,11 +157,11 @@ public class GamePlayController implements Serializable {
                             hero.setCurrIsland(islands.get(i));
                             cur[0] = i;
                             if (hero.getCurrIsland().getImg().getX() - 40> hero.getImg().getX()+60) {
-                                System.out.println("Fall");
+
                                 fall.set(true);
                             }
                             if (hero.getCurrIsland().getImg().getX() + hero.getCurrIsland().getWidth() <= hero.getImg().getX()) {
-                                System.out.println("Fall1");
+
                                 fall.set(true);
                             } else {
                                 break;
@@ -301,7 +301,7 @@ public class GamePlayController implements Serializable {
                         coinsCollected.setText(Integer.toString(hero.getCoinCase().size()));
                         coinsCollectedT = Integer.parseInt(coinsCollected.getText());
                         try {
-                            System.out.println("Game won");
+
                             endGameMenu();
                         } catch (IOException ignored) {
 
@@ -319,10 +319,10 @@ public class GamePlayController implements Serializable {
                             buzzer.play();
                             reviveMenu();
                         } catch (IOException ex) {
-                            System.out.println("Error in tnt exp in game play controller");
+
                         }
                     } else {
-                        System.out.println("Did not enter");
+
                     }
                 }
             }
@@ -332,7 +332,7 @@ public class GamePlayController implements Serializable {
                     buzzer.play();
                     reviveMenu();
                 } catch (IOException ex) {
-                    System.out.println("Error in tnt exp in game play controller");
+
                 }
             }
         });
