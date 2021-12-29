@@ -102,7 +102,7 @@ public class PauseMenuController {
         int x=0;
         ArrayList<Island> islands = new ArrayList<>();
         //to change loop counter
-        for(int i=0;i<3;i++) {
+        for(int i=0;i<4;i++) {
             if(i>0)islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,gameObjectGenerator(50+x+100, 180,320)));
             else islands.add(new Island(50+x, 200, 0, 0, isLand1 - 1, 320, 350, 70,null));
             islands.add(new Island(400+x, 80, 0, 0.5, isLand2 - 1, 400, 520, 210,gameObjectGenerator(400+x+180, 100,400)));
@@ -112,7 +112,7 @@ public class PauseMenuController {
             islands.add(new Island(2250+x, 100, 0, 0.5, isLand6 - 1, 380, 500, 177,gameObjectGenerator(2250+x+100, 150,380)));
             islands.add(new Island(2750+x, 200, 0, 0.3, isLand7 - 1, 320, 350, 70,gameObjectGenerator(2750+x+100, 180,320)));
             islands.add(new Island(3200+x, 100, 0, 0, isLand8 - 1, 150, 400, 210,gameObjectGenerator(3200+x+20, 100,150)));
-            if(i == 1){
+            if(i == 3){
                 islands.add(new Island(3420+x, 100, 0, 0, isLand6 - 1, 380, 500, 177,null));
                 islands.add(new Island(3700+x, 65, 0, 0, isLand2 - 1, 400, 520, 210,null));
                 x += 800;
@@ -122,12 +122,6 @@ public class PauseMenuController {
             x+=4400;
         }
         Hero hero = new Hero(100,250,0,2,55,65, islands.get(0));
-        //ArrayList<Coin> coins=new ArrayList<>();
-        x=0;
-//        for(int i=0;i<3;i++){
-//            coins.add(new Coin(340+x,160,0,0,30,30));
-//            x+=40;
-//        }
         root.getChildren().add(fxmlLoader.load());
         root.getChildren().add(sky.load());
         GamePlayController gamePlayController = fxmlLoader.getController();

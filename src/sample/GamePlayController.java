@@ -103,7 +103,7 @@ public class GamePlayController implements Serializable {
                 heroIsland++;
                 continue;
             }
-            if(heroIsland != 28 && heroIsland != 29) {
+            if(heroIsland != 38 && heroIsland != 39) {
                 if(!island.isOrcRevive()) {
                     island.setOrcs(generateOrcs(island));
                     island.setOrcRevive(true);
@@ -112,7 +112,7 @@ public class GamePlayController implements Serializable {
                     orc.makeImage(root);
                     gameObjects.add(orc);
                 }
-            }else if(heroIsland == 29){
+            }else if(heroIsland == 39){
                 if(!island.isOrcRevive()){
                     island.setOrcs(new ArrayList<Orc>());
                     island.getOrcs().add(new Boss_orc(island.getImg().getX(),island.getImg().getY()+island.getBase(),0,2,150,150));
@@ -125,9 +125,6 @@ public class GamePlayController implements Serializable {
             }
             heroIsland++;
         }
-//        for (Coin coin : coins) {
-//            coin.makeImage(root);
-//        }
         hero.makeImage(root);
         if(hero.getWeapon() != null){
             hero.setWeapon(hero.getWeapon(), root);
@@ -159,7 +156,7 @@ public class GamePlayController implements Serializable {
                         if ((islands.get(i).getImg().getX() + islands.get(i).getWidth()) >= hero.getImg().getX())   {
                             hero.setCurrIsland(islands.get(i));
                             cur[0] = i;
-                            if (hero.getCurrIsland().getImg().getX() > hero.getImg().getX()+60) {
+                            if (hero.getCurrIsland().getImg().getX() - 40> hero.getImg().getX()+60) {
                                 System.out.println("Fall");
                                 fall.set(true);
                             }
@@ -291,8 +288,8 @@ public class GamePlayController implements Serializable {
             }
         });
         KeyFrame BossFrame = new KeyFrame(Duration.millis(10), e->{
-            if(islands.get(29).getOrcs().size() > 0) {
-                Boss_orc boss_orc = (Boss_orc) islands.get(29).getOrcs().get(0);
+            if(islands.get(39).getOrcs().size() > 0) {
+                Boss_orc boss_orc = (Boss_orc) islands.get(39).getOrcs().get(0);
                 if (boss_orc.collide(hero)) {
                     try {
                         reviveMenu();
