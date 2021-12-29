@@ -180,6 +180,12 @@ public class PauseMenuController {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             for(int i = 0; i<gamePlayController.getGameObjects().size(); i++){
                 Game_objects gameObject = gamePlayController.getGameObjects().get(i);
+                System.out.println(gameObject.getPath());
+                if(gameObject instanceof TNT){
+                    if (((TNT) gameObject).getIsBurst()){
+                        continue;
+                    }
+                }
                 gameObject.setPosition(new double[]{gameObject.getImg().getX(), gameObject.getImg().getY()});
             }
             out.writeObject(gamePlayController);
