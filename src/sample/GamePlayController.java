@@ -57,15 +57,15 @@ public class GamePlayController implements Serializable {
     private ArrayList<TNT> tnts;
     private ArrayList<Game_objects> gameObjects;
     private Player player;
-    //private ArrayList<Coin> coins;
+
     private AtomicBoolean fall= new AtomicBoolean(false);
     public void initData(Group root, Hero hero,ArrayList<Island> islands,MediaPlayer mediaPlayer, Player player) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
+
         this.mediaPlayer = mediaPlayer;
         this.root = root;
         this.hero = hero;
         this.islands = islands;
-        //this.coins=c;
+
         final int[] cur = {0};
         this.tnts = new ArrayList<>();
         this.chests = new ArrayList<>();
@@ -219,8 +219,6 @@ public class GamePlayController implements Serializable {
         }
         KeyFrame heroFrame = new KeyFrame(Duration.millis(11), e->{
             if(hero.getImg().getY()>=600){
-//                System.exit(0);
-//                change
                 try {
                     reviveMenu();
                 } catch (IOException ioException) {
@@ -233,7 +231,6 @@ public class GamePlayController implements Serializable {
             }
             else {
                 if(hero.getImg().getY()>hero.getCurrIsland().getImg().getY()+hero.getCurrIsland().getBase()+0.6){
-                    //System.out.println(hero.getImg().getY()+" "+(hero.getCurrIsland().getImg().getY()+hero.getCurrIsland().getBase()));
                     hero.getImg().setY(hero.getImg().getY()+2);
                 }
                 else{
