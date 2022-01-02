@@ -28,6 +28,12 @@ import java.util.Random;
 
 import static java.lang.System.exit;
 
+class NoSaveFoundException extends Exception{
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
+}
 public class MainMenuController {
 
     private Stage stage;
@@ -55,11 +61,11 @@ public class MainMenuController {
     }
     public void musicButton(MouseEvent event) throws IOException{
         if(mediaPlayer.isMute()) {
-            javafx.scene.image.Image music = new javafx.scene.image.Image(new File("src/assets/MusicButton.png").toURI().toString());
+            Image music = new Image(new File("src/assets/MusicButton.png").toURI().toString());
             this.music.setImage(music);
             mediaPlayer.setMute(false);
         }else {
-            javafx.scene.image.Image musicOn = new Image(new File("src/assets/MusicButtonClose.png").toURI().toString());
+            Image musicOn = new Image(new File("src/assets/MusicButtonClose.png").toURI().toString());
             this.music.setImage(musicOn);
             mediaPlayer.setMute(true);
         }
@@ -131,7 +137,15 @@ public class MainMenuController {
         ObjectInputStream in = null;
         try {
             in = new ObjectInputStream(new FileInputStream("src/savedGames/save.txt"));
-            GamePlayController gamePlayController=(GamePlayController) in.readObject();
+            GamePlayController gamePlayController = null;
+            try {
+                gamePlayController = (GamePlayController) in.readObject();
+                if(gamePlayController == null){
+                    throw new NoSaveFoundException();
+                }
+            }catch (NoSaveFoundException e){
+                System.out.println(e.getMessage());
+            }
             Group root = new Group();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePlay.fxml"));
             FXMLLoader sky = new FXMLLoader(Main.class.getResource("sky.fxml"));
@@ -157,7 +171,6 @@ public class MainMenuController {
             stage.setScene(scene);
             stage.show();
         }
-
         finally {
             if(in!=null)
             in.close();
