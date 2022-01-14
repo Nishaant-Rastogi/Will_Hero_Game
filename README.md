@@ -3,4 +3,7 @@ An adaptation of the online game Will Hero. We used Java, JavaFX and FXML techno
 Have a look at our game throught this demo video: https://drive.google.com/file/d/1jciO1eUXYL8Q-E1-wk4VKw97Kar0ruM6/view?usp=sharing
 
 Some ScreenShots of our Game:
+Main Menu:
 ![image](https://user-images.githubusercontent.com/78685211/149463276-c08b1c81-6856-44ea-a208-0526f541a9a5.png)
+Game Play:
+![image](https://user-images.githubusercontent.com/78685211/149463536-156a2648-5439-4f8f-a93c-1026795c3efc.png)
