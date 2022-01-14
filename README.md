@@ -1,5 +1,5 @@
 # Will_Hero_Game
-This is an adaptation of the famous online and android game ![Will Hero](https://www.crazygames.com/game/will-hero-online) for our Advanced Programming Course (Monsoon 2021 @ IIITD). 
+This is an adaptation of the famous online and android game [Will Hero](https://www.crazygames.com/game/will-hero-online) for our Advanced Programming Course (Monsoon 2021 @ IIITD). 
 
 ## TechStack:
   1. Java
